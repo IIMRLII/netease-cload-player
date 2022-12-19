@@ -1,0 +1,245 @@
+#whole {
+    text-align: center;
+}
+
+#HTMLreset {
+    position: absolute;
+    display: inline-block;
+    text-align: center;
+    line-height: 10px;
+    vertical-align: middle;
+    right: 0px;
+    top: 0px;
+    width: 40px;
+    height: 35px;
+    font-size: 8px;
+    color: white;
+    border: 3px ridge white;
+    border-radius: 10px;
+    background-color: rgba(196, 196, 196, 0.2);
+    transition: width 0.1s ease, height 0.1s ease, line-height 0.1s ease, font-size 0.1s ease, right 0.1s ease, top 0.1s ease;
+}
+
+#HTMLreset:hover {
+    right: 7px;
+    top: 7px;
+    width: 60px;
+    height: 60px;
+    line-height: 20px;
+    font-size: 20px;
+}
+
+#RtxSwitchDiv {
+    display: inline-block;
+    width: 200px;
+    height: 80px;
+    text-align: center;
+}
+
+#RtxSwitch {
+    display: inline-block;
+    width: 120px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+    border: 3px ridge white;
+    border-radius: 10px;
+    background-color: rgba(196, 196, 196, 0.2);
+    transition: width 0.1s ease, height 0.1s ease, line-height 0.1s ease, font-size 0.1s ease;
+}
+
+#RtxSwitch:hover {
+    width: 130px!important;
+    height: 50px!important;
+    line-height: 50px!important;
+    font-size: 25px!important;
+}
+
+#RtxSwitch:active {
+    width: 120px!important;
+    height: 40px!important;
+    line-height: 40px!important;
+    font-size: 20px!important;
+}
+
+#top {
+    font-size: 13px;
+    width: calc(100vw);
+    position: fixed;
+    min-width: 1000px;
+    z-index: 998;
+    top: 0;
+}
+
+#search {
+    background-color: #0E0E0E;
+    text-align: left;
+    height: 80px;
+}
+
+.logo {
+    display: inline-block;
+    height: 80px;
+    vertical-align: middle;
+}
+
+#nav {
+    padding-left: 360px;
+    list-style: none;
+    background-color: lightskyblue;
+    background-image: url("img/bgimg.png");
+    filter: grayscale(10%);
+    background-repeat: repeat-x;
+    border-bottom: 1px solid;
+    margin-top: 0;
+    text-align: left;
+}
+
+#nav li {
+    display: inline-block;
+    height: 34px;
+}
+
+#showSearch {
+    position: fixed;
+    left: calc(100vw - 120px);
+}
+
+.navitem {
+    display: block;
+    margin: 7px 17px;
+    padding: 0 13px;
+    padding-top: 2px;
+    height: 20px;
+    color: white;
+}
+
+.navitem:hover {
+    background-color: #4CA5EE;
+    border-radius: 10px;
+}
+
+#inputdiv {
+    display: inline-block;
+    height: 60px;
+}
+
+#input1 {
+    display: block;
+    border-radius: 14px;
+    line-height: 28px;
+    height: 28px;
+    margin: auto 0;
+    outline: none;
+}
+
+#searchSuggest {
+    border: 1px grey solid;
+    max-width: fit-content;
+    min-width: 250px;
+    border-radius: 6px;
+    position: absolute;
+    background-color: white;
+    z-index: 1000;
+    left: 405px;
+    top: 60px;
+    transition: height 0.3s ease, width 0.3s ease;
+}
+
+.suggestName,
+.suggestList {
+    display: inline-block;
+    font-weight: normal;
+    font-size: 12px;
+    margin: 0;
+    vertical-align: middle;
+}
+
+.suggestName {
+    text-align: center;
+    width: 20%;
+}
+
+.suggestList {
+    list-style: none;
+    padding-left: 10px;
+    width: 70%;
+}
+
+.suggestList li {
+    margin: 5px 0;
+}
+
+.suggestList li:hover {
+    background-color: #F5F5F7;
+}
+
+.searchTip {
+    font-size: 12px;
+}
+
+.searchBtn {
+    display: inline-block;
+    vertical-align: middle;
+    height: 38px;
+    width: 38px;
+    margin-right: 20px;
+}
+
+.user_nav {
+    cursor: none;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    margin: 0 5px 0 5px;
+    line-height: 40px;
+    width: 40px;
+    height: 40px;
+    font-size: 8px;
+    color: white;
+    border: 3px ridge white;
+    border-radius: 50px;
+    background-color: rgba(196, 196, 196, 0.2);
+    transition: width 0.1s ease, height 0.1s ease, line-height 0.1s ease, font-size 0.1s ease, top 0.1s ease, margin 0.1s ease;
+}
+
+.user_nav:hover {
+    margin: 0;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    font-size: 12px;
+}
+
+.user_nav:active {
+    margin: 0 5px 0 5px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 6px;
+}
+
+#user_board {
+    width: 100px;
+    /* border-top-right-radius: 0;
+    border-bottom-right-radius: 0; */
+}
+
+ul {
+    margin: 0;
+    list-style: none;
+    padding-left: 0;
+}
+
+li {
+    list-style: none;
+}
+
+.nava {
+    text-decoration: none;
+    color: black;
+}

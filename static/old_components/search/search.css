@@ -1,0 +1,149 @@
+#tips{
+    width: 100%;
+    margin: 0 auto;
+    list-style: none;
+    padding: 0;
+}
+
+#searchResultCover{
+    position: fixed;
+    left: 0;
+    margin-top: 115px;
+    width: calc(100vw);
+    height: calc(100vh - 115px);
+    z-index: 299;
+    min-width: 870px;
+    background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,1) 100%);
+    pointer-events: none;
+}
+
+#searchResult{
+    margin-top: 115px;
+    /* background-color: white; */
+    width: 100%;
+    height: calc(100% - 115px);
+    transform: translateX(-50%);
+    display: inline-block;
+    position: absolute;
+    z-index: 300;
+    min-width: 870px;
+}
+
+#searchResult p{
+    margin: 0;
+    display: inline-block;
+}
+
+#songListBlock{
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: calc(100vh - 115px - 25px);
+}
+
+#songList{
+    padding: 0;
+    overflow: hidden;
+    height: 100% - 23px;
+    width: 100%;
+    margin: 0 auto;
+    list-style: none;
+}
+#songList:hover{
+    overflow: auto;
+}
+#songList li a:hover{
+    background-color: darkgray;
+}
+
+
+.songName{
+    margin: 0;
+    display: inline-block;
+    width: 30%;
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+.songName a{ 
+    display: inline;
+}
+
+.artistBlock{
+    display: inline-block;
+    width: 15%;
+    margin: 0;
+    vertical-align: middle;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
+}
+.artistDiv{
+    margin: 0;
+    display: inline-block;
+    overflow: hidden;
+}
+.artist{
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+}
+.artist a{
+    display: inline;
+}
+
+#album1{
+    margin: 0;
+    display: inline-block;
+    width: 25%;
+}
+
+#album2{
+    display: inline-block;
+    width: 25%;
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+#album2 a{
+    display: inline-block;
+    width: max-content;
+}
+
+.duration{
+    margin: 0;
+    display: inline-block;
+    width: 10%;
+    vertical-align: middle;
+}
+
+.movie1{
+    margin: 0;
+    display: inline-block;
+    width: 10%;
+    vertical-align: middle;
+}
+
+.movie2{
+    display: inline-block;
+    text-align: center;
+    width: 10%;
+}
+.movie2 img{
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+}
+
+#searchResult a:hover{
+    background-color:#C1C2C2;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+}

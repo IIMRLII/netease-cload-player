@@ -1,0 +1,167 @@
+#curSinger{
+    position: fixed;
+    left: 0;
+    margin-top: 115px;
+    width: calc(100vw);
+    height: calc(100vh - 115px);
+    z-index: 299;
+    min-width: 870px;
+    text-align: center;
+}
+
+#curSingerDetail,#curSingerSongs{
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+    width: 45%;
+    height: calc(100vh - 115px);
+}
+
+#curSingerCoverDiv{
+    margin: 20px;
+    vertical-align: top;
+    display: inline-block;
+    width: 200px;
+    height: 200px;
+}
+
+#curSingerCover{
+    border-radius: 8px;
+    width: 200px;
+    height: 200px;
+}
+
+#curSingerCreater{
+    margin: 20px 20px 20px 0;
+    display: inline-block;
+    text-align: left;
+    vertical-align: top;
+    width: calc(100% - 280px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#curSingerCreater div{
+    margin: 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#curSingerCreater div:first-child{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#curSingerCreater div:nth-child(5){
+    height: 60px;
+    white-space: normal;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#curSingerAlbum{
+    margin: 0 20px 20px 20px;
+    width: calc(100% - 40px);
+    height: calc(100% - 200px - 60px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#curSingerAlbumUl{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    list-style: none;
+    text-align: left;
+}
+
+.curSingerAlbumLi{
+    margin: 0px 10px 10px 10px;
+}
+
+.curSingerAlbumCont{
+    display: block;
+    text-align: left;
+    text-indent: 2em;
+    margin: 0 20px 0 20px;
+}
+
+#SingerBlock{
+    height: calc(100vh - 115px);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.SingerAlbum{
+    display: block;
+    margin: 10px 0 10px 0;
+    width: 100%;
+}
+
+.SingerAlbumDiv{
+    display: block;
+    text-align: left;
+}
+
+.SingerAlbumPicDiv{
+    display: inline-block;
+    vertical-align: bottom;
+    width: 150px;
+    height: 150px;
+    position: relative;
+}
+.SingerAlbumPicDiv::before{
+    position: absolute;
+    display: inline-block;
+    margin: 45px 0 0 45px;
+    width: 60px;
+    height: 60px;
+    content: "";
+    background: url(../search/playbar1.png);
+    background-size: cover;
+    transition: width 0.1s ease,height 0.1s ease,margin 0.1s ease;
+    pointer-events: none;
+}
+.SingerAlbumPicDiv:hover::before{
+    margin: 35px 0 0 35px;
+    width: 80px;
+    height: 80px;
+}
+.SingerAlbumPicDiv:active::before{
+    margin: 45px 0 0 45px;
+    width: 60px;
+    height: 60px;
+}
+
+.SingerAlbumPic{
+    width: 150px;
+    height: 150px;
+    border-radius: 6px;
+}
+
+.SingerAlbumDiv2{
+    display: inline-block;
+    vertical-align: bottom;
+    margin-left: 10px;
+}
+
+.SingerAlbumDiv3{
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.SingerAlbumDiv4{
+    font-size: 12px;
+}
+
+.SingerAlbumItem{
+    display: block;
+    width: 100%;
+}
+
+#Singer li a:hover{
+    background-color: darkgray;
+}

@@ -1,0 +1,66 @@
+/* 推荐 */
+#recommend{
+    position: fixed;
+    display: block;
+    top: 115px; 
+    left: 0;
+    width: 20px;
+    height: calc(100vh - 115px - 6px);
+    transition: height 0.5s ease,width 0.5s ease;
+    background-color: rgba(228, 227, 227, 0.8);
+    z-index: 399;
+    color: black;
+    border-top-right-radius: 10px;
+    border: 3px ridge gray;
+    overflow: hidden;
+}
+#recommend:hover{
+    width: 500px;
+}
+
+#recommendListBlock{
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: calc(100vh - 115px - 25px);
+}
+
+#recommendList{
+    display: inline-block;
+    width: 500px;
+}
+
+.recommendListLi{
+    display: inline-block;
+    text-align: left;
+    margin: 20px;
+}
+
+.songListPlayCount{
+    width: 200px;
+    position: absolute;
+    display: inline-block;
+    text-align: right;
+    vertical-align: top;
+    color:white;
+}
+
+.recommendDiv{
+    position: relative;
+}
+
+.recommendDiv img{
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+}
+
+.songListIntro{
+    width: 200px;
+    margin-top: 200px;
+    font-size: 16px;
+    max-height: 32px;
+    position: absolute;
+    display: inline-block;
+    text-align: left;
+    vertical-align: bottom;
+}

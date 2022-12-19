@@ -1,0 +1,32 @@
+#locatevplay{
+    position: fixed;/*相对于浏览器定位*/
+    display: inline-block;
+    width: calc(100vw);
+    height: calc(100vh);
+    z-index: 1990;/*优先级高于mask*/
+    transform: translateX(-50%);
+    line-height: calc(100vh);
+    text-align: center;
+    pointer-events: none;
+}
+
+.media{
+    width: 800px;
+    height: 600px;
+    display: inline-block;
+    vertical-align: middle;
+    outline: none;
+    pointer-events: all;
+    cursor: auto;
+}
+
+.mask{
+    position: fixed;
+    display: inline-block;
+    width: calc(100vw);
+    height: calc(100vw);
+    left: 0;
+    top: 0;
+    z-index: 1980;
+    background-color: rgba(0, 0, 0, 0.8);/*透明*/
+}

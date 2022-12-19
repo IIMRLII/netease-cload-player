@@ -1,0 +1,406 @@
+#pull{
+    display: block;
+    position: fixed;
+    bottom: -80px;
+    height: 110px;
+    width: 50px;
+    left: 50%;
+    border: 2px solid rgba(47, 87, 146, 0.8);
+    border-radius: 20px;
+    background-color: rgba(145, 145, 145, 0.8);
+    background-image: url('array.png');
+    background-size: 100% 100%;
+    transform: translateX(-50%);
+    transition: bottom 0.5s ease;
+    z-index: 500;
+}
+
+/* 不会被vue重复渲染 */
+#pull:hover{
+    bottom: -2px !important;
+}
+
+#playerdiv{
+    position: absolute;
+    width: calc(100vw - 10px);
+    height: 80px;
+    bottom: 0;
+    text-align: center;
+    transform: translateX(calc(-50vw + 50px / 2));
+    background-repeat: repeat;
+    background-color: rgba(15, 19, 80, 0.95);
+    background-image: url("backspace.jpg");
+    border: 5px ridge rgba(34, 24, 63, 0.98);
+}
+
+/* 三个播放按钮 */
+#front{
+    display: inline-block;
+    vertical-align: middle;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    background-image: url('front.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 30px 30px;
+    outline: none;
+    border: 3px ridge rgb(255, 255, 255);
+    transition: width 0.3s ease,height 0.3s ease,background-size 0.3s ease;
+}
+#front:hover{
+    width: 50px;
+    height: 50px;
+    background-size: 50px 50px;
+}
+
+#play{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 10px 0 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    background-image: url('play.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50px 50px;
+    outline: none;
+    border: 5px ridge rgb(255, 255, 255);
+    transition: width 0.3s ease,height 0.3s ease,background-size 0.3s ease;
+}
+#play:hover{
+    width: 70px;
+    height: 70px;
+    background-size: 70px 70px;
+}
+
+#next{
+    display: inline-block;
+    vertical-align: middle;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    background-image: url('next.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 30px 30px;
+    outline: none;
+    border: 3px ridge rgb(255, 255, 255);
+    transition: width 0.3s ease,height 0.3s ease,background-size 0.3s ease;
+}
+#next:hover{
+    width: 50px;
+    height: 50px;
+    background-size: 50px 50px;
+}
+
+#cur{
+    font-size: 12px;
+    display: inline-block;
+    color: white;
+}
+
+#max{
+    font-size: 12px;
+    display: inline-block;
+    color: white;
+}
+
+/* 进度条 */
+#playerdiv2{
+    display: block;
+    width: 400px;
+}
+
+#range{
+    margin: 0;
+    display: inline-block;
+    vertical-align: middle;
+    width: 300px;
+    height: 2px;
+    border: 1px solid rgb(170, 170, 170);
+    border-radius: 50%;
+    background: #a1a1a1;
+    -webkit-appearance: none !important;
+    outline: none;
+}
+#range:hover{
+    height: 4px;
+    border: 1px solid rgb(129, 129, 129);
+}
+#range:hover::-webkit-slider-thumb {
+    width: 15px;
+    height: 15px;
+}
+
+/* 进度滑块 */
+#range::-webkit-slider-thumb {
+    width: 8px;
+    height: 8px;
+    background: url('slider-thumb.png');
+    background-size: 100% 100%;
+    -webkit-appearance: none;
+}
+
+#playerdiv3{
+    float: left;
+    margin: 10px;
+    height: 60px;
+}
+
+/* 当前歌曲图片 */
+#curcover{
+    display: inline-block;
+    width: 54px;
+    height: 54px;
+    background-size: 100% 100%;
+    border: 3px ridge rgb(100, 33, 100);
+    border-radius: 8px;
+}
+
+/* 歌曲名歌曲信息 */
+#playerdiv5{
+    display: inline-block;
+    min-width: 150px;
+    margin-left: 10px;
+    width: calc(50vw + 150px - 435px - 10px);
+    height: 60px;
+    background-size: 100% 100%;
+    color: white;
+}
+
+#songname,#songdetail{
+    margin: 0;
+    height: 30px;
+    text-align: left;
+    line-height: 30px;
+    font-size: 15px;
+    font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#songdetail{
+    font-weight: 300;
+}
+
+#playerdiv1and2{
+    position: absolute;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-block;
+    vertical-align: middle;
+    top: 5px;
+}
+
+#playerdiv6{
+    float: right;
+    margin: 10px;
+    width: 215px;
+    height: 60px;
+    line-height: 60px;
+    text-align: right;
+    /* background-color: red; */
+}
+
+#songvolume{
+    width: 30px;
+    height: 30px;
+    background-size: 100% 100%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/* 音量条 */
+#volumerange{
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: middle;
+    width: 80px;
+    height: 2px;
+    border: 1px solid rgb(170, 170, 170);
+    border-radius: 50%;
+    background: #a1a1a1;
+    -webkit-appearance: none !important;
+    outline: none;
+}
+
+#volumerange:hover{
+    height: 3px;
+    border: 1px solid rgb(129, 129, 129);
+}
+
+#volumerange:hover::-webkit-slider-thumb {
+    width: 10px;
+    height: 10px;
+}
+
+/* 音量滑块 */
+#volumerange::-webkit-slider-thumb {
+    width: 8px;
+    height: 8px;
+    background: url('slider-thumb.png');
+    background-size: 100% 100%;
+    -webkit-appearance: none;
+}
+
+#playlist{
+    margin-right: 10px;
+    width: 30px;
+    height: 30px;
+    background-size: 100% 100%;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+/*历史记录*/ 
+.historyAndplay{
+    height: 0px;
+    width: 20px;
+    position: fixed;
+    visibility: hidden;
+    bottom: 0; 
+    right: 0;
+    z-index: 400;
+    background-color:  rgba(8, 7, 7, 0.8);
+    color: white;
+    border-top-left-radius: 10px;
+    transition: height 0.5s ease,width 0.5s ease;
+    border: 3px ridge gray;
+    overflow: hidden;
+}
+.historyAndplay:hover{
+    width: 450px;
+}
+.historyAndplay::-webkit-scrollbar{
+    width: 0px !important;
+}
+
+#historyAndplayBG{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-50%);
+    background-image: url('historyBG.jpg');
+    background-size: 500px 700px;
+    filter: blur(5px) opacity(0.5);
+    z-index: -1;
+}
+
+.listenedName,.listenedArtist{
+    display: inline-block;
+    width: 40%;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
+    vertical-align: middle;
+    height: 20px;
+}
+
+.listenedName a{
+    display: inline-block;
+    width: max-content;
+    color: white;
+}
+
+.listenedArtist a{
+    display: inline-block;
+    width: max-content;
+    color: white;
+}
+
+#reviewTitle{
+    width: 100%;
+    text-align: center;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+#hisList{
+    text-align: left;
+}
+
+#RecommendTitle,#HLTitle,#PLTitle{
+    position: relative;
+    font-size: 20px;
+    display: inline-block;
+    width: 49%;
+    text-align: center;
+    border-radius: 10px;
+}
+
+#HLTitle:hover,#PLTitle:hover{
+    background-color:rgb(201, 201, 201);
+    -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+#HLTitle:hover #ClearHLTitle{
+    display: inline-block;
+}
+
+#PLTitle:hover #ClearPLTitle{
+    display: inline-block;
+}
+
+#ClearHLTitle,#ClearPLTitle{
+    display: none;
+    position: absolute;
+    right: 5px;
+    width: 20px;
+    height: 26.4px;
+    background-image: url('wastebin.png');
+    background-size: cover;
+}
+
+.active{
+    background-color:rgb(138, 138, 138);
+    -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+}
+
+#hyPlListBlock{
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: calc(100vh - 115px - 25px);
+}
+
+#hyList,#PList{
+    height: 90%;
+    width: 90%;
+}
+
+.hylistli,.Plistli{
+    text-align: left;
+    margin-left: 20px;
+}
+.hylistli:hover .HLCancle,.Plistli:hover .HLCancle{
+    display: inline-block;
+}
+
+.hylistli div a:hover,.Plistli div a:hover{
+    background-color: darkgray;
+}
+
+.historyviedoplay{
+    display: inline-block;
+    width: 20%;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    margin-left: 20px;
+    vertical-align: middle;
+}
+
+.HLCancle{
+    width: 20px;
+    height: 20px;
+    float: right;
+    display: none;
+    vertical-align: middle;
+}
