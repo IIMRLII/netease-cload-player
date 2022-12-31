@@ -65,7 +65,7 @@ body {
     pointer-events: all;
     opacity: 0.8;
     z-index: 250;
-    transition: opacity 0.1s ease;
+    transition: opacity 0.3s ease;
 }
 
 #thecomments div:hover {

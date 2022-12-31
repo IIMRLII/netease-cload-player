@@ -49,7 +49,7 @@ function commentsCounter(){
                     tc.vx = vx;
                     tc.vy = vy;
 
-                    commentTime = 50 + 50 * Math.sin(Math.random() * 2 * Math.PI);
+                    commentTime = 50 + 50 * Math.sin(Math.random() * 2 * Math.PI);//弹幕频率
                     if(i == curComment){
                         if(curComment + 1 < totalSongComments.length){
                             curComment++;

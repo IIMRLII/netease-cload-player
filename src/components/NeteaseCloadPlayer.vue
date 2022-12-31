@@ -139,20 +139,20 @@
                         </div>
                         <div class="artistBlock">
                             <div class="artistDiv" @mouseover="addActive($event)" @mouseout="removeActive($event)">
-                                <div class="artist" v-for="(value, index) in item.artists" :key="index">
+                                <div class="artist" v-for="(value, index) in item.ar" :key="index">
                                     <a title="点击搜索歌手" href="javascript:;"
                                         @click='search("歌手", value.id)'>{{ value.name }}</a>
-                                    <span v-if="item.artists && index != (item.artists).length - 1">/</span>
+                                    <span v-if="item.ar && index != (item.ar).length - 1">/</span>
                                 </div>
                             </div>
                         </div>
                         <div id="album2">
-                            <a title="点击搜索专辑" href="javascript:;" @click='search("专辑", item.album.id)'
-                                @mouseover="addActive($event)" @mouseout="removeActive($event)">{{ item.album.name }}</a>
+                            <a title="点击搜索专辑" href="javascript:;" @click='search("专辑", item.al.id)'
+                                @mouseover="addActive($event)" @mouseout="removeActive($event)">{{ item.al.name }}</a>
                         </div>
-                        <p class="duration">{{ item.duration }}</p>
+                        <p class="duration">{{ item.dt }}</p>
                         <div class="movie2">
-                            <img title="点击播放MV" v-show="item.mvid != 0" href="javascript:;" @click='playMVById(item.mvid)'
+                            <img title="点击播放MV" v-show="item.mv != 0" href="javascript:;" @click='playMVById(item.mv)'
                                 src="../../static/old_components/search/playbar2.png" />
                         </div>
                         <!-- 图标！ -->
@@ -190,7 +190,7 @@
 
                 <div id="playerdiv6">
                     <img id="songvolume" src="../../static/old_components/player/volume.png">
-                    <input type="range" min=0 max=100 id='volumerange' v-model='volume'>
+                    <input type="range" min='0' max='100' id='volumerange' v-model='volume'>
                     <!-- 音量条 -->
                     <img id="playlist" src="../../static/old_components/player/history.png" @click="isHistory()">
                     <!--历史列表显示-->
@@ -204,7 +204,7 @@
                     </div>
                     <div id="playerdiv2">
                         <span id='cur'>00:00</span>&nbsp;&nbsp;
-                        <input type="range" min=0 max=100 id='range' value=0>&nbsp;&nbsp;
+                        <input type="range" min='0' max='100' id='range' value=0>&nbsp;&nbsp;
                         <!-- 进度条 -->
                         <span id='max'>{{ durationEdit(curMusic.dt) }}</span>
                     </div>
@@ -631,6 +631,8 @@ export default {
             login_username: "",
             user_list: [],
             mouseOnSuggest: false,
+            synchroTime: 0,
+
         }
     },
     mounted() {
@@ -751,9 +753,73 @@ export default {
         that.getRecommend();
         that.getSongList();
 
-        window.setInterval(function() { window.synchronization(that) }, 20); //同步
+        window.setInterval(() => { this.synchronization() }, 20); //同步
     },
     methods: {
+        synchronization() {//同步函数，强制执行防止出现bug
+
+            this.synchroTime++;
+
+            if(document.getElementById("RtxSwitch").innerHTML == "RtxOn"){//全体染色
+
+                let color = rainBow(this.synchroTime % 50 / 50);
+                let r = color.red;
+                let g = color.green;
+                let b = color.blue;
+                $("*").css("color","rgb(" + r + "," + g + ","  + b +")");
+
+                let antiColor = anticolor(r,g,b);
+                $("*").css("border-color","rgb(" + antiColor.red + "," + antiColor.green + ","  + antiColor.blue +")");
+
+                // $("*").css("background-color", "red");
+                $("#RtxSwitch").css("width", Math.sin(this.synchroTime / 10) * 20 + 120);
+                $("#RtxSwitch").css("height", Math.sin(this.synchroTime / 10) * 5 + 40);
+                $("#RtxSwitch").css("font-size", Math.sin(this.synchroTime / 10) * 3 + 20);
+                $("#RtxSwitch").css("line-height", Math.sin(this.synchroTime / 10) * 5 + 40 + "px");
+            }else{
+                $("*").css("color","");
+                $("*").css("border-color","");
+            }
+
+            getLine();//显示歌词
+
+            let player = document.getElementById("player");
+            let play = document.getElementById("play");
+
+            $("#range").attr({'max':player.duration});
+            $('#cur').text(timeToStr($("#range")[0].value));
+
+            if(mousePlayerFlag){
+                player.currentTime = $("#range")[0].value;
+                ppxx = $("#lrcbg").height() / 2 + $("#top").height() / 2 - 30 - (currentLine * 40);
+                deltaTimer[0] = new Counter(40, 1000 / 20 * 0.5, -1);//del0--歌词自动滑动
+            }else{
+                $("#range").val(parseInt(Math.round(player.currentTime)));
+            }
+
+            var audioPlayer = document.querySelector('#player');
+            if(audioPlayer.paused){
+                play.title = "play"
+                play.style.backgroundImage = 'url("../../static/old_components/player/play.png")';
+            }else{
+                play.title = "pause"
+                play.style.backgroundImage = 'url("../../static/old_components/player/pause.png")';
+            }
+
+            if(this.showSuggest){
+                $("#searchSuggest").css("visibility","visible");
+            }else{
+                $("#searchSuggest").css("visibility","hidden");
+            }
+
+            if(this.isRecommend){
+                $("#recommend").css("visibility","visible");
+            }else{
+                $("#recommend").css("visibility","hidden");
+            }
+
+        },
+
         clearLocalStorage: function() {
             var that = this;
             $("*").css("cursor", "auto");
@@ -851,6 +917,7 @@ export default {
         },
 
         durationEdit: (duration) => {
+            if(!$.isNumeric(duration)) return '00:00'
             let temp = duration / 1000;
             let minute = Math.floor(temp / 60);
             minute = minute < 10 ? '0' + minute : minute;
@@ -967,7 +1034,7 @@ export default {
             })
         },
 
-        getSongList: function(id) {
+        getSongList: function(id) {//搜索歌单
             if (id == undefined) return;
             let that = this;
             this.$axios.get('/playlist/detail?id=' + id).then((response) => {
@@ -1030,7 +1097,7 @@ export default {
             })
         },
 
-        getSinger: function(id) {
+        getSinger: function(id) {//搜索歌手
             if (id == undefined) return;
             let that = this;
             this.$axios.get('/artists?id=' + id).then((response) => { //获得歌手
@@ -1148,9 +1215,10 @@ export default {
                 case ("单曲"):
                     this.shutDown("单曲", false);
                     this.$axios.get('/search?keywords=' + this.keyWord).then((response) => {
+                        console.log(response)
                         this.songList = response.data.result.songs;
                         for (let i = 0; i < this.songList.length; i++) {
-                            this.songList[i].duration = this.durationEdit(this.songList[i].duration);
+                            this.songList[i].dt = this.durationEdit(this.songList[i].dt);
                         }
                     })
                     break;
@@ -1314,6 +1382,7 @@ export default {
                 curSongComments = [];
                 document.getElementById("thecomments").innerHTML = "";
                 for (let i = 0; i < that.comments.length; i++) {
+                    if(i > 100) return;
                     let x = window.innerWidth;
                     let y = 115 + Math.random() * (window.innerHeight - 115 - 90);
                     let vx = -2 - Math.random() * 3;
@@ -1475,10 +1544,10 @@ export default {
             let pull = document.getElementById("pull");
             if (this.islock) {
                 $("#pull").css("bottom", "-2px");
-                pull.style.backgroundImage = "url('player/lockarray.png')";
+                pull.style.backgroundImage = "url('../../static/old_components/player/lockarray.png')";
             } else {
                 $("#pull").css("bottom", "-80px");
-                pull.style.backgroundImage = "url('player/array.png')";
+                pull.style.backgroundImage = "url('../../static/old_components/player/array.png')";
             }
         },
 
