@@ -87,48 +87,6 @@ player.onseeking = function () {
     deltaTimer.splice(deltaTimer.length - 1, 1);
 }
 
-function getLrc(id) {
-
-    axios.get("/song/url?id=" + id).then(
-        function (response) {
-            if (response.data.data[0].freeTrialInfo) {
-                alert("该歌曲是VIP曲目，您只能试听30s");
-                cursonglrc = [];
-                document.getElementById('lrc').innerHTML = "";
-                document.getElementById('whitelrc').innerHTML = "";
-                return;
-            };
-
-            axios.get("/lyric?id=" + id).then(//获取歌词
-                function (response) {
-                    if (response.data.nolyric || (!response.data.lrc || !response.data.lrc.lyric)) {
-                        cursonglrc = [];
-                        document.getElementById('lrc').innerHTML = "";
-
-                        cursonglrc.push(new songlrc(0, '纯音乐，请欣赏'));
-                        document.getElementById('lrc').innerHTML += '<li id="slilrc0"><p id = "slrc0">' + '纯音乐，请欣赏' + '</p></li>';
-
-                        let lastlrc2 = setInterval(function () {//歌词文件结尾处理
-                            if (player.duration) {
-                                cursonglrc.push(new songlrc(player.duration, ""));
-                                document.getElementById('lrc').innerHTML += '<li id="slilrc1"><p id = "slrc1"></p></li>';
-                                clearInterval(lastlrc2);
-                            }
-                        }, 1000)
-                    } else {
-                        lrc = response.data.lrc.lyric;
-                        get_timeAndlrc(lrc);
-                    }
-
-                },
-                function (err) { }
-            );
-        },
-        function (err) { }
-    );
-
-}
-
 function deltaCounter() {//反函数递减数
     for (let i = deltaTimer.length; i > 0; i--) {
         let d = deltaTimer[i - 1];

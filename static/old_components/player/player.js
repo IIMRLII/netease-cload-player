@@ -42,18 +42,6 @@ $(document).ready(function(){
 
 });
 
-function getcover(song){//获取封面
-    if(song.al && song.al.id){
-        axios.get('/album?id=' + song.al.id).then((response)=>{
-            for(let i = 0;i < response.data.songs.length;i++){
-                if(response.data.songs[i].al.id == song.al.id)
-                document.getElementById("curcover").src = response.data.songs[i].al.picUrl + "?param=120y120?";
-                break;
-            }
-        })
-    }
-}
-
 var playertime = 0;
 setInterval(() => {//给player背景设置动画特效
     let dat = new Date();

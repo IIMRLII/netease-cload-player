@@ -1,8 +1,7 @@
 <template>
     <!--vue总框架-->
     <div id="whole">
-        <!-- 登录 -->
-        <div id="particles-js">
+        <!-- <div id="particles-js">
             <div class="login">
                 <div class="login-close" @click="$('.login').css('display','none')">关闭</div>
                 <div class="login-top">登录</div>
@@ -27,7 +26,6 @@
             <div class="sk-rotating-plane"></div>
         </div>
 
-        <!-- 注册 -->
         <div class="register">
             <div class="register-close" @click="$('.register').css('display','none')">关闭</div>
             <div class="register-top">注册</div>
@@ -61,7 +59,6 @@
         <div class="user_suspensions">
             <div class="login-close" @click="$('.user_suspensions').css('display','none')">关闭</div>
             <div class="user-top">用户管理</div>
-            <!--用户列表-->
             <div class="user-list-manger">
                 <ul>
                     <li v-for="item in user_list" :key="item.id" class="userList">
@@ -71,7 +68,7 @@
                     </li>
                 </ul>
             </div>
-        </div>
+        </div> -->
 
 
         <div id="locatevplay" v-show="viewShow">
@@ -84,32 +81,33 @@
             <div id="search">
                 <a id="HTMLreset" href="javascript:;" @click="clearLocalStorage()">页面卡死请点击这里</a>
                 <div id="RtxSwitchDiv">
-                    <a id="RtxSwitch" href="javascript:;" @click="switchRtx()">{{rtx}}</a>
+                    <a id="RtxSwitch" href="javascript:;" @click="switchRtx()">{{ rtx }}</a>
                 </div>
-                <img class="logo" src="top/img/logo.png"/>
+                <img class="logo" src="../../static/old_components/top/img/logo.png" />
                 <div id="inputdiv">
                     <input id="input1" type="text" autocomplete="off" v-model="keyWord" @click="getSearchSuggest()"
-                        @keyup='getSearchSuggest()' @keyup.enter="search()" :placeholder='defaultShowKeyword'/>
+                        @keyup='getSearchSuggest()' @keyup.enter="search()" :placeholder='defaultShowKeyword' />
                 </div>
                 <div id="searchSuggest">
                     <!--搜索建议-->
                     <em class="searchTip">搜索有关建议</em>
-                    <div v-for="(value,index) in suggest" :key="index">
+                    <div v-for="(value, index) in suggest" :key="index">
                         <!--对象v-for循环*-->
-                        <h3 class="suggestName">{{key}}</h3>
+                        <h3 class="suggestName">{{ key }}</h3>
                         <ul class="suggestList">
-                            <li v-for="(site,index) in value" :key="index" @click="suggestAction(key,site.name,site.id)"><a
-                                    href="javascript:;">{{site.name}}</a></li>
+                            <li v-for="(site, index) in value" :key="index"
+                                @click="suggestAction(key, site.name, site.id)"><a href="javascript:;">{{ site.name }}</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
-                <img class="searchBtn" @click="search();" src="top/img/search.png"/>
-                <a class="user_nav" @click="login()" title="登录以解锁收藏与保存历史记录功能！">登录</a>
+                <img class="searchBtn" @click="search();" src="../../static/old_components/top/img/search.png" />
+                <!-- <a class="user_nav" @click="login()" title="登录以解锁收藏与保存历史记录功能！">登录</a>
                 <a class="user_nav" @click="register()" title="加入我们吧？">注册</a>
                 <a class="user_nav" @click="admin()" title="管理员菜单">管理</a>
                 <a class="user_nav" @click="about()" title="关于我">关于</a>
                 <a class="user_nav" id="user_board" title="用户菜单">{{login_username == '' ? '您还未登录哦~' : '用户：' +
-                    login_username}}</a>
+                    login_username}}</a> -->
             </div>
             <ul id="nav">
                 <li><a class="nava" href="#" @click="switchRecommend()"><em class="navitem">推荐</em></a></li>
@@ -135,27 +133,27 @@
             </ul>
             <div id="songListBlock">
                 <ul id="songList">
-                    <li v-for="(item,index) in songList" :key="index">
+                    <li v-for="(item, index) in songList" :key="index">
                         <div class="songName">
-                            <a title="点击播放歌曲" href="javascript:;" @click='playMusic(item)'>{{item.name}}</a>
+                            <a title="点击播放歌曲" href="javascript:;" @click='playMusic(item)'>{{ item.name }}</a>
                         </div>
                         <div class="artistBlock">
                             <div class="artistDiv" @mouseover="addActive($event)" @mouseout="removeActive($event)">
-                                <div class="artist" v-for="(value,index) in item.artists" :key="index">
+                                <div class="artist" v-for="(value, index) in item.artists" :key="index">
                                     <a title="点击搜索歌手" href="javascript:;"
-                                        @click='search("歌手",value.id)'>{{value.name}}</a>
+                                        @click='search("歌手", value.id)'>{{ value.name }}</a>
                                     <span v-if="item.artists && index != (item.artists).length - 1">/</span>
                                 </div>
                             </div>
                         </div>
                         <div id="album2">
-                            <a title="点击搜索专辑" href="javascript:;" @click='search("专辑",item.album.id)'
-                                @mouseover="addActive($event)" @mouseout="removeActive($event)">{{item.album.name}}</a>
+                            <a title="点击搜索专辑" href="javascript:;" @click='search("专辑", item.album.id)'
+                                @mouseover="addActive($event)" @mouseout="removeActive($event)">{{ item.album.name }}</a>
                         </div>
-                        <p class="duration">{{item.duration}}</p>
+                        <p class="duration">{{ item.duration }}</p>
                         <div class="movie2">
-                            <img title="点击播放MV" v-show="item.mvid!=0" href="javascript:;" @click='playMVById(item.mvid)'
-                                src="search/playbar2.png"/>
+                            <img title="点击播放MV" v-show="item.mvid != 0" href="javascript:;" @click='playMVById(item.mvid)'
+                                src="../../static/old_components/search/playbar2.png" />
                         </div>
                         <!-- 图标！ -->
                     </li>
@@ -181,7 +179,7 @@
             <div id="playerdiv">
                 <!--播放器框架-->
                 <div id="playerdiv3">
-                    <img id="curcover" src="search/playbar2.png">
+                    <img id="curcover" src="../../static/old_components/search/playbar2.png">
                     <!-- 当前歌曲图片 -->
                     <div id="playerdiv5">
                         <p id="songname">歌曲名</p>
@@ -191,10 +189,10 @@
                 </div>
 
                 <div id="playerdiv6">
-                    <img id="songvolume" src="player/volume.png">
+                    <img id="songvolume" src="../../static/old_components/player/volume.png">
                     <input type="range" min=0 max=100 id='volumerange' v-model='volume'>
                     <!-- 音量条 -->
-                    <img id="playlist" src="player/history.png" @click="isHistory()">
+                    <img id="playlist" src="../../static/old_components/player/history.png" @click="isHistory()">
                     <!--历史列表显示-->
                 </div>
 
@@ -208,7 +206,7 @@
                         <span id='cur'>00:00</span>&nbsp;&nbsp;
                         <input type="range" min=0 max=100 id='range' value=0>&nbsp;&nbsp;
                         <!-- 进度条 -->
-                        <span id='max'>{{durationEdit(curMusic.dt)}}</span>
+                        <span id='max'>{{ durationEdit(curMusic.dt) }}</span>
                     </div>
                 </div>
             </div>
@@ -222,11 +220,11 @@
                 </div>
                 <div id="recommendListBlock">
                     <ul id='recommendList'>
-                        <li class="recommendListLi" v-for="(item,index) in recommendSongList" :key="index">
+                        <li class="recommendListLi" v-for="(item, index) in recommendSongList" :key="index">
                             <div class="recommendDiv">
-                                <span class="songListPlayCount">▷{{item.playCount}}&nbsp;</span>
-                                <span class="songListIntro">{{item.name}}</span>
-                                <img :title="item.copywriter" :src="item.picUrl" @click='search("歌单",item.id);'/>
+                                <span class="songListPlayCount">▷{{ item.playCount }}&nbsp;</span>
+                                <span class="songListIntro">{{ item.name }}</span>
+                                <img :title="item.copywriter" :src="item.picUrl" @click='search("歌单", item.id);' />
                             </div>
                         </li>
                     </ul>
@@ -238,30 +236,30 @@
         <div id="curSongList" v-show="isSongListShow">
             <div id="curSongListDetail">
                 <div id="curSongListCoverDiv">
-                    <img id="curSongListCover" :src="curPlayList.coverImgUrl" @click="replaceSongList()"/>
+                    <img id="curSongListCover" :src="curPlayList.coverImgUrl" @click="replaceSongList()" />
                 </div>
-                <div id="curSongListCreater" v-if="JSON.stringify(curPlayList)!='[]'">
-                    <div>[歌单]&nbsp;{{curPlayList.name}}</div>
-                    <img id="curSongListCreaterPic" :src="curPlayList.creator.avatarUrl"/>
+                <div id="curSongListCreater" v-if="JSON.stringify(curPlayList) != '[]'">
+                    <div>[歌单]&nbsp;{{ curPlayList.name }}</div>
+                    <img id="curSongListCreaterPic" :src="curPlayList.creator.avatarUrl" />
                     <div>
-                        {{curPlayList.creator.nickname}}&nbsp;&nbsp;{{formatDate(curPlayList.trackUpdateTime)}}&nbsp;&nbsp;更新
+                        {{ curPlayList.creator.nickname }}&nbsp;&nbsp;{{ formatDate(curPlayList.trackUpdateTime) }}&nbsp;&nbsp;更新
                     </div>
                     <div>
-                        歌曲数：{{curPlayList.trackIds.length}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;播放数：{{curPlayList.playCount}}
+                        歌曲数：{{ curPlayList.trackIds.length }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;播放数：{{ curPlayList.playCount }}
                     </div>
                     <div>
-                        收藏人数：{{curPlayList.subscribers.length}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分享数：{{curPlayList.shareCount}}
+                        收藏人数：{{ curPlayList.subscribers.length }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分享数：{{ curPlayList.shareCount }}
                     </div>
-                    <div>简介：{{curPlayList.description}}</div>
+                    <div>简介：{{ curPlayList.description }}</div>
                 </div>
                 <h3 align="left" style="margin: -10px 0 10px 20px">精彩评论</h3>
                 <div id="curSongListComment">
                     <ul id="curSongListCommentUl">
-                        <li class="curSongListCommentLi" v-for="(item,index) in curPlayListComment" :key="index">
-                            <img class="curSongListCommentPic" :src="item.user.avatarUrl"/>
+                        <li class="curSongListCommentLi" v-for="(item, index) in curPlayListComment" :key="index">
+                            <img class="curSongListCommentPic" :src="item.user.avatarUrl" />
                             <div class="curSongListCommentCont">
-                                <div class="curSongListCommentCont1">{{item.user.nickname}}：{{item.content}}</div>
-                                <div class="curSongListCommentCont2">{{formatDate(item.time)}}</div>
+                                <div class="curSongListCommentCont1">{{ item.user.nickname }}：{{ item.content }}</div>
+                                <div class="curSongListCommentCont2">{{ formatDate(item.time) }}</div>
                             </div>
                             <hr>
                         </li>
@@ -282,29 +280,30 @@
                     </ul>
                     <div id="songListBlock">
                         <ul id="songList">
-                            <li v-for="(item,index) in curSongList" :key="index">
+                            <li v-for="(item, index) in curSongList" :key="index">
                                 <div class="songName">
-                                    <a title="点击播放歌曲" href="javascript:;" @click='playMusic(item)'>{{item.name}}</a>
+                                    <a title="点击播放歌曲" href="javascript:;" @click='playMusic(item)'>{{ item.name }}</a>
                                 </div>
                                 <div class="artistBlock">
                                     <div class="artistDiv" @mouseover="addActive($event)"
                                         @mouseout="removeActive($event)">
-                                        <div class="artist" v-for="(value,index) in item.ar" :key="index">
+                                        <div class="artist" v-for="(value, index) in item.ar" :key="index">
                                             <a title="点击搜索歌手" href="javascript:;"
-                                                @click='search("歌手",value.id)'>{{value.name}}</a>
+                                                @click='search("歌手", value.id)'>{{ value.name }}</a>
                                             <span v-if="item.ar && index != (item.ar).length - 1">/</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div id="album2">
-                                    <a title="点击搜索专辑" href="javascript:;" @click='search("专辑",item.al.id)'
+                                    <a title="点击搜索专辑" href="javascript:;" @click='search("专辑", item.al.id)'
                                         @mouseover="addActive($event)"
-                                        @mouseout="removeActive($event)">{{item.al.name}}</a>
+                                        @mouseout="removeActive($event)">{{ item.al.name }}</a>
                                 </div>
-                                <p class="duration">{{item.dt}}</p>
+                                <p class="duration">{{ item.dt }}</p>
                                 <div class="movie2">
-                                    <img title="点击播放MV" v-show="item.mv!=0" href="javascript:;"
-                                        @click='playMVById(item.mv)' src="search/playbar2.png"/>
+                                    <img title="点击播放MV" v-show="item.mv != 0" href="javascript:;"
+                                        @click='playMVById(item.mv)'
+                                        src="../../static/old_components/search/playbar2.png" />
                                 </div>
                             </li>
                         </ul>
@@ -317,26 +316,26 @@
         <div id="curAlbum" v-show="isAlbumShow">
             <div id="curAlbumDetail">
                 <div id="curAlbumCoverDiv">
-                    <img id="curAlbumCover" :src="curAlbum.picUrl" @click="replaceAlbum()"/>
+                    <img id="curAlbumCover" :src="curAlbum.picUrl" @click="replaceAlbum()" />
                 </div>
-                <div id="curAlbumCreater" v-if="JSON.stringify(curAlbum)!='[]'">
-                    <div>[专辑]&nbsp;{{curAlbum.name}}</div>
-                    <img id="curAlbumCreaterPic" :src="curAlbum.artist.picUrl"/>
-                    <div>{{curAlbum.artist.name}}&nbsp;&nbsp;{{formatDate(curAlbum.publishTime)}}&nbsp;&nbsp;更新</div>
-                    <div>歌曲数：{{curAlbumList.length}}</div>
+                <div id="curAlbumCreater" v-if="JSON.stringify(curAlbum) != '[]'">
+                    <div>[专辑]&nbsp;{{ curAlbum.name }}</div>
+                    <img id="curAlbumCreaterPic" :src="curAlbum.artist.picUrl" />
+                    <div>{{ curAlbum.artist.name }}&nbsp;&nbsp;{{ formatDate(curAlbum.publishTime) }}&nbsp;&nbsp;更新</div>
+                    <div>歌曲数：{{ curAlbumList.length }}</div>
                     <div>
-                        收藏人数：{{curAlbum.subCount}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分享数：{{curAlbum.info.shareCount}}
+                        收藏人数：{{ curAlbum.subCount }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分享数：{{ curAlbum.info.shareCount }}
                     </div>
-                    <div>简介：{{curAlbum.description}}</div>
+                    <div>简介：{{ curAlbum.description }}</div>
                 </div>
                 <h3 align="left" style="margin: -10px 0 10px 20px">精彩评论</h3>
                 <div id="curAlbumComment">
                     <ul id="curAlbumCommentUl">
-                        <li class="curAlbumCommentLi" v-for="(item,index) in curAlbumComment" :key="index">
-                            <img class="curAlbumCommentPic" :src="item.user.avatarUrl"/>
+                        <li class="curAlbumCommentLi" v-for="(item, index) in curAlbumComment" :key="index">
+                            <img class="curAlbumCommentPic" :src="item.user.avatarUrl" />
                             <div class="curAlbumCommentCont">
-                                <div class="curAlbumCommentCont1">{{item.user.nickname}}：{{item.content}}</div>
-                                <div class="curAlbumCommentCont2">{{formatDate(item.time)}}</div>
+                                <div class="curAlbumCommentCont1">{{ item.user.nickname }}：{{ item.content }}</div>
+                                <div class="curAlbumCommentCont2">{{ formatDate(item.time) }}</div>
                             </div>
                             <hr>
                         </li>
@@ -357,29 +356,30 @@
                     </ul>
                     <div id="AlbumBlock">
                         <ul id="Album">
-                            <li v-for="(item,index) in curAlbumList" :key="index">
+                            <li v-for="(item, index) in curAlbumList" :key="index">
                                 <div class="songName">
-                                    <a title="点击播放歌曲" href="javascript:;" @click='playMusic(item)'>{{item.name}}</a>
+                                    <a title="点击播放歌曲" href="javascript:;" @click='playMusic(item)'>{{ item.name }}</a>
                                 </div>
                                 <div class="artistBlock">
                                     <div class="artistDiv" @mouseover="addActive($event)"
                                         @mouseout="removeActive($event)">
-                                        <div class="artist" v-for="(value,index) in item.ar" :key="index">
+                                        <div class="artist" v-for="(value, index) in item.ar" :key="index">
                                             <a title="点击搜索歌手" href="javascript:;"
-                                                @click='search("歌手",value.id)'>{{value.name}}</a>
+                                                @click='search("歌手", value.id)'>{{ value.name }}</a>
                                             <span v-if="item.ar && index != (item.ar).length - 1">/</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div id="album2">
-                                    <a title="点击搜索专辑" href="javascript:;" @click='search("专辑",item.al.id)'
+                                    <a title="点击搜索专辑" href="javascript:;" @click='search("专辑", item.al.id)'
                                         @mouseover="addActive($event)"
-                                        @mouseout="removeActive($event)">{{item.al.name}}</a>
+                                        @mouseout="removeActive($event)">{{ item.al.name }}</a>
                                 </div>
-                                <p class="duration">{{item.dt}}</p>
+                                <p class="duration">{{ item.dt }}</p>
                                 <div class="movie2">
-                                    <img title="点击播放MV" v-show="item.mv!=0" href="javascript:;"
-                                        @click='playMVById(item.mv)' src="search/playbar2.png"/>
+                                    <img title="点击播放MV" v-show="item.mv != 0" href="javascript:;"
+                                        @click='playMVById(item.mv)'
+                                        src="../../static/old_components/search/playbar2.png" />
                                 </div>
                             </li>
                         </ul>
@@ -392,21 +392,21 @@
         <div id="curSinger" v-show="isSingerShow">
             <div id="curSingerDetail">
                 <div id="curSingerCoverDiv">
-                    <img id="curSingerCover" :src="curSinger.picUrl"/>
+                    <img id="curSingerCover" :src="curSinger.picUrl" />
                 </div>
-                <div id="curSingerCreater" v-if="JSON.stringify(curSinger)!='[]'">
-                    <div>[歌手]&nbsp;{{curSinger.name}}</div>
-                    <div>单曲数：{{curSinger.musicSize}}</div>
-                    <div>专辑数：{{curSinger.albumSize}}</div>
-                    <div>MV数：{{curSinger.mvSize}}</div>
-                    <div>简介：{{curSinger.briefDesc}}</div>
+                <div id="curSingerCreater" v-if="JSON.stringify(curSinger) != '[]'">
+                    <div>[歌手]&nbsp;{{ curSinger.name }}</div>
+                    <div>单曲数：{{ curSinger.musicSize }}</div>
+                    <div>专辑数：{{ curSinger.albumSize }}</div>
+                    <div>MV数：{{ curSinger.mvSize }}</div>
+                    <div>简介：{{ curSinger.briefDesc }}</div>
                 </div>
                 <h3 align="left" style="margin: -10px 0 10px 20px">歌手详情</h3>
                 <div id="curSingerAlbum">
                     <ul id="curSingerAlbumUl">
-                        <li class="curSingerAlbumLi" v-for="(item,index) in curSingerDesc" :key="index">
-                            <h4>{{item.ti}}</h4>
-                            <p class="curSingerAlbumCont" v-for="(items,index) in item.txt" :key="index">{{items}}</p>
+                        <li class="curSingerAlbumLi" v-for="(item, index) in curSingerDesc" :key="index">
+                            <h4>{{ item.ti }}</h4>
+                            <p class="curSingerAlbumCont" v-for="(items, index) in item.txt" :key="index">{{ items }}</p>
                             <hr>
                         </li>
                     </ul>
@@ -417,44 +417,45 @@
                 <div id="SingerSearchResult">
                     <div id="SingerBlock">
                         <ul id="Singer">
-                            <li class="SingerAlbum" v-for="(item,index) in curSingerAlbumSongs" :key="index">
+                            <li class="SingerAlbum" v-for="(item, index) in curSingerAlbumSongs" :key="index">
                                 <div class="SingerAlbumDiv">
                                     <div class="SingerAlbumPicDiv">
                                         <img class="SingerAlbumPic" :src="curSingerAlbum[key].picUrl"
-                                            @click="search('专辑',curSingerAlbum[key].id)">
+                                            @click="search('专辑', curSingerAlbum[key].id)">
                                     </div>
                                     <div class="SingerAlbumDiv2">
-                                        <div class="SingerAlbumDiv3">{{curSingerAlbum[key].name}}</div>
-                                        <div class="SingerAlbumDiv4">{{formatDate(curSingerAlbum[key].publishTime)}}
+                                        <div class="SingerAlbumDiv3">{{ curSingerAlbum[key].name }}</div>
+                                        <div class="SingerAlbumDiv4">{{ formatDate(curSingerAlbum[key].publishTime) }}
                                         </div>
                                     </div>
                                 </div>
                                 <hr>
-                                <div class="SingerAlbumItem" v-for="(item2,index) in item" :key="index">
+                                <div class="SingerAlbumItem" v-for="(item2, index) in item" :key="index">
                                     <div class="songName">
                                         <a title="点击播放歌曲" href="javascript:;"
-                                            @click='playMusic(item2)'>{{item2.name}}</a>
+                                            @click='playMusic(item2)'>{{ item2.name }}</a>
                                     </div>
                                     <div class="artistBlock" @mouseover="addActive($event)"
                                         @mouseout="removeActive($event)">
                                         <div class="artistDiv" @mouseover="addActive($event)"
                                             @mouseout="removeActive($event)">
-                                            <div class="artist" v-for="(value,index) in item2.ar" :key="index">
+                                            <div class="artist" v-for="(value, index) in item2.ar" :key="index">
                                                 <a title="点击搜索歌手" href="javascript:;"
-                                                    @click='search("歌手",value.id)'>{{value.name}}</a>
+                                                    @click='search("歌手", value.id)'>{{ value.name }}</a>
                                                 <span v-if="item2.ar && index != (item2.ar).length - 1">/</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div id="album2">
-                                        <a title="点击搜索专辑" href="javascript:;" @click='search("专辑",item2.al.id)'
+                                        <a title="点击搜索专辑" href="javascript:;" @click='search("专辑", item2.al.id)'
                                             @mouseover="addActive($event)"
-                                            @mouseout="removeActive($event)">{{item2.al.name}}</a>
+                                            @mouseout="removeActive($event)">{{ item2.al.name }}</a>
                                     </div>
-                                    <p class="duration">{{item2.dt}}</p>
+                                    <p class="duration">{{ item2.dt }}</p>
                                     <div class="movie2">
-                                        <img title="点击播放MV" v-show="item2.mv!=0" href="javascript:;"
-                                            @click='playMVById(item2.mv)' src="search/playbar2.png"/>
+                                        <img title="点击播放MV" v-show="item2.mv != 0" href="javascript:;"
+                                            @click='playMVById(item2.mv)'
+                                            src="../../static/old_components/search/playbar2.png" />
                                     </div>
                                 </div>
                                 <hr>
@@ -467,58 +468,58 @@
 
         <!-- /*播放历史*/ -->
         <div id="historyAndplay" class="historyAndplay">
-            <img id="historyAndplayBG" src=""/>
+            <img id="historyAndplayBG" src="" />
             <div id="hisList" width="100%">
-                <span id="HLTitle" :class="{active:HPShow1}" href="javascript:;" @click="switchHylist()">历史记录
+                <span id="HLTitle" :class="{ active: HPShow1 }" href="javascript:;" @click="switchHylist()">历史记录
                     <div id="ClearHLTitle" @click="ClearHL"></div>
                 </span>
-                <span id="PLTitle" :class="{active:HPShow2}" href="javascript:;" @click="switchPlist()">播放列表
+                <span id="PLTitle" :class="{ active: HPShow2 }" href="javascript:;" @click="switchPlist()">播放列表
                     <div id="ClearPLTitle" @click="ClearPL"></div>
                 </span>
             </div>
 
             <div id="hyPlListBlock">
                 <ul id='hyList' v-show="HPShow1">
-                    <li class="hylistli" v-for="(item,index) in history" :key="index">
+                    <li class="hylistli" v-for="(item, index) in history" :key="index">
                         <div class="listenedName">
                             <a title="点击播放" href="javascript:;" @click='playMusic(item)' @mouseover="addActive($event)"
-                                @mouseout="removeActive($event)">{{item.name}}</a>
+                                @mouseout="removeActive($event)">{{ item.name }}</a>
                         </div>
                         <div class="listenedArtist">
                             <div class="artistDiv" @mouseover="addActive($event)" @mouseout="removeActive($event)">
-                                <div class="artist" v-for="(value,index) in item.ar" :key="index">
+                                <div class="artist" v-for="(value, index) in item.ar" :key="index">
                                     <a title="点击搜索歌手" href="javascript:;"
-                                        @click='search("歌手",value.id)'>{{value.name}}</a>
+                                        @click='search("歌手", value.id)'>{{ value.name }}</a>
                                     <span v-if="item.ar && index != (item.ar).length - 1">/</span>
                                 </div>
                             </div>
                         </div>
-                        <img class="historyviedoplay" v-show="item.mv!=0" href="javascript:;"
-                            @click='playMVById(item.mv)' src="search/playbar1.png"/>
+                        <img class="historyviedoplay" v-show="item.mv != 0" href="javascript:;"
+                            @click='playMVById(item.mv)' src="../../static/old_components/search/playbar1.png" />
                         <img class="HLCancle" href="javascript:;" @click="removeHLitem(item.id)"
-                            src="player/cancle.png"/>
+                            src="../../static/old_components/player/cancle.png" />
                     </li>
                 </ul>
 
                 <ul id='PList' v-show="HPShow2">
-                    <li class="Plistli" v-for="(item,index) in playList" :key="index">
+                    <li class="Plistli" v-for="(item, index) in playList" :key="index">
                         <div class="listenedName">
                             <a title="点击播放" href="javascript:;" @click='playMusic(item)' @mouseover="addActive($event)"
-                                @mouseout="removeActive($event)">{{item.name}}</a>
+                                @mouseout="removeActive($event)">{{ item.name }}</a>
                         </div>
                         <div class="listenedArtist">
                             <div class="artistDiv" @mouseover="addActive($event)" @mouseout="removeActive($event)">
-                                <div class="artist" v-for="(value,index) in item.ar" :key="index">
+                                <div class="artist" v-for="(value, index) in item.ar" :key="index">
                                     <a title="点击搜索歌手" href="javascript:;"
-                                        @click='search("歌手",value.id)'>{{value.name}}</a>
+                                        @click='search("歌手", value.id)'>{{ value.name }}</a>
                                     <span v-if="item.ar && index != (item.ar).length - 1">/</span>
                                 </div>
                             </div>
                         </div>
-                        <img class="historyviedoplay" v-show="item.mv!=0" href="javascript:;"
-                            @click='playMVById(item.mv)' src="search/playbar1.png"/>
+                        <img class="historyviedoplay" v-show="item.mv != 0" href="javascript:;"
+                            @click='playMVById(item.mv)' src="../../static/old_components/search/playbar1.png" />
                         <img class="HLCancle" href="javascript:;" @click="removeSLitem(item.id)"
-                            src="player/cancle.png"/>
+                            src="../../static/old_components/player/cancle.png" />
                     </li>
                 </ul>
             </div>
@@ -540,7 +541,7 @@
 <script type="text/javascript" src="@/old_components/lrc/lrc.js"></script>
 <script type="text/javascript" src="@/old_components/synchronization.js"></script>
 
-<script type="text/javascript" src="@/old_components/init.js"></script>
+<!-- <script type="text/javascript" src="@/old_components/init.js"></script> -->
 <script>
 export default {
     name: 'NeteaseCloadPlayer',
@@ -629,12 +630,13 @@ export default {
 
             login_username: "",
             user_list: [],
+            mouseOnSuggest: false,
         }
     },
     mounted() {
         const that = this;
         this.getDefaultKeyword();
-        this.init(this);
+        this.init();
 
         window.addEventListener('unload', e => this.unloadHandler(e, this)); //添加页面关闭事件
 
@@ -659,97 +661,97 @@ export default {
         }, false);
 
         $(window).click(function(e) {
-            if (!mouseOnSuggest) that.showSuggest = false;
+            if (!that.mouseOnSuggest) that.showSuggest = false;
         })
         $("#searchSuggest").mouseenter(function(e) {
-            mouseOnSuggest = true;
+            that.mouseOnSuggest = true;
         })
         $("#searchSuggest").mouseleave(function(e) {
-            mouseOnSuggest = false;
+            that.mouseOnSuggest = false;
         })
         $("#input1").click(function(e) {
-            mouseOnSuggest = true;
+            that.mouseOnSuggest = true;
         })
 
-        $(".login-button").on('click', function(e) { //用户登录
-            $(".login").addClass("active")
-            setTimeout(function() {
-                $(".sk-rotating-plane").addClass("active");
-                $(".login").css("display", "none");
-            }, 500)
+        // $(".login-button").on('click', function(e) { //用户登录
+        //     $(".login").addClass("active")
+        //     setTimeout(function() {
+        //         $(".sk-rotating-plane").addClass("active");
+        //         $(".login").css("display", "none");
+        //     }, 500)
 
-            login_timeout = setTimeout(function() {
-                $(".login").removeClass("active");
-                $(".sk-rotating-plane").removeClass("active");
-                Vue.prototype.$Message.warning("登录超时");
-            }, 10000)
+        //     login_timeout = setTimeout(() => {
+        //         $(".login").removeClass("active");
+        //         $(".sk-rotating-plane").removeClass("active");
+        //         Vue.prototype.$Message.warning("登录超时");
+        //     }, 10000)
 
-            that.userSave(that)
+        //     that.userSave(that)
 
-            api.post('users/login', { username: that.username, password: that.password }).then((res) => {
-                if (res.code === 0) {
-                    sessionStorage.setItem('token', res.data.token)
-                    sessionStorage.setItem('username', this.username)
-                    Vue.prototype.$Message.success(res.message);
-                    clearTimeout(login_timeout);
+        //     api.post('users/login', { username: that.username, password: that.password }).then((res) => {
+        //         if (res.code === 0) {
+        //             sessionStorage.setItem('token', res.data.token)
+        //             sessionStorage.setItem('username', this.username)
+        //             Vue.prototype.$Message.success(res.message);
+        //             clearTimeout(login_timeout);
 
-                    api.get('users/user/historyandplaylist/' + that.username).then((res) => { // 获得用户历史记录和播放列表
-                        that.history = JSON.parse(res.data.musicHistory)
-                        that.playList = JSON.parse(res.data.myPlayList)
-                        Vue.prototype.$Message.success('已成功为您恢复历史记录与播放列表');
-                    })
+        //             api.get('users/user/historyandplaylist/' + that.username).then((res) => { // 获得用户历史记录和播放列表
+        //                 that.history = JSON.parse(res.data.musicHistory)
+        //                 that.playList = JSON.parse(res.data.myPlayList)
+        //                 Vue.prototype.$Message.success('已成功为您恢复历史记录与播放列表');
+        //             })
 
-                    that.login_username = that.username;
+        //             that.login_username = that.username;
 
-                    setTimeout(function() {
-                        $(".login").removeClass("active");
-                        $(".sk-rotating-plane").removeClass("active");
-                    }, 1000)
-                } else {
-                    Vue.prototype.$Message.error(res.message);
-                    clearTimeout(login_timeout);
-                    setTimeout(function() {
-                        $(".login").removeClass("active");
-                        $(".sk-rotating-plane").removeClass("active");
-                    }, 1000)
-                    sessionStorage.removeItem('token')
-                }
-            })
-        })
+        //             setTimeout(function() {
+        //                 $(".login").removeClass("active");
+        //                 $(".sk-rotating-plane").removeClass("active");
+        //             }, 1000)
+        //         } else {
+        //             Vue.prototype.$Message.error(res.message);
+        //             clearTimeout(login_timeout);
+        //             setTimeout(function() {
+        //                 $(".login").removeClass("active");
+        //                 $(".sk-rotating-plane").removeClass("active");
+        //             }, 1000)
+        //             sessionStorage.removeItem('token')
+        //         }
+        //     })
+        // })
 
-        $(".register-button").on('click', function(e) { //用户注册
-            if (that.username && that.password && that.repassword) {
-                if (that.password === that.repassword) {
-                    let data = {
-                        phone: '未知',
-                        nikename: '未知',
-                        age: '未知',
-                        sex: '未知',
-                        musicHistory: '',
-                        myPlayList: '',
-                        username: that.username,
-                        password: that.password,
-                    }
-                    api.post('users/register', data).then((res) => {
-                        if (res.code === 0) {
-                            sessionStorage.removeItem('token')
-                            alert(res.message)
-                            $(".register").css("display", "none");
-                            $(".login").css("display", "block");
-                        }
-                    })
-                } else {
-                    Vue.prototype.$Message.error("内容输入错误，两次密码输入不一致");
-                }
-            } else {
-                Vue.prototype.$Message.error("内容输入错误，请输入必要信息");
-            }
-        })
+        // $(".register-button").on('click', function(e) { //用户注册
+        //     if (that.username && that.password && that.repassword) {
+        //         if (that.password === that.repassword) {
+        //             let data = {
+        //                 phone: '未知',
+        //                 nikename: '未知',
+        //                 age: '未知',
+        //                 sex: '未知',
+        //                 musicHistory: '',
+        //                 myPlayList: '',
+        //                 username: that.username,
+        //                 password: that.password,
+        //             }
+        //             api.post('users/register', data).then((res) => {
+        //                 if (res.code === 0) {
+        //                     sessionStorage.removeItem('token')
+        //                     alert(res.message)
+        //                     $(".register").css("display", "none");
+        //                     $(".login").css("display", "block");
+        //                 }
+        //             })
+        //         } else {
+        //             Vue.prototype.$Message.error("内容输入错误，两次密码输入不一致");
+        //         }
+        //     } else {
+        //         Vue.prototype.$Message.error("内容输入错误，请输入必要信息");
+        //     }
+        // })
 
         that.getRecommend();
         that.getSongList();
 
-        window.setInterval(function() { synchronization(that) }, 20); //同步
+        window.setInterval(function() { window.synchronization(that) }, 20); //同步
     },
     methods: {
         clearLocalStorage: function() {
@@ -775,38 +777,38 @@ export default {
             }
         },
 
-        init: (thisvue) => { //初始化加载localstorage
+        init: function() { //初始化加载localstorage
 
             if (localStorage.getItem("rtx") != null) {
-                thisvue.rtx = localStorage.getItem("rtx");
+                this.rtx = localStorage.getItem("rtx");
             }
 
             if (localStorage.getItem("volume") != null) {
-                thisvue.volume = localStorage.getItem("volume");
-                document.getElementById("player").volume = thisvue.volume / 100;
+                this.volume = localStorage.getItem("volume");
+                document.getElementById("player").volume = this.volume / 100;
             }
 
             if (localStorage.getItem("islock") != null) {
-                thisvue.islock = JSON.parse(localStorage.getItem("islock"));
-                thisvue.lockpull(thisvue.islock);
+                this.islock = JSON.parse(localStorage.getItem("islock"));
+                this.lockpull(this.islock);
             } else {
-                thisvue.lockpull(true);
+                this.lockpull(true);
             }
 
             if (localStorage.getItem("curMusic") != null) {
-                thisvue.curMusic = JSON.parse(localStorage.getItem("curMusic"));
-                if (thisvue.curMusic.id) {
-                    thisvue.playMusic(thisvue.curMusic, false);
-                    getcover(thisvue.curMusic);
+                this.curMusic = JSON.parse(localStorage.getItem("curMusic"));
+                if (this.curMusic.id) {
+                    this.playMusic(this.curMusic, false);
+                    this.getCover(this.curMusic);
                 }
             }
 
             if (localStorage.getItem("musicHistory") != null) {
-                thisvue.history = JSON.parse(localStorage.getItem("musicHistory"));
+                this.history = JSON.parse(localStorage.getItem("musicHistory"));
             }
 
             if (localStorage.getItem("myPlayList") != null) {
-                thisvue.playList = JSON.parse(localStorage.getItem("myPlayList"));
+                this.playList = JSON.parse(localStorage.getItem("myPlayList"));
             }
         },
 
@@ -870,35 +872,90 @@ export default {
             $(".user_suspensions").css("display", "none");
         },
 
-        admin: function() {
-            if (this.login_username == "admin") {
-                // window.open("http://localhost:8081/admin/users");
-                $('.user_suspensions').css('display', 'block')
-                $(".login").css("display", "none");
-                $(".register").css("display", "none");
-                this.getUsers()
+        // admin: function() {
+        //     if (this.login_username == "admin") {
+        //         // window.open("http://localhost:8081/admin/users");
+        //         $('.user_suspensions').css('display', 'block')
+        //         $(".login").css("display", "none");
+        //         $(".register").css("display", "none");
+        //         this.getUsers()
 
-            } else {
-                Vue.prototype.$Message.info("您还不是管理员哦");
-            }
-        },
+        //     } else {
+        //         Vue.prototype.$Message.info("您还不是管理员哦");
+        //     }
+        // },
 
-        online: function(username) {
-            api.get('admin/stopLogin/' + username).then((res) => {
-                Vue.prototype.$Message.info(res.message);
-                this.getUsers()
-            })
-        },
+        // online: function(username) {
+        //     api.get('admin/stopLogin/' + username).then((res) => {
+        //         Vue.prototype.$Message.info(res.message);
+        //         this.getUsers()
+        //     })
+        // },
 
-        getUsers: function() {
-            //获取所有用户
-            api.get('admin/getAllUser').then((res) => {
-                this.user_list = res.data
-            })
-        },
+        // getUsers: function() {
+        //     //获取所有用户
+        //     api.get('admin/getAllUser').then((res) => {
+        //         this.user_list = res.data
+        //     })
+        // },
 
         about: () => {
             alert("作者：刘睿\nQQ：1104052058", "星空播放器")
+        },
+
+        getCover(song) {//获取封面
+            if(song.al && song.al.id){
+                this.$axios.get('/album?id=' + song.al.id).then((response)=>{
+                    for(let i = 0;i < response.data.songs.length;i++){
+                        if(response.data.songs[i].al.id == song.al.id)
+                        document.getElementById("curcover").src = response.data.songs[i].al.picUrl + "?param=120y120?";
+                        break;
+                    }
+                })
+            }
+        },
+
+        getLrc(id) {//获取歌词
+            var that = this
+
+            that.$axios.get("/song/url?id=" + id).then(
+                function (response) {
+                    if (response.data.data[0].freeTrialInfo) {
+                        alert("该歌曲是VIP曲目，您只能试听30s");
+                        cursonglrc = [];
+                        document.getElementById('lrc').innerHTML = "";
+                        document.getElementById('whitelrc').innerHTML = "";
+                        return;
+                    };
+
+                    that.$axios.get("/lyric?id=" + id).then(//获取歌词
+                        function (response) {
+                            if (response.data.nolyric || (!response.data.lrc || !response.data.lrc.lyric)) {
+                                cursonglrc = [];
+                                document.getElementById('lrc').innerHTML = "";
+
+                                cursonglrc.push(new songlrc(0, '纯音乐，请欣赏'));
+                                document.getElementById('lrc').innerHTML += '<li id="slilrc0"><p id = "slrc0">' + '纯音乐，请欣赏' + '</p></li>';
+
+                                let lastlrc2 = setInterval(function () {//歌词文件结尾处理
+                                    if (player.duration) {
+                                        cursonglrc.push(new songlrc(player.duration, ""));
+                                        document.getElementById('lrc').innerHTML += '<li id="slilrc1"><p id = "slrc1"></p></li>';
+                                        clearInterval(lastlrc2);
+                                    }
+                                }, 1000)
+                            } else {
+                                lrc = response.data.lrc.lyric;
+                                get_timeAndlrc(lrc);
+                            }
+
+                        },
+                        function (err) { }
+                    );
+                },
+                function (err) { }
+            );
+
         },
 
         getRecommend: function() {
@@ -939,7 +996,7 @@ export default {
             })
         },
 
-        getAlbum: function(id) {
+        getAlbum: function(id) {//获取专辑
             if (id == undefined) return;
             let that = this;
             this.$axios.get('/album?id=' + id).then((response) => {
@@ -1080,10 +1137,10 @@ export default {
 
         /*搜索*/
         search: function(type = "单曲", id = 0) {
-            if (this.login_username == "") {
-                Vue.prototype.$Message.info("请登录后再进行此操作");
-                return;
-            }
+            // if (this.login_username == "") {
+            //     Vue.prototype.$Message.info("请登录后再进行此操作");
+            //     return;
+            // }
 
             /*如果用户没有输入任何关键词，使用默认的关键词*/
             if (this.keyWord == "") this.keyWord = this.defaultRealKeyword;
@@ -1141,10 +1198,10 @@ export default {
 
         playMusic: function(item, preload = true) { //点击播放
 
-            this.$axios.get('/song/detail?ids=' + item.id).then((response) => {
+            this.$axios.get('/song/detail?ids=' + item.id).then((response) => {//查找歌曲详情
                 this.curMusic = response.data.songs[0];
 
-                this.$axios.get('/song/url?id=' + this.curMusic.id).then((response) => {
+                this.$axios.get('/song/url?id=' + this.curMusic.id).then((response) => {//通过id获取歌曲本体
                     this.curMusic.url = response.data.data[0].url;
                     this.shutDown("");
 
@@ -1159,8 +1216,8 @@ export default {
                     cursonglrc = [];
                     currentLine = 0;
 
-                    getLrc(this.curMusic.id);
-                    getcover(this.curMusic);
+                    this.getLrc(this.curMusic.id);
+                    this.getCover(this.curMusic);
                     this.getComment(this.curMusic.id);
 
                     let player = document.getElementById("player");
@@ -1485,22 +1542,5 @@ export default {
 }
 </script>
 <style scoped>
-h1,
-h2 {
-    font-weight: normal;
-}
 
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
-    display: inline-block;
-    margin: 0 10px;
-}
-
-a {
-    color: #42b983;
-}
 </style>

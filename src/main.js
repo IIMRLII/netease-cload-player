@@ -6,8 +6,11 @@ import router from './router'
 // import $ from 'jquery' jq已安装在webpack全局
 
 import axios from 'axios' //引入axios
-axios.defaults.baseURL = 'http://musicapi.leanapp.cn/'
+// axios.defaults.baseURL = 'http://musicapi.leanapp.cn/'
+axios.defaults.baseURL = 'http://47.98.189.161:3000/'
 Vue.prototype.$axios = axios
+
+// Vue.prototype.$message = $message;
 
 // import '@/old_components/main.css'
 // import '@/old_components/mouse/mouse.css'
