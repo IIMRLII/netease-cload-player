@@ -116,7 +116,7 @@ body {
     pointer-events: none;
 }
 
-#searchResultCover {
+/* #searchResultCover {
     position: fixed;
     left: 0;
     margin-top: 115px;
@@ -126,4 +126,4 @@ body {
     min-width: 1000px;
     background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 1) 100%);
     pointer-events: none;
-}
+} */

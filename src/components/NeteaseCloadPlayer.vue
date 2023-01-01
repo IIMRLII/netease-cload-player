@@ -71,10 +71,10 @@
         </div> -->
 
 
-        <div id="locatevplay" v-show="viewShow">
+        <div id="locatevplay" v-if="viewShow">
             <video id="vplay" :src="mvUrl" class="media" controls="controls"></video>
         </div>
-        <div class="mask" v-show="viewShow" @click="closeMv()"></div>
+        <div class="mask" v-if="viewShow" @click="closeMv()"></div>
 
         <div id="top">
             <!--顶部导航栏-->
@@ -93,10 +93,10 @@
                     <em class="searchTip">搜索有关建议</em>
                     <div v-for="(value, index) in suggest" :key="index">
                         <!--对象v-for循环*-->
-                        <h3 class="suggestName">{{ key }}</h3>
+                        <h3 class="suggestName">{{ index }}</h3>
                         <ul class="suggestList">
-                            <li v-for="(site, index) in value" :key="index"
-                                @click="suggestAction(key, site.name, site.id)"><a href="javascript:;">{{ site.name }}</a>
+                            <li v-for="(site, index2) in value" :key="index2"
+                                @click="suggestAction(index, site.name, site.id)"><a href="javascript:;">{{ site.name }}</a>
                             </li>
                         </ul>
                     </div>
@@ -120,7 +120,7 @@
         </div>
 
         <div v-show="isCoverShow" id="searchResultCover"></div>
-        <div v-show="isShow" id="searchResult">
+        <div v-if="isShow" id="searchResult">
             <!--单曲搜索-->
             <ul id="tips">
                 <li>
@@ -152,7 +152,7 @@
                         </div>
                         <p class="duration">{{ item.dt }}</p>
                         <div class="movie2">
-                            <img title="点击播放MV" v-show="item.mv != 0" href="javascript:;" @click='playMVById(item.mv)'
+                            <img title="点击播放MV" v-if="item.mv != 0" href="javascript:;" @click='playMVById(item.mv)'
                                 src="../../static/old_components/search/playbar2.png" />
                         </div>
                         <!-- 图标！ -->
@@ -233,7 +233,7 @@
         </div>
 
         <!-- /*歌单*/ -->
-        <div id="curSongList" v-show="isSongListShow">
+        <div id="curSongList" v-if="isSongListShow">
             <div id="curSongListDetail">
                 <div id="curSongListCoverDiv">
                     <img id="curSongListCover" :src="curPlayList.coverImgUrl" @click="replaceSongList()" />
@@ -301,7 +301,7 @@
                                 </div>
                                 <p class="duration">{{ item.dt }}</p>
                                 <div class="movie2">
-                                    <img title="点击播放MV" v-show="item.mv != 0" href="javascript:;"
+                                    <img title="点击播放MV" v-if="item.mv != 0" href="javascript:;"
                                         @click='playMVById(item.mv)'
                                         src="../../static/old_components/search/playbar2.png" />
                                 </div>
@@ -313,7 +313,7 @@
         </div>
 
         <!-- /*专辑*/ -->
-        <div id="curAlbum" v-show="isAlbumShow">
+        <div id="curAlbum" v-if="isAlbumShow">
             <div id="curAlbumDetail">
                 <div id="curAlbumCoverDiv">
                     <img id="curAlbumCover" :src="curAlbum.picUrl" @click="replaceAlbum()" />
@@ -377,7 +377,7 @@
                                 </div>
                                 <p class="duration">{{ item.dt }}</p>
                                 <div class="movie2">
-                                    <img title="点击播放MV" v-show="item.mv != 0" href="javascript:;"
+                                    <img title="点击播放MV" v-if="item.mv != 0" href="javascript:;"
                                         @click='playMVById(item.mv)'
                                         src="../../static/old_components/search/playbar2.png" />
                                 </div>
@@ -389,7 +389,7 @@
         </div>
 
         <!-- /*歌手*/ -->
-        <div id="curSinger" v-show="isSingerShow">
+        <div id="curSinger" v-if="isSingerShow">
             <div id="curSingerDetail">
                 <div id="curSingerCoverDiv">
                     <img id="curSingerCover" :src="curSinger.picUrl" />
@@ -406,7 +406,7 @@
                     <ul id="curSingerAlbumUl">
                         <li class="curSingerAlbumLi" v-for="(item, index) in curSingerDesc" :key="index">
                             <h4>{{ item.ti }}</h4>
-                            <p class="curSingerAlbumCont" v-for="(items, index) in item.txt" :key="index">{{ items }}</p>
+                            <p class="curSingerAlbumCont" v-for="(items, index2) in item.txt" :key="index2">{{ items }}</p>
                             <hr>
                         </li>
                     </ul>
@@ -420,17 +420,17 @@
                             <li class="SingerAlbum" v-for="(item, index) in curSingerAlbumSongs" :key="index">
                                 <div class="SingerAlbumDiv">
                                     <div class="SingerAlbumPicDiv">
-                                        <img class="SingerAlbumPic" :src="curSingerAlbum[key].picUrl"
-                                            @click="search('专辑', curSingerAlbum[key].id)">
+                                        <img class="SingerAlbumPic" :src="curSingerAlbum[index].picUrl"
+                                            @click="search('专辑', curSingerAlbum[index].id)">
                                     </div>
                                     <div class="SingerAlbumDiv2">
-                                        <div class="SingerAlbumDiv3">{{ curSingerAlbum[key].name }}</div>
-                                        <div class="SingerAlbumDiv4">{{ formatDate(curSingerAlbum[key].publishTime) }}
+                                        <div class="SingerAlbumDiv3">{{ curSingerAlbum[index].name }}</div>
+                                        <div class="SingerAlbumDiv4">{{ formatDate(curSingerAlbum[index].publishTime) }}
                                         </div>
                                     </div>
                                 </div>
                                 <hr>
-                                <div class="SingerAlbumItem" v-for="(item2, index) in item" :key="index">
+                                <div class="SingerAlbumItem" v-for="(item2, index2) in item" :key="index2">
                                     <div class="songName">
                                         <a title="点击播放歌曲" href="javascript:;"
                                             @click='playMusic(item2)'>{{ item2.name }}</a>
@@ -439,10 +439,10 @@
                                         @mouseout="removeActive($event)">
                                         <div class="artistDiv" @mouseover="addActive($event)"
                                             @mouseout="removeActive($event)">
-                                            <div class="artist" v-for="(value, index) in item2.ar" :key="index">
+                                            <div class="artist" v-for="(value, index3) in item2.ar" :key="index3">
                                                 <a title="点击搜索歌手" href="javascript:;"
                                                     @click='search("歌手", value.id)'>{{ value.name }}</a>
-                                                <span v-if="item2.ar && index != (item2.ar).length - 1">/</span>
+                                                <span v-if="item2.ar && index3 != (item2.ar).length - 1">/</span>
                                             </div>
                                         </div>
                                     </div>
@@ -453,7 +453,7 @@
                                     </div>
                                     <p class="duration">{{ item2.dt }}</p>
                                     <div class="movie2">
-                                        <img title="点击播放MV" v-show="item2.mv != 0" href="javascript:;"
+                                        <img title="点击播放MV" v-if="item2.mv != 0" href="javascript:;"
                                             @click='playMVById(item2.mv)'
                                             src="../../static/old_components/search/playbar2.png" />
                                     </div>
@@ -479,7 +479,7 @@
             </div>
 
             <div id="hyPlListBlock">
-                <ul id='hyList' v-show="HPShow1">
+                <ul id='hyList' v-if="HPShow1">
                     <li class="hylistli" v-for="(item, index) in history" :key="index">
                         <div class="listenedName">
                             <a title="点击播放" href="javascript:;" @click='playMusic(item)' @mouseover="addActive($event)"
@@ -494,14 +494,14 @@
                                 </div>
                             </div>
                         </div>
-                        <img class="historyviedoplay" v-show="item.mv != 0" href="javascript:;"
+                        <img class="historyviedoplay" v-if="item.mv != 0" href="javascript:;"
                             @click='playMVById(item.mv)' src="../../static/old_components/search/playbar1.png" />
                         <img class="HLCancle" href="javascript:;" @click="removeHLitem(item.id)"
                             src="../../static/old_components/player/cancle.png" />
                     </li>
                 </ul>
 
-                <ul id='PList' v-show="HPShow2">
+                <ul id='PList' v-if="HPShow2">
                     <li class="Plistli" v-for="(item, index) in playList" :key="index">
                         <div class="listenedName">
                             <a title="点击播放" href="javascript:;" @click='playMusic(item)' @mouseover="addActive($event)"
@@ -516,7 +516,7 @@
                                 </div>
                             </div>
                         </div>
-                        <img class="historyviedoplay" v-show="item.mv != 0" href="javascript:;"
+                        <img class="historyviedoplay" v-if="item.mv != 0" href="javascript:;"
                             @click='playMVById(item.mv)' src="../../static/old_components/search/playbar1.png" />
                         <img class="HLCancle" href="javascript:;" @click="removeSLitem(item.id)"
                             src="../../static/old_components/player/cancle.png" />
@@ -543,6 +543,7 @@
 
 <!-- <script type="text/javascript" src="@/old_components/init.js"></script> -->
 <script>
+import getVm from '../../static/old_components/util/getVm.js';
 export default {
     name: 'NeteaseCloadPlayer',
     data() {
@@ -753,11 +754,11 @@ export default {
         that.getRecommend();
         that.getSongList();
 
-        window.setInterval(() => { this.synchronization() }, 20); //同步
+        // window.setInterval(() => { this.synchronization() }, 20); //同步
+        getVm.sendThisAndInit(that)//对外开放vm
     },
     methods: {
         synchronization() {//同步函数，强制执行防止出现bug
-
             this.synchroTime++;
 
             if(document.getElementById("RtxSwitch").innerHTML == "RtxOn"){//全体染色
@@ -1140,17 +1141,17 @@ export default {
 
         },
 
-        shutDown: function(type, close = true) {
+        shutDown: function(type, close = true) {//切换显示状态
             let thisisShow = this.isShow;
             let thisisSongListShow = this.isSongListShow;
             let thisisAlbumShow = this.isAlbumShow;
             let thisisSingerShow = this.isSingerShow;
 
-            this.isCoverShow = false;
             this.isShow = false;
             this.isSongListShow = false;
             this.isAlbumShow = false;
             this.isSingerShow = false;
+            this.isCoverShow = false;
 
             document.getElementById("showSearchEm").innerHTML = "显示搜索";
             this.viewShow = false;
@@ -1215,7 +1216,6 @@ export default {
                 case ("单曲"):
                     this.shutDown("单曲", false);
                     this.$axios.get('/search?keywords=' + this.keyWord).then((response) => {
-                        console.log(response)
                         this.songList = response.data.result.songs;
                         for (let i = 0; i < this.songList.length; i++) {
                             this.songList[i].dt = this.durationEdit(this.songList[i].dt);
@@ -1540,7 +1540,6 @@ export default {
             } else {
                 this.islock = locktype;
             }
-
             let pull = document.getElementById("pull");
             if (this.islock) {
                 $("#pull").css("bottom", "-2px");

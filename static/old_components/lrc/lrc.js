@@ -50,6 +50,7 @@ function get_timeAndlrc(lrc) {//歌词解码
         }
     }
 
+    let player = document.getElementById("player");
     let lastlrc = setInterval(function () {//歌词文件结尾处理
         if (player.duration) {
             cursonglrc.push(new songlrc(player.duration, ""));
@@ -82,6 +83,7 @@ $(document).ready(function () {
 
 var ppxx = $("#lrcbg").height() / 2 + $("#top").height() / 2 - 30 - (currentLine * 40);
 
+let player = document.getElementById("player");
 player.onseeking = function () {
     ppxx = $("#lrcbg").height() / 2 + $("#top").height() / 2 - 30 - (currentLine * 40);
     deltaTimer.splice(deltaTimer.length - 1, 1);
@@ -111,6 +113,7 @@ setInterval("deltaCounter()", 20);
 function getLine() {
     var perc;
 
+    let player = document.getElementById("player");
     currentTime = player.currentTime;
 
     if (cursonglrc.length > 0) {

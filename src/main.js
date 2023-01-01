@@ -34,9 +34,10 @@ Vue.prototype.$axios = axios
 // Vue.config.productionTip = false 显示生产tip
 
 /* eslint-disable no-new */
-new Vue({
+var thisVue = new Vue({
   el: '#app',
   router,
   components: { App },
   template: '<App/>'
 })
+export default thisVue
