@@ -8,19 +8,22 @@ function resizeCanvas() {//画布大小不能通过修改css实现
     $("#canvas2").attr("height", window.innerHeight); 
 }
 
-function frontPainter(){
+function frontPainter(){//canvas1绘制鼠标
     var c=document.getElementById("canvas1");
     
     var ctx = c.getContext("2d");
-    ctx.clearRect(0,0,c.width,c.height);
+    // ctx.clearRect(0,0,c.width,c.height);
+    c.width  = c.width;
 
-    mouseTailPainter();
+    mouseTailPainter();//画鼠标拖尾
+    starPainter();//画星星
 }
 
-function backPainter(){
+function backPainter(){//canvas2绘制背景
     var c=document.getElementById("canvas2");
     var ctx = c.getContext("2d");
-    ctx.clearRect(0,0,c.width,c.height);
+    c.width  = c.width;
+    // ctx.clearRect(0,0,c.width,c.height);
 
     //画宇宙
     ctx.drawImage(darkspace,-50+Math.sin(rotateTime/500)*50,-50+Math.sin(rotateTime/500)*50*sizek,c.width+100-2*Math.sin(rotateTime/500)*50,c.height+100-2*Math.sin(rotateTime/500)*50*sizek);
@@ -47,7 +50,7 @@ function backPainter(){
 
     //画评论弹幕
 
-    mouseTailPainter();//画鼠标拖尾
+    // mouseTailPainter();//画鼠标拖尾
 }
 
 $(window).resize(resizeCanvas); //窗口大小调整

@@ -116,6 +116,36 @@ body {
     pointer-events: none;
 }
 
+#background {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    display: block;
+    z-index: -1999;
+    transform-origin: center center;
+    pointer-events: none;
+    background-image: url('./mouse/darkspace.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: mymove 30s ease-in-out infinite alternate;
+}
+
+@keyframes mymove
+{
+	from {
+        transform: scale(1);  
+    }
+
+	to {
+        transform: scale(1.2);
+    }
+}
+
 /* #searchResultCover {
     position: fixed;
     left: 0;
