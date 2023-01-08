@@ -1,6 +1,7 @@
 <template>
     <!--vue总框架-->
     <div id="whole">
+        <BigDipper></BigDipper>
         <!-- <div id="particles-js">
             <div class="login">
                 <div class="login-close" @click="$('.login').css('display','none')">关闭</div>
@@ -96,7 +97,9 @@
                         <h3 class="suggestName">{{ index }}</h3>
                         <ul class="suggestList">
                             <li v-for="(site, index2) in value" :key="index2"
-                                @click="suggestAction(index, site.name, site.id)"><a href="javascript:;">{{ site.name }}</a>
+                                @click="suggestAction(index, site.name, site.id)"><a href="javascript:;">{{
+                                    site.name
+                                }}</a>
                             </li>
                         </ul>
                     </div>
@@ -140,8 +143,9 @@
                         <div class="artistBlock">
                             <div class="artistDiv" @mouseover="addActive($event)" @mouseout="removeActive($event)">
                                 <div class="artist" v-for="(value, index) in item.ar" :key="index">
-                                    <a title="点击搜索歌手" href="javascript:;"
-                                        @click='search("歌手", value.id)'>{{ value.name }}</a>
+                                    <a title="点击搜索歌手" href="javascript:;" @click='search("歌手", value.id)'>{{
+                                        value.name
+                                    }}</a>
                                     <span v-if="item.ar && index != (item.ar).length - 1">/</span>
                                 </div>
                             </div>
@@ -242,13 +246,19 @@
                     <div>[歌单]&nbsp;{{ curPlayList.name }}</div>
                     <img id="curSongListCreaterPic" :src="curPlayList.creator.avatarUrl" />
                     <div>
-                        {{ curPlayList.creator.nickname }}&nbsp;&nbsp;{{ formatDate(curPlayList.trackUpdateTime) }}&nbsp;&nbsp;更新
+                        {{ curPlayList.creator.nickname }}&nbsp;&nbsp;{{
+                            formatDate(curPlayList.trackUpdateTime)
+                        }}&nbsp;&nbsp;更新
                     </div>
                     <div>
-                        歌曲数：{{ curPlayList.trackIds.length }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;播放数：{{ curPlayList.playCount }}
+                        歌曲数：{{ curPlayList.trackIds.length }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;播放数：{{
+                            curPlayList.playCount
+                        }}
                     </div>
                     <div>
-                        收藏人数：{{ curPlayList.subscribers.length }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分享数：{{ curPlayList.shareCount }}
+                        收藏人数：{{ curPlayList.subscribers.length }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分享数：{{
+                            curPlayList.shareCount
+                        }}
                     </div>
                     <div>简介：{{ curPlayList.description }}</div>
                 </div>
@@ -288,16 +298,18 @@
                                     <div class="artistDiv" @mouseover="addActive($event)"
                                         @mouseout="removeActive($event)">
                                         <div class="artist" v-for="(value, index) in item.ar" :key="index">
-                                            <a title="点击搜索歌手" href="javascript:;"
-                                                @click='search("歌手", value.id)'>{{ value.name }}</a>
+                                            <a title="点击搜索歌手" href="javascript:;" @click='search("歌手", value.id)'>{{
+                                                value.name
+                                            }}</a>
                                             <span v-if="item.ar && index != (item.ar).length - 1">/</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div id="album2">
                                     <a title="点击搜索专辑" href="javascript:;" @click='search("专辑", item.al.id)'
-                                        @mouseover="addActive($event)"
-                                        @mouseout="removeActive($event)">{{ item.al.name }}</a>
+                                        @mouseover="addActive($event)" @mouseout="removeActive($event)">{{
+                                            item.al.name
+                                        }}</a>
                                 </div>
                                 <p class="duration">{{ item.dt }}</p>
                                 <div class="movie2">
@@ -321,10 +333,13 @@
                 <div id="curAlbumCreater" v-if="JSON.stringify(curAlbum) != '[]'">
                     <div>[专辑]&nbsp;{{ curAlbum.name }}</div>
                     <img id="curAlbumCreaterPic" :src="curAlbum.artist.picUrl" />
-                    <div>{{ curAlbum.artist.name }}&nbsp;&nbsp;{{ formatDate(curAlbum.publishTime) }}&nbsp;&nbsp;更新</div>
+                    <div>{{ curAlbum.artist.name }}&nbsp;&nbsp;{{ formatDate(curAlbum.publishTime) }}&nbsp;&nbsp;更新
+                    </div>
                     <div>歌曲数：{{ curAlbumList.length }}</div>
                     <div>
-                        收藏人数：{{ curAlbum.subCount }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分享数：{{ curAlbum.info.shareCount }}
+                        收藏人数：{{ curAlbum.subCount }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分享数：{{
+                            curAlbum.info.shareCount
+                        }}
                     </div>
                     <div>简介：{{ curAlbum.description }}</div>
                 </div>
@@ -364,16 +379,18 @@
                                     <div class="artistDiv" @mouseover="addActive($event)"
                                         @mouseout="removeActive($event)">
                                         <div class="artist" v-for="(value, index) in item.ar" :key="index">
-                                            <a title="点击搜索歌手" href="javascript:;"
-                                                @click='search("歌手", value.id)'>{{ value.name }}</a>
+                                            <a title="点击搜索歌手" href="javascript:;" @click='search("歌手", value.id)'>{{
+                                                value.name
+                                            }}</a>
                                             <span v-if="item.ar && index != (item.ar).length - 1">/</span>
                                         </div>
                                     </div>
                                 </div>
                                 <div id="album2">
                                     <a title="点击搜索专辑" href="javascript:;" @click='search("专辑", item.al.id)'
-                                        @mouseover="addActive($event)"
-                                        @mouseout="removeActive($event)">{{ item.al.name }}</a>
+                                        @mouseover="addActive($event)" @mouseout="removeActive($event)">{{
+                                            item.al.name
+                                        }}</a>
                                 </div>
                                 <p class="duration">{{ item.dt }}</p>
                                 <div class="movie2">
@@ -406,7 +423,8 @@
                     <ul id="curSingerAlbumUl">
                         <li class="curSingerAlbumLi" v-for="(item, index) in curSingerDesc" :key="index">
                             <h4>{{ item.ti }}</h4>
-                            <p class="curSingerAlbumCont" v-for="(items, index2) in item.txt" :key="index2">{{ items }}</p>
+                            <p class="curSingerAlbumCont" v-for="(items, index2) in item.txt" :key="index2">{{ items }}
+                            </p>
                             <hr>
                         </li>
                     </ul>
@@ -432,24 +450,27 @@
                                 <hr>
                                 <div class="SingerAlbumItem" v-for="(item2, index2) in item" :key="index2">
                                     <div class="songName">
-                                        <a title="点击播放歌曲" href="javascript:;"
-                                            @click='playMusic(item2)'>{{ item2.name }}</a>
+                                        <a title="点击播放歌曲" href="javascript:;" @click='playMusic(item2)'>{{
+                                            item2.name
+                                        }}</a>
                                     </div>
                                     <div class="artistBlock" @mouseover="addActive($event)"
                                         @mouseout="removeActive($event)">
                                         <div class="artistDiv" @mouseover="addActive($event)"
                                             @mouseout="removeActive($event)">
                                             <div class="artist" v-for="(value, index3) in item2.ar" :key="index3">
-                                                <a title="点击搜索歌手" href="javascript:;"
-                                                    @click='search("歌手", value.id)'>{{ value.name }}</a>
+                                                <a title="点击搜索歌手" href="javascript:;" @click='search("歌手", value.id)'>{{
+                                                    value.name
+                                                }}</a>
                                                 <span v-if="item2.ar && index3 != (item2.ar).length - 1">/</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div id="album2">
                                         <a title="点击搜索专辑" href="javascript:;" @click='search("专辑", item2.al.id)'
-                                            @mouseover="addActive($event)"
-                                            @mouseout="removeActive($event)">{{ item2.al.name }}</a>
+                                            @mouseover="addActive($event)" @mouseout="removeActive($event)">{{
+                                                item2.al.name
+                                            }}</a>
                                     </div>
                                     <p class="duration">{{ item2.dt }}</p>
                                     <div class="movie2">
@@ -488,8 +509,9 @@
                         <div class="listenedArtist">
                             <div class="artistDiv" @mouseover="addActive($event)" @mouseout="removeActive($event)">
                                 <div class="artist" v-for="(value, index) in item.ar" :key="index">
-                                    <a title="点击搜索歌手" href="javascript:;"
-                                        @click='search("歌手", value.id)'>{{ value.name }}</a>
+                                    <a title="点击搜索歌手" href="javascript:;" @click='search("歌手", value.id)'>{{
+                                        value.name
+                                    }}</a>
                                     <span v-if="item.ar && index != (item.ar).length - 1">/</span>
                                 </div>
                             </div>
@@ -510,8 +532,9 @@
                         <div class="listenedArtist">
                             <div class="artistDiv" @mouseover="addActive($event)" @mouseout="removeActive($event)">
                                 <div class="artist" v-for="(value, index) in item.ar" :key="index">
-                                    <a title="点击搜索歌手" href="javascript:;"
-                                        @click='search("歌手", value.id)'>{{ value.name }}</a>
+                                    <a title="点击搜索歌手" href="javascript:;" @click='search("歌手", value.id)'>{{
+                                        value.name
+                                    }}</a>
                                     <span v-if="item.ar && index != (item.ar).length - 1">/</span>
                                 </div>
                             </div>
@@ -544,8 +567,12 @@
 <!-- <script type="text/javascript" src="@/old_components/init.js"></script> -->
 <script>
 import getVm from '../../static/old_components/util/getVm.js';
+import BigDipper from '@/components/BigDipper';
 export default {
     name: 'NeteaseCloadPlayer',
+    components: {
+        BigDipper
+    },
     data() {
         return {
             //是否保存数据
@@ -643,7 +670,7 @@ export default {
 
         window.addEventListener('unload', e => this.unloadHandler(e, this)); //添加页面关闭事件
 
-        $("#pull").on('click', function(e) {
+        $(window).on('click', function(e) {
             if (e.target.id != "pull") {
                 let lzsum = 10 + Math.floor(Math.random() * 5);
                 for (let i = 0; i < lzsum; i++) {
@@ -653,6 +680,8 @@ export default {
                     let time = 80 + 20 * Math.random();
                     mouseParticle.push(new partical(mouseX, mouseY, time, vx, vy, 0, 0, 10, 0, Math.random() * 255, Math.random() * 255, Math.random() * 255, 255, 255, 255, Math.random() * 4 * Math.PI * 3 - 2 * Math.PI * 3, Math.random() * 4 * Math.PI * 3 - 2 * Math.PI * 3))
                 }
+                console.log(mouseX,mouseY)
+                console.log(mouseX/window.innerWidth,mouseY/window.innerHeight)
                 e.stopPropagation(); //currentTarget始终是监听事件者，而target是事件的真正发出者
             } else {
                 that.lockpull();
