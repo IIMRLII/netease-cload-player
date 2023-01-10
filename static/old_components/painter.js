@@ -13,7 +13,7 @@ function frontPainter(){//canvas1绘制鼠标
     
     var ctx = c.getContext("2d");
     // ctx.clearRect(0,0,c.width,c.height);
-    c.width  = c.width;
+    c.width  = c.width;//清空画布
 
     mouseTailPainter();//画鼠标拖尾
     starPainter();//画星星
@@ -22,13 +22,13 @@ function frontPainter(){//canvas1绘制鼠标
 function backPainter(){//canvas2绘制背景
     var c=document.getElementById("canvas2");
     var ctx = c.getContext("2d");
-    c.width  = c.width;
+    c.width  = c.width;//清空画布
     // ctx.clearRect(0,0,c.width,c.height);
 
     //画宇宙
     ctx.drawImage(darkspace,-50+Math.sin(rotateTime/500)*50,-50+Math.sin(rotateTime/500)*50*sizek,c.width+100-2*Math.sin(rotateTime/500)*50,c.height+100-2*Math.sin(rotateTime/500)*50*sizek);
 
-    starPainter();//画星星
+    // starPainter();//画星星
 
     ctx.translate($(window).get(0).innerWidth/2,$(window).get(0).innerHeight+$(window).get(0).innerWidth/c.width*earth.height/6);
     

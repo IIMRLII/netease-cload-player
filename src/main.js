@@ -10,26 +10,7 @@ import axios from 'axios' //引入axios
 axios.defaults.baseURL = 'http://47.98.189.161:3000/'
 Vue.prototype.$axios = axios
 
-// Vue.prototype.$message = $message;
-
-// import '@/old_components/main.css'
-// import '@/old_components/mouse/mouse.css'
-// import '@/old_components/lrc/lrc.css'
-// import '@/old_components/player/player.css'
-// import '@/old_components/player/player.css'
-// import '@/old_components/top/top.css'
-// import '@/old_components/search/search.css'
-// import '@/old_components/media.css'
-// import '@/old_components/recommend/recommend.css'
-// import '@/old_components/songList/songList.css'
-// import '@/old_components/album/album.css'
-// import '@/old_components/singer/singer.css'
-
-// import '@/old_components/user/suspensions.css'
-// import '@/old_components/user/login.css'
-// import '@/old_components/user/register.css'
-// import '@/old_components/user/userinfo.css'
-
+import '@/icons/index'//引入svg
 
 // Vue.config.productionTip = false 显示生产tip
 

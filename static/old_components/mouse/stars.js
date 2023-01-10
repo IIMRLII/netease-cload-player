@@ -46,7 +46,6 @@ function starCounter() {
             if (s.tail.length > s.tailMount) { s.tail.splice(0, 1) }
             if (s.x < -300 || s.y > window.innerHeight + 300) {
                 star.splice(i, 1);
-
             }
         }
     }
@@ -78,6 +77,7 @@ function starPainter() {
         ctx.translate(s.x, s.y);
 
         ctx.beginPath();
+        
         const horn = 5;//五角星
         const angle = 360 / horn;
         const rotate = 0;
