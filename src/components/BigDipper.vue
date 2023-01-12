@@ -1,13 +1,13 @@
 <template>
-    <div class="big_dipper">
+    <div v-if="!isAniFinish" class="big_dipper">
         <canvas id="star_canvas"></canvas>
-        <div class="star star_1"></div>
+        <div class="star star_1 star_dark"></div>
         <div class="star star_2 star_dark"></div>
-        <div class="star star_3"></div>
-        <div class="star star_4"></div>
-        <div class="star star_5"></div>
-        <div class="star star_6"></div>
-        <div class="star star_7"></div>
+        <div class="star star_3 star_dark"></div>
+        <div class="star star_4 star_dark"></div>
+        <div class="star star_5 star_dark"></div>
+        <div class="star star_6 star_dark"></div>
+        <div class="star star_7 star_dark"></div>
         <div class="moon">
             <div class="crater crater1"></div>
             <div class="crater crater2"></div>
@@ -21,6 +21,7 @@ export default {
     name: "BigDipper",
     data() {
         return {
+            isAniFinish: false,
             littleStar: [],
             lines: [],
             stars: [
@@ -32,30 +33,11 @@ export default {
                 { left: 77.9, top: 73.9 },
                 { left: 81.1, top: 44.3 },
             ],
+            starElements: [],
+            starAniCount: 0,
         };
     },
     mounted() {
-        // this.$router.replace({name: 'NeteaseCloadPlayer'})
-        // createStar();
-
-        // function newStar() {
-        //     let d = document.createElement('div');
-        //     d.innerHTML = '<div class="little_star">';
-        //     return d.firstChild;
-        // }
-
-        // for (let i = 0; i <= 40; i++) {
-        //     let star = newStar();
-        //     star.style.top = Math.random() * 100 + "%";
-        //     star.style.left = Math.random() * 100 + "%";
-        //     let rad = (10 - 5 * Math.random()) + "px";
-        //     star.style.width = rad;
-        //     star.style.height = rad;
-        //     star.style.opacity = 1 - Math.random() * 0.5;
-        //     $('.big_dipper').append(star);
-        //     // document.body.appendChild(star);
-        // }
-
         let vw = window.innerWidth;
         let vh = window.innerHeight;
         for (let i = 0; i < this.stars.length; i++) {
@@ -66,11 +48,28 @@ export default {
                 (vw * this.stars[i].left) / 100,
                 (vh * this.stars[i].top) / 100
             );
+            this.starElements.push(star)
             $('.big_dipper').append(star);
         }
 
         $(window).resize(this.resizeCanvas); //窗口大小调整
         this.resizeCanvas();
+
+        $('.star_1').removeClass('star_dark')
+        let starTimer = window.setInterval(() => {
+            $(this.starElements[this.starAniCount]).css('animation', 'starLineGlitter 0.5s ease-in-out 1 alternate forwards')
+            let aniTime = this.starAniCount + 2;
+            window.setTimeout(() => {
+                $('.star_' + aniTime).removeClass('star_dark')
+            }, 500)
+            this.starAniCount++;
+            if(this.starAniCount === 6) {
+                clearTimeout(starTimer)
+                window.setTimeout(() => {//加载完毕一秒后转入页面
+                    this.isAniFinish = true;
+                }, 1000)
+            }
+        }, 500)
     },
     methods: {
         resizeCanvas() {
@@ -78,6 +77,7 @@ export default {
             $("#star_canvas").attr("width", window.innerWidth);
             $("#star_canvas").attr("height", window.innerHeight);
             this.paintCanvas();
+            this.relocateLines();
         },
         paintCanvas() {
             function starT(x, y, rad, rotate, vrotate, r, g, b) {
@@ -155,19 +155,18 @@ export default {
         },
         createLineElement(x, y, length, angle) {
             var line = document.createElement("div");
-            var styles = `
-                border: 2px solid black;
-                width: ${length}px;
-                height: 0px;
-                -moz-transform: rotate(${angle}rad);
-                -webkit-transform: rotate(${angle}rad);
-                -o-transform: rotate(${angle}rad);
-                -ms-transform: rotate(${angle}rad);
-                position: absolute;
-                top: ${y}px;
-                left: ${x}px;
-            `
-            line.setAttribute("style", styles);
+            var styles = {
+                'border-width': '2px',
+                'border-style': 'solid',
+                'opacity': '0',
+                'width': `${length}px`,
+                'height': '0px',
+                'transform': `rotate(${angle}rad)`,
+                'position': 'absolute',
+                'top': `${y}px`,
+                'left': `${x}px`,
+            }
+            $(line).css(styles)
             return line;
         },
         createLine(x1, y1, x2, y2) {
@@ -190,6 +189,56 @@ export default {
 
             return this.createLineElement(x, y, c, alpha);
         },
+        relocateLineElement(line, x, y, length, angle) {
+            var styles = {
+                'border-width': '2px',
+                'border-style': 'solid',
+                // 'opacity': '0',
+                'width': `${length}px`,
+                'height': '0px',
+                'transform': `rotate(${angle}rad)`,
+                'position': 'absolute',
+                'top': `${y}px`,
+                'left': `${x}px`,
+            }
+            $(line).css(styles)
+            return line;
+        },
+        relocateLines() {
+            let vw = window.innerWidth;
+            let vh = window.innerHeight;
+            for(let i = 0; i < this.stars.length; i++) {
+                if (i == 0) continue;
+                let star = this.starElements[i - 1];
+                this.relocateLine(
+                    star,
+                    (vw * this.stars[i - 1].left) / 100,
+                    (vh * this.stars[i - 1].top) / 100,
+                    (vw * this.stars[i].left) / 100,
+                    (vh * this.stars[i].top) / 100
+                );
+            }
+        },
+        relocateLine(line, x1, y1, x2, y2) {
+            //位置修正（因为边框变宽）
+            x1 = x1 - 1;
+            y1 = y1 - 1;
+            x2 = x2 - 1;
+            y2 = y2 - 1;
+            var a = x1 - x2,
+                b = y1 - y2,
+                c = Math.sqrt(a * a + b * b);
+
+            var sx = (x1 + x2) / 2,
+                sy = (y1 + y2) / 2;
+
+            var x = sx - c / 2,
+                y = sy;
+
+            var alpha = Math.PI - Math.atan2(-b, a);
+
+            return this.relocateLineElement(line, x, y, c, alpha);
+        },
     },
 };
 </script>
@@ -211,6 +260,15 @@ export default {
     }
     to {
         transform: translate(-50%, -50%) scale(1.1);
+    }
+}
+
+@keyframes starLineGlitter {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
     }
 }
 </style>
@@ -300,6 +358,7 @@ export default {
     box-sizing: border-box;
     box-shadow: 0 0 10px 5px #ccc;
     animation: star 3s ease-in-out infinite alternate;
+    transition: background-color 0.5s ease;
 }
 
 .star_dark {
