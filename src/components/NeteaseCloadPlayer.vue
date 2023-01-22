@@ -226,12 +226,23 @@
                     <ul id='recommendList'>
                         <li class="recommendListLi" v-for="(item, index) in recommendSongList" :key="index">
                             <div class="recommendDiv">
-                                <span class="songListPlayCount">▷{{ item.playCount }}&nbsp;</span>
+                                <span class="songListPlayCount">▷{{ item.playCount }}&nbsp;&nbsp;</span>
                                 <span class="songListIntro">{{ item.name }}</span>
                                 <img :title="item.copywriter" :src="item.picUrl" @click='search("歌单", item.id);' />
                             </div>
                         </li>
                     </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="recommendStarWidget" v-if="recommendStarShow && recommendSongListThree.length !== 0">
+            <div class="recommendStarClose" title="关闭推荐" @click="recommendStarShow = false">×</div>
+            <div :class="'recommendStar'+(index+1)" v-for="index of [0,1,2]" :key="index">
+                <div class="firstStar">
+                    <span class="firstStarBackgroundPlayCount">▷{{ recommendSongListThree[index].playCount }}&nbsp;&nbsp;</span>
+                    <span class="firstStarBackgroundName">{{ recommendSongListThree[index].name }}</span>
+                    <img class="firstStarBackground" :src="recommendSongListThree[index].picUrl" :title="recommendSongListThree[index].name" @click='search("歌单", recommendSongListThree[index].id);'/>
                 </div>
             </div>
         </div>
@@ -660,7 +671,12 @@ export default {
             user_list: [],
             mouseOnSuggest: false,
             synchroTime: 0,
-
+            recommendStarShow: true,
+        }
+    },
+    computed: {
+        recommendSongListThree() {
+            return this.recommendSongList.slice(0, 3)
         }
     },
     mounted() {
@@ -1647,6 +1663,158 @@ export default {
     }
 }
 </script>
-<style scoped>
+<style lang="scss" scoped>
+.recommendStarWidget {
+    width: 90vh;
+    height: 100vh;
+    position: absolute;
+    z-index: 2000;
+}
+
+.recommendStarWidget:hover .recommendStarClose{
+    display: flex;
+}
+
+.recommendStarClose {
+    position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    top: 10vh;
+    right: 10vh;
+    width: 5vh;
+    height: 5vh;
+    z-index: 2001;
+    color: black;
+    font-size: 20px;
+    border-radius: 50%;
+    background-color: rgba(118, 118, 118, 0.449);
+}
+
+.recommendStarClose:hover{
+    background-color: rgba(118, 118, 118, 0.718);
+}
+
+.recommendStar1 {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 58vh;
+    height: 58vh;
+    top: calc(115px + 25vh + -8vh);
+    left: 55vh;
+    background-image: url('../../static/recommend_star.png');
+    background-origin: center center;
+    background-size: cover;
+    transform: translate(-50%, -50%) rotate(365deg);
+    animation: recommendStar1 1s ease-out;
+}
+
+@keyframes recommendStar1 {
+    from {
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%) scale(0) rotate(0deg);
+    }
+    to {
+        top: calc(115px + 25vh + -8vh);
+        left: 55vh;
+        transform: translate(-50%, -50%) scale(1) rotate(365deg);
+    }
+}
+
+.recommendStar2 {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 45vh;
+    height: 45vh;
+    top: calc(115px + 25vh + 33vh);
+    left: 27vh;
+    background-image: url('../../static/recommend_star.png');
+    background-origin: center center;
+    background-size: cover;
+    transform: translate(-50%, -50%) rotate(340deg);
+    animation: recommendStar2 1s ease-out;
+}
+
+@keyframes recommendStar2 {
+    from {
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%) scale(0) rotate(1080deg);
+    }
+    to {
+        top: calc(115px + 25vh + 33vh);
+        left: 27vh;
+        transform: translate(-50%, -50%) scale(1) rotate(340deg);
+    }
+}
+
+.recommendStar3 {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 35vh;
+    height: 35vh;
+    top: calc(115px + 25vh + 35vh);
+    left: 67vh;
+    background-image: url('../../static/recommend_star.png');
+    background-origin: center center;
+    background-size: cover;
+    transform: translate(-50%, -50%) rotate(390deg);
+    animation: recommendStar3 1s ease-out;
+}
+
+@keyframes recommendStar3 {
+    from {
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%) scale(0) rotate(-360deg);
+    }
+    to {
+        top: calc(115px + 25vh + 35vh);
+        left: 67vh;
+        transform: translate(-50%, -50%) scale(1) rotate(390deg);
+    }
+}
+
+.firstStar {
+    position: relative;
+    margin-top: 10%;
+    width: 50%;
+    height: 50%;
+    cursor: pointer;
+    .firstStarBackground {
+        width: 100%;
+        height: 100%;
+        border-radius: 10%;
+    }
+
+    .firstStarBackgroundPlayCount {
+        position: absolute;
+        width: 100%;
+        text-align: right;
+        color: white;
+    }
+
+    .firstStarBackgroundName {
+        position: absolute;
+        bottom: 0;
+        transform: translateY(100%);
+        // color: white;
+        text-align: left;
+
+    }
+}
+
+
 
 </style>

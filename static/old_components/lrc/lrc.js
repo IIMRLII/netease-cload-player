@@ -68,7 +68,8 @@ function time_conversion(time) {
 $(document).ready(function () {
 
     var scrollFunc = function (e) {//添加鼠标滚动监听事件
-        if (Object.prototype.toString.call(e.target) == "[object HTMLHtmlElement]" && e.wheelDelta) {//IE/Opera/Chrome
+        // if (Object.prototype.toString.call(e.target) == "[object HTMLHtmlElement]" && e.wheelDelta) {//IE/Opera/Chrome
+        if (e.target.id === 'app' && e.wheelDelta) {//IE/Opera/Chrome
             deltaTimer[1] = new Counter(e.wheelDelta / 5, 1000 / 20 * 1, -1);//del1--鼠标滑动歌词
             e.stopPropagation();
         }

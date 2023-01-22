@@ -1,5 +1,5 @@
 <template>
-    <div v-if="!isAniFinish" class="big_dipper">
+    <div v-if="!isAniFinish" class="big_dipper" @click="isAniFinish = true" v-show="false">
         <canvas id="star_canvas"></canvas>
         <div class="star star_1 star_dark"></div>
         <div class="star star_2 star_dark"></div>
