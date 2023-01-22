@@ -5,8 +5,8 @@ body{
 #lrcbg{
     position: fixed;
     display: inline-block;
-    width: calc(100vw);
-    height: calc(100vh);
+    width: 100%;
+    height: 100%;
     margin: 0 auto;
     /* background-color: rgba(255,255,255,0.2); */
     background-image: linear-gradient(to right, rgba(255,255,255,0) 20%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 80%);

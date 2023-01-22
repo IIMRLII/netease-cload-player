@@ -22,7 +22,7 @@
 
 body,
 #playerdiv {
-    min-width: 1000px;
+    /* min-width: 1000px; */
 }
 
 body {
@@ -116,11 +116,41 @@ body {
     pointer-events: none;
 }
 
-#background {
+#background_earth {
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    display: block;
+    z-index: -1999;
+    transform-origin: center center;
+    pointer-events: none;
+    background-image: url('./mouse/earth.png');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    animation: background_earth_move 30s linear infinite;
+}
+
+@keyframes background_earth_move
+{
+	from {
+        transform: translateY(60%) scale(1.5) rotate(0deg);  
+    }
+
+	to {
+        transform: translateY(60%) scale(1.5) rotate(360deg);
+    }
+}
+
+#background_star {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     margin: 0;
     padding: 0;
     position: fixed;
@@ -132,10 +162,10 @@ body {
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
-    animation: mymove 30s ease-in-out infinite alternate;
+    animation: background_star_move 30s ease-in-out infinite alternate;
 }
 
-@keyframes mymove
+@keyframes background_star_move
 {
 	from {
         transform: scale(1);  

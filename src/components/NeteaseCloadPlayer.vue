@@ -670,7 +670,7 @@ export default {
 
         this.$refs.big_dipper.starAniCount++;//北斗七星进度+1
 
-        darkspace.onload = () => {
+        darkspace.onload = () => {//图片预加载
             this.$refs.big_dipper.starAniCount++;
         }
         earth.onload = () => {
