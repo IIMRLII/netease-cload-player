@@ -33,9 +33,26 @@ export default {
                 { left: 77.9, top: 73.9 },
                 { left: 81.1, top: 44.3 },
             ],
-            starElements: [],
-            starAniCount: 0,
+            starLineElements: [],
+            starAniCount: -1,
         };
+    },
+    watch: {
+        starAniCount(newVal) {
+            $(this.starLineElements[this.starAniCount]).css('animation', 'starLineGlitter 0.5s ease-in-out 1 alternate forwards')
+            let aniTime = this.starAniCount + 2;
+            window.setTimeout(() => {
+                $('.star_' + aniTime).removeClass('star_dark')
+            }, 500)
+            if(this.starAniCount === 5) {
+                window.setTimeout(() => {//加载完毕一秒后转入页面
+                    $('.big_dipper').css('opacity', '0');
+                }, 1000)
+                window.setTimeout(() => {//加载完毕一秒后转入页面
+                    this.isAniFinish = true;
+                }, 2000)
+            }
+        }
     },
     mounted() {
         let vw = window.innerWidth;
@@ -48,7 +65,7 @@ export default {
                 (vw * this.stars[i].left) / 100,
                 (vh * this.stars[i].top) / 100
             );
-            this.starElements.push(star)
+            this.starLineElements.push(star)
             $('.big_dipper').append(star);
         }
 
@@ -56,20 +73,23 @@ export default {
         this.resizeCanvas();
 
         $('.star_1').removeClass('star_dark')
+        let timerCounter = 0
         let starTimer = window.setInterval(() => {
-            $(this.starElements[this.starAniCount]).css('animation', 'starLineGlitter 0.5s ease-in-out 1 alternate forwards')
-            let aniTime = this.starAniCount + 2;
-            window.setTimeout(() => {
-                $('.star_' + aniTime).removeClass('star_dark')
-            }, 500)
             this.starAniCount++;
-            if(this.starAniCount === 6) {
+            timerCounter++;
+            if(timerCounter === 3) {
                 clearTimeout(starTimer)
-                window.setTimeout(() => {//加载完毕一秒后转入页面
-                    this.isAniFinish = true;
-                }, 1000)
             }
-        }, 500)
+        }, 100)
+
+        let finalTimer = window.setTimeout(() => {
+            window.setInterval(() => {
+                this.starAniCount++;
+                if(this.starAniCount === 5) {
+                    clearTimeout(finalTimer)
+                }
+            }, 100)
+        }, 3000)
     },
     methods: {
         resizeCanvas() {
@@ -209,7 +229,7 @@ export default {
             let vh = window.innerHeight;
             for(let i = 0; i < this.stars.length; i++) {
                 if (i == 0) continue;
-                let star = this.starElements[i - 1];
+                let star = this.starLineElements[i - 1];
                 this.relocateLine(
                     star,
                     (vw * this.stars[i - 1].left) / 100,
@@ -292,6 +312,8 @@ export default {
         #0c0448,
         #0c0342
     );
+    opacity: 0.95;
+    transition: opacity 1s ease;
 }
 
 #star_canvas {

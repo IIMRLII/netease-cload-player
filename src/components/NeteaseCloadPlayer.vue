@@ -1,7 +1,7 @@
 <template>
     <!--vue总框架-->
     <div id="whole">
-        <BigDipper></BigDipper>
+        <BigDipper ref="big_dipper"></BigDipper>
         <!-- <div id="particles-js">
             <div class="login">
                 <div class="login-close" @click="$('.login').css('display','none')">关闭</div>
@@ -668,6 +668,15 @@ export default {
         this.getDefaultKeyword();
         this.init();
 
+        this.$refs.big_dipper.starAniCount++;//北斗七星进度+1
+
+        darkspace.onload = () => {
+            this.$refs.big_dipper.starAniCount++;
+        }
+        earth.onload = () => {
+            this.$refs.big_dipper.starAniCount++;
+        }
+
         window.addEventListener('unload', e => this.unloadHandler(e, this)); //添加页面关闭事件
 
         $(window).on('click', function(e) {
@@ -680,8 +689,8 @@ export default {
                     let time = 80 + 20 * Math.random();
                     mouseParticle.push(new partical(mouseX, mouseY, time, vx, vy, 0, 0, 10, 0, Math.random() * 255, Math.random() * 255, Math.random() * 255, 255, 255, 255, Math.random() * 4 * Math.PI * 3 - 2 * Math.PI * 3, Math.random() * 4 * Math.PI * 3 - 2 * Math.PI * 3))
                 }
-                console.log(mouseX,mouseY)
-                console.log(mouseX/window.innerWidth,mouseY/window.innerHeight)
+                // console.log(mouseX,mouseY)
+                // console.log(mouseX/window.innerWidth,mouseY/window.innerHeight)
                 e.stopPropagation(); //currentTarget始终是监听事件者，而target是事件的真正发出者
             } else {
                 that.lockpull();
