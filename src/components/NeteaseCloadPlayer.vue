@@ -1687,13 +1687,13 @@ export default {
     height: 5vh;
     z-index: 2001;
     color: black;
-    font-size: 20px;
+    font-size: 25px;
     border-radius: 50%;
-    background-color: rgba(118, 118, 118, 0.449);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .recommendStarClose:hover{
-    background-color: rgba(118, 118, 118, 0.718);
+    background-color: rgba(255, 255, 255, 0.95);
 }
 
 .recommendStar1 {
@@ -1708,9 +1708,11 @@ export default {
     left: 55vh;
     background-image: url('../../static/recommend_star.png');
     background-origin: center center;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
     transform: translate(-50%, -50%) rotate(365deg);
-    animation: recommendStar1 1s ease-out;
+    animation: recommendStar1 1s ease-out 0s 1, recommendStarScale1 1s ease-in-out 1s infinite alternate;
+    transition: width 0.5s ease, height 0.5s ease, transform 0.5s ease;
 }
 
 @keyframes recommendStar1 {
@@ -1726,6 +1728,30 @@ export default {
     }
 }
 
+@keyframes recommendStarScale1 {
+    from {
+        transform: translate(-50%, -50%) scale(1) rotate(365deg);
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1.03) rotate(365deg);
+    }
+}
+
+.recommendStar1:hover {
+    width: 63vh;
+    height: 63vh;
+    animation: recommendStar1 1s ease-out 0s 1, recommendStarShake1 1s ease-in-out 0s infinite alternate;
+}
+
+@keyframes recommendStarShake1 {
+    from {
+        transform: translate(-50%, -50%) scale(1) rotate(365deg);
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1) rotate(375deg);
+    }
+}
+
 .recommendStar2 {
     position: fixed;
     display: flex;
@@ -1738,9 +1764,11 @@ export default {
     left: 27vh;
     background-image: url('../../static/recommend_star.png');
     background-origin: center center;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
     transform: translate(-50%, -50%) rotate(340deg);
-    animation: recommendStar2 1s ease-out;
+    animation: recommendStar2 1s ease-out, recommendStarScale2 1s ease-in-out 1s infinite alternate;
+    transition: width 0.5s ease, height 0.5s ease;
 }
 
 @keyframes recommendStar2 {
@@ -1756,6 +1784,30 @@ export default {
     }
 }
 
+@keyframes recommendStarScale2 {
+    from {
+        transform: translate(-50%, -50%) scale(1) rotate(340deg);
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1.03) rotate(340deg);
+    }
+}
+
+.recommendStar2:hover {
+    width: 50vh;
+    height: 50vh;
+    animation: recommendStar2 1s ease-out 0s 1, recommendStarShake2 1s ease-in-out 0s infinite alternate;
+}
+
+@keyframes recommendStarShake2 {
+    from {
+        transform: translate(-50%, -50%) scale(1) rotate(340deg);
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1) rotate(350deg);
+    }
+}
+
 .recommendStar3 {
     position: fixed;
     display: flex;
@@ -1768,9 +1820,11 @@ export default {
     left: 67vh;
     background-image: url('../../static/recommend_star.png');
     background-origin: center center;
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
     transform: translate(-50%, -50%) rotate(390deg);
-    animation: recommendStar3 1s ease-out;
+    animation: recommendStar3 1s ease-out, recommendStarScale3 1s ease-in-out 1s infinite alternate;
+    transition: width 0.5s ease, height 0.5s ease;
 }
 
 @keyframes recommendStar3 {
@@ -1783,6 +1837,30 @@ export default {
         top: calc(115px + 25vh + 35vh);
         left: 67vh;
         transform: translate(-50%, -50%) scale(1) rotate(390deg);
+    }
+}
+
+@keyframes recommendStarScale3 {
+    from {
+        transform: translate(-50%, -50%) scale(1) rotate(390deg);
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1.03) rotate(390deg);
+    }
+}
+
+.recommendStar3:hover {
+    width: 40vh;
+    height: 40vh;
+    animation: recommendStar3 1s ease-out 0s 1, recommendStarShake3 1s ease-in-out 0s infinite alternate;
+}
+
+@keyframes recommendStarShake3 {
+    from {
+        transform: translate(-50%, -50%) scale(1) rotate(390deg);
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1) rotate(380deg);
     }
 }
 
