@@ -17,6 +17,9 @@
 #recommend:hover{
     width: 500px;
 }
+.recommend_clock {
+    width: 20px!important;
+}
 
 #recommendListBlock{
     overflow-x: hidden;

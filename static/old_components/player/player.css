@@ -299,6 +299,9 @@
 .historyAndplay:hover{
     width: 450px;
 }
+.historyAndplay:hover #hyPlListBlock{
+    display: block;
+}
 .historyAndplay::-webkit-scrollbar{
     width: 0px !important;
 }
@@ -389,6 +392,7 @@
     overflow-x: hidden;
     overflow-y: auto;
     height: calc(100vh - 115px - 25px);
+    display: none;
 }
 
 #hyList,#PList{

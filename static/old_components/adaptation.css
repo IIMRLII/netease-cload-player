@@ -161,6 +161,30 @@
     #background_earth {
         animation: background_earth_move2 30s linear infinite;
     }
+
+    #hyList, #PList {
+        width: 100%;
+    }
+
+    .hylistli,.Plistli{
+        text-align: left;
+        margin-left: 0;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    #ClearHLTitle,#ClearPLTitle {
+        display: inline-block;
+    }
+
+    .historyviedoplay {
+        margin: 0;
+    }
+
+    .historyAndplay:hover .HLCancle{
+        display: inline-block;
+    }
 }
 
 @keyframes background_earth_move2

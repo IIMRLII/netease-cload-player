@@ -228,7 +228,7 @@
                             <div class="recommendDiv">
                                 <span class="songListPlayCount">▷{{ item.playCount }}&nbsp;&nbsp;</span>
                                 <span class="songListIntro">{{ item.name }}</span>
-                                <img :title="item.copywriter" :src="item.picUrl" @click='search("歌单", item.id);' />
+                                <img :title="item.copywriter" :src="item.picUrl" @click='search("歌单", item.id);cancelRecommend()' />
                             </div>
                         </li>
                     </ul>
@@ -242,7 +242,7 @@
                 <div class="firstStar">
                     <span class="firstStarBackgroundPlayCount">▷{{ recommendSongListThree[index].playCount }}&nbsp;&nbsp;</span>
                     <span class="firstStarBackgroundName">{{ recommendSongListThree[index].name }}</span>
-                    <img class="firstStarBackground" :src="recommendSongListThree[index].picUrl" :title="recommendSongListThree[index].name" @click='search("歌单", recommendSongListThree[index].id);'/>
+                    <img class="firstStarBackground" :src="recommendSongListThree[index].picUrl" :title="recommendSongListThree[index].name" @click='search("歌单", recommendSongListThree[index].id);recommendStarShow = false;'/>
                 </div>
             </div>
         </div>
@@ -812,6 +812,12 @@ export default {
         getVm.sendThisAndInit(that)//对外开放vm
     },
     methods: {
+        cancelRecommend() {//取消推荐
+            $('#recommend').addClass('recommend_clock');
+            window.setTimeout(function() {
+                $('#recommend').removeClass('recommend_clock');
+            }, 500)
+        },
         synchronization() {//同步函数，强制执行防止出现bug
             this.synchroTime++;
 
