@@ -1,0 +1,175 @@
+@media only screen and (max-width: 500px) {
+
+    #nav li:not(:last-child){
+        display: none;
+    }
+
+    #search {
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #RtxSwitchDiv {
+        display: none;
+    }
+
+    .logo {
+        width: 60px;
+        height: 80px;
+        background-image: url("./top/img/small_logo.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center center;
+    }
+
+    #searchSuggest {
+        min-width: 208px;
+    }
+
+    .recommendStarWidget {
+        display: none;
+    }
+
+    /* 歌词 */
+    #lrc .lion{
+        /* height: 40px; */
+    }
+    
+    #lrc .lioff{
+        /* height: 30px; */
+    }
+    
+    #lrc li .on{
+        font-size: 20px;
+    }
+    
+    #lrc li .off{
+        font-size: 16px;
+    }
+
+    #whiteblk{
+        /* height: 40px;
+        line-height: 40px; */
+    }
+
+    #whitelrc{
+        font-size: 20px;
+        /* height: 40px; */
+    }
+
+    /* 推荐 */
+    #recommend:hover{
+        width: 250px;
+    }
+
+    #recommendList {
+        width: 250px;
+    }
+
+    /* 历史记录播放列表 */
+    .historyAndplay:hover{
+        width: 70vw;
+    }
+
+    #HLTitle,#PLTitle{
+        position: relative;
+        font-size: 20px;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        border-radius: 10px;
+    }
+
+    /* 进度条 */
+    #playerdiv2{
+        width: 90vw;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #range {
+        width: 70vw;
+        flex: 1 1 auto;
+    }
+
+    #playerdiv3 {
+        display: none;
+    }
+
+    #playerdiv6 {
+        width: 90vw;
+        height: 60px;
+        position: absolute;
+        text-align: left;
+        /* z-index: 10000; */
+        margin: 0;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    #play {
+        margin: 0 10px;
+    }
+
+    #songvolume {
+        position: absolute;
+        display: block;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+    }
+
+    #volumerange {
+        position: absolute;
+        top: 50%;
+        left: 30px;
+        width: 50px;
+        transform: translateY(-50%);
+        display: block;
+    }
+
+    #playlist {
+        margin: 0;
+        position: absolute;
+        display: block;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+    }
+
+    /* 弹幕 */
+    #thecomments div {
+        width: 200px;
+        height: 60px;
+    }
+
+    #thecomments div img {
+        width: 60px;
+        height: 60px;
+    }
+
+    #thecomments div p {
+        width: 120px;
+        height: 60px;
+        line-height: 60px;
+    }
+
+    /* 背景 */
+    #background_earth {
+        animation: background_earth_move2 30s linear infinite;
+    }
+}
+
+@keyframes background_earth_move2
+{
+	from {
+        transform: translateY(55%) scale(1.5) rotate(0deg);  
+    }
+
+	to {
+        transform: translateY(55%) scale(1.5) rotate(360deg);
+    }
+}

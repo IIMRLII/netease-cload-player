@@ -84,27 +84,27 @@
                 <div id="RtxSwitchDiv">
                     <a id="RtxSwitch" href="javascript:;" @click="switchRtx()">{{ rtx }}</a>
                 </div>
-                <img class="logo" src="../../static/old_components/top/img/logo.png" />
+                <div class="logo"></div>
                 <div id="inputdiv">
+                    <div id="searchSuggest">
+                        <!--搜索建议-->
+                        <em class="searchTip">搜索有关建议</em>
+                        <div v-for="(value, index) in suggest" :key="index">
+                            <!--对象v-for循环*-->
+                            <h3 class="suggestName">{{ index }}</h3>
+                            <ul class="suggestList">
+                                <li v-for="(site, index2) in value" :key="index2"
+                                    @click="suggestAction(index, site.name, site.id)"><a href="javascript:;">{{
+                                        site.name
+                                    }}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                     <input id="input1" type="text" autocomplete="off" v-model="keyWord" @click="getSearchSuggest()"
                         @keyup='getSearchSuggest()' @keyup.enter="search()" :placeholder='defaultShowKeyword' />
                 </div>
-                <div id="searchSuggest">
-                    <!--搜索建议-->
-                    <em class="searchTip">搜索有关建议</em>
-                    <div v-for="(value, index) in suggest" :key="index">
-                        <!--对象v-for循环*-->
-                        <h3 class="suggestName">{{ index }}</h3>
-                        <ul class="suggestList">
-                            <li v-for="(site, index2) in value" :key="index2"
-                                @click="suggestAction(index, site.name, site.id)"><a href="javascript:;">{{
-                                    site.name
-                                }}</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <img class="searchBtn" @click="search();" src="../../static/old_components/top/img/search.png" />
+                <div class="searchBtn" @click="search();"></div>
                 <!-- <a class="user_nav" @click="login()" title="登录以解锁收藏与保存历史记录功能！">登录</a>
                 <a class="user_nav" @click="register()" title="加入我们吧？">注册</a>
                 <a class="user_nav" @click="admin()" title="管理员菜单">管理</a>
@@ -200,19 +200,19 @@
                     <!--历史列表显示-->
                 </div>
 
-                <div id="playerdiv1and2">
-                    <div id="playerdiv1">
-                        <button id='front' title="上一首" @click="playTheFormer()"></button>
-                        <button id='play' title="play" @click="playNow()"></button>
-                        <button id='next' title="下一首" @click="playTheNext()"></button>
-                    </div>
-                    <div id="playerdiv2">
-                        <span id='cur'>00:00</span>&nbsp;&nbsp;
-                        <input type="range" min='0' max='100' id='range' value=0>&nbsp;&nbsp;
-                        <!-- 进度条 -->
-                        <span id='max'>{{ durationEdit(curMusic.dt) }}</span>
-                    </div>
+                <!-- <div id="playerdiv1and2"> -->
+                <div id="playerdiv1">
+                    <button id='front' title="上一首" @click="playTheFormer()"></button>
+                    <button id='play' title="play" @click="playNow()"></button>
+                    <button id='next' title="下一首" @click="playTheNext()"></button>
                 </div>
+                <div id="playerdiv2">
+                    <span id='cur'>00:00&nbsp;&nbsp;</span>
+                    <input type="range" min='0' max='100' id='range' value=0>
+                    <!-- 进度条 -->
+                    <span id='max'>&nbsp;&nbsp;{{ durationEdit(curMusic.dt) }}</span>
+                </div>
+                <!-- </div> -->
             </div>
         </div>
 

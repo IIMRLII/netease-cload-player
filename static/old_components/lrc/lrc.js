@@ -69,7 +69,7 @@ $(document).ready(function () {
 
     var scrollFunc = function (e) {//添加鼠标滚动监听事件
         // if (Object.prototype.toString.call(e.target) == "[object HTMLHtmlElement]" && e.wheelDelta) {//IE/Opera/Chrome
-        if (e.target.id === 'app' && e.wheelDelta) {//IE/Opera/Chrome
+        if (e.target.id === 'thecomments' && e.wheelDelta) {//IE/Opera/Chrome
             deltaTimer[1] = new Counter(e.wheelDelta / 5, 1000 / 20 * 1, -1);//del1--鼠标滑动歌词
             e.stopPropagation();
         }
@@ -79,6 +79,50 @@ $(document).ready(function () {
         document.addEventListener('DOMMouseScroll', scrollFunc, false);
     }//W3C
     document.onmousewheel = scrollFunc;
+
+    // 移动端滑动适配
+    let startX,startY,moveEndX,moveEndY,X,Y;
+
+    $(document).on("touchstart", function (e) {
+        // e.preventDefault();
+        startX = e.originalEvent.changedTouches[0].pageX,
+        startY = e.originalEvent.changedTouches[0].pageY;
+    });
+    $(document).on("touchmove", function (e) {
+        // e.preventDefault();
+        moveEndX = e.originalEvent.changedTouches[0].pageX,
+        moveEndY = e.originalEvent.changedTouches[0].pageY,
+        X = moveEndX - startX,
+        Y = moveEndY - startY;
+
+        if (Math.abs(Y) > Math.abs(X)) {
+            deltaTimer[1] = new Counter(10 * Y / 5, 1000 / 20 * 1, -1);//del1--鼠标滑动歌词
+        }
+
+        // if (Math.abs(X) > Math.abs(Y) && X > 0) {
+        //     // console.log("向右滑动");
+        // }
+        // else if (Math.abs(X) > Math.abs(Y) && X < 0) {
+        //     // console.log("向左滑动");
+        // }
+        // else 
+        // if (Math.abs(Y) > Math.abs(X) && Y > 0) {
+        //     // console.log("向下滑动");
+        //     deltaTimer[1] = new Counter(10 * Y / 5, 1000 / 20 * 1, -1);//del1--鼠标滑动歌词
+        // }
+        // else if (Math.abs(Y) > Math.abs(X) && Y < 0) {
+        //     // console.log("向上滑动");
+        //     deltaTimer[1] = new Counter(10 * Y / 5, 1000 / 20 * 1, -1);//del1--鼠标滑动歌词
+
+        // }
+        // else {
+        //     // console.log("just touch");
+        // }
+
+        startX = moveEndX;
+        startY = moveEndY;
+    });
+
 
 })
 
@@ -118,7 +162,7 @@ function getLine() {
     currentTime = player.currentTime;
 
     if (cursonglrc.length > 0) {
-        if(currentTime <= cursonglrc[0].time)perc = 0;
+        if (currentTime <= cursonglrc[0].time) perc = 0;
         for (j = 0; j < cursonglrc.length - 1; j++) {
             if (currentTime >= cursonglrc[j].time && currentTime <= cursonglrc[j + 1].time) {
                 if (currentLine != j) {
@@ -172,7 +216,7 @@ function getLine() {
             $("#slrc" + i).removeClass("on");
             $("#slrc" + i).addClass("off");
 
-            $("#slrc" + i).css("color","black");
+            $("#slrc" + i).css("color", "black");
         } else {
             $("#slilrc" + i).removeClass("lioff");
             $("#slilrc" + i).addClass("lion");
@@ -180,7 +224,7 @@ function getLine() {
             $("#slrc" + i).removeClass("off");
             $("#slrc" + i).addClass("on");
 
-            $("#slrc" + i).css("color","red");
+            $("#slrc" + i).css("color", "red");
         }
 
         if (i != currentLine) {//改变透明度
@@ -189,13 +233,13 @@ function getLine() {
             $("#slrc" + i).css("opacity", 1);
         }
 
-        if(document.getElementById("RtxSwitch").innerHTML == "RtxOn"){
+        if (document.getElementById("RtxSwitch").innerHTML == "RtxOn") {
 
-            let color = rainBow((synchroTime + i * 10) % 50 /50);
+            let color = rainBow((synchroTime + i * 10) % 50 / 50);
             let r = color.red;
             let g = color.green;
             let b = color.blue;
-            $("#slrc" + i).css("color","rgb(" + r + "," + g + ","  + b +")");
+            $("#slrc" + i).css("color", "rgb(" + r + "," + g + "," + b + ")");
 
         }
     }
@@ -211,16 +255,16 @@ function getLine() {
         $("#whitelrc").css("width", perc * patpos.width + "px");
         $("#whitelrc").css("opacity", $("#slrc" + currentLine).css("opacity"));
 
-        if(document.getElementById("RtxSwitch").innerHTML == "RtxOn"){
-                
-            let color = rainBow((synchroTime + currentLine * 10) % 50 /50);
+        if (document.getElementById("RtxSwitch").innerHTML == "RtxOn") {
+
+            let color = rainBow((synchroTime + currentLine * 10) % 50 / 50);
             let r = color.red;
             let g = color.green;
             let b = color.blue;
-            let antiColor = anticolor(r,g,b);
-            $("#whitelrc").css("color","rgb(" + antiColor.red + "," + antiColor.green + ","  + antiColor.blue +")");
+            let antiColor = anticolor(r, g, b);
+            $("#whitelrc").css("color", "rgb(" + antiColor.red + "," + antiColor.green + "," + antiColor.blue + ")");
 
-        }else{
+        } else {
             $("#whitelrc").css("color", "white");
         }
     }

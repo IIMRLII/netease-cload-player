@@ -30,7 +30,9 @@
 }
 
 #RtxSwitchDiv {
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 200px;
     height: 80px;
     text-align: center;
@@ -76,15 +78,23 @@
 }
 
 #search {
-    background-color: #0E0E0E;
+    background-color: #0E0E0Ecc;
     text-align: left;
     height: 80px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
 }
 
 .logo {
-    display: inline-block;
+    display: block;
+    width: 196px;
     height: 80px;
-    vertical-align: middle;
+    background-image: url("img/logo.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 }
 
 #nav {
@@ -92,11 +102,12 @@
     list-style: none;
     background-color: lightskyblue;
     background-image: url("img/bgimg.png");
-    filter: grayscale(10%);
     background-repeat: repeat-x;
+    filter: grayscale(10%);
     border-bottom: 1px solid;
     margin-top: 0;
     text-align: left;
+    height: 35px;
 }
 
 #nav li {
@@ -124,8 +135,12 @@
 }
 
 #inputdiv {
-    display: inline-block;
-    height: 60px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: visible;
 }
 
 #input1 {
@@ -138,14 +153,14 @@
 }
 
 #searchSuggest {
+    position: absolute;
     border: 1px grey solid;
     max-width: fit-content;
     min-width: 250px;
     border-radius: 6px;
-    position: absolute;
     background-color: white;
     z-index: 1000;
-    left: 405px;
+    left: 0;
     top: 60px;
     transition: height 0.3s ease, width 0.3s ease;
 }
@@ -183,11 +198,12 @@
 }
 
 .searchBtn {
-    display: inline-block;
-    vertical-align: middle;
-    height: 38px;
     width: 38px;
-    margin-right: 20px;
+    height: 80px;
+    background-image: url("img/search.png");
+    background-size: 38px 38px;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 .user_nav {

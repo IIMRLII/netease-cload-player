@@ -51,7 +51,7 @@ body {
     height: calc(100vh);
     position: fixed;
     z-index: 200;
-    pointer-events: none;
+    /* pointer-events: none; */
 }
 
 #thecomments div {
@@ -68,16 +68,15 @@ body {
     transition: opacity 0.3s ease;
 }
 
-#thecomments div:hover {
+/* #thecomments div:hover {
     z-index: 260;
     opacity: 1;
-}
+} */
 
-#thecomments div:hover p {
-    font-size: 20px;
-    font-weight: 400;
-    overflow: visible;
-    white-space: nowrap;
+.thecomments_hover_p {
+    font-size: 25px!important;
+    overflow: visible!important;
+    white-space: nowrap!important;
 }
 
 #thecomments div img {
@@ -93,6 +92,8 @@ body {
 #thecomments div p {
     margin: 0;
     padding-left: 20px;
+    font-size: 20px;
+    font-weight: 400;
     vertical-align: top;
     text-align: left;
     display: inline-block;
@@ -175,15 +176,3 @@ body {
         transform: scale(1.2);
     }
 }
-
-/* #searchResultCover {
-    position: fixed;
-    left: 0;
-    margin-top: 115px;
-    width: calc(100vw);
-    height: calc(100vh - 115px);
-    z-index: 299;
-    min-width: 1000px;
-    background: linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 1) 100%);
-    pointer-events: none;
-} */

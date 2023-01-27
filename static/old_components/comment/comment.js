@@ -19,6 +19,18 @@ var comments = function (x,y,vx,vy,img,nickname,comment,time,id) {
     this.rainbowT = Math.random();
 }
 
+$(window).ready(function() {//移动端适配
+    $('body').on('click', '#thecomments', function(e) {
+        for(let i = 0; i < totalSongComments.length;i++){//监测该弹幕是否被使用
+            totalSongComments[i].ismove = true;
+            $('#com' + i + ' p').removeClass('thecomments_hover_p');
+        }
+    })
+    $('#thecomments').on('click', "div", function(e){
+        event.stopPropagation()
+    });
+})
+
 function commentsCounter(){
     if(totalSongComments.length > 0){
         if(commentTime > 0){
@@ -34,11 +46,21 @@ function commentsCounter(){
                     
                     // search.$options.methods.addmouselistener("#com" + i);
                     // document.getElementById("com" + i).addEventListener("mouseover", function(){
-                    //     document.getElementById("com" + i).ismove = false;
+                    //     tc.ismove = false;
                     // });
                     // document.getElementById("com" + i).addEventListener("mouseout", function(){
-                    //     document.getElementById("com" + i).ismove = true;
+                    //     tc.ismove = true;
                     // });
+
+                    $('#thecomments').on('mouseover', "#com" + i, function(){
+                        tc.ismove = false;
+                        $('#com' + i + ' p').addClass('thecomments_hover_p');
+                    });
+                    $('#thecomments').on('mouseout', "#com" + i, function(){
+                        tc.ismove = true;
+                        $('#com' + i + ' p').removeClass('thecomments_hover_p');
+                        // $('#com' + i + ' p').css('font-size', '20px');
+                    });
                     
                     let x = window.innerWidth;
                     let y = 115 + Math.random() * (window.innerHeight - 115 - 90);
