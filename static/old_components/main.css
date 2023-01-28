@@ -159,6 +159,7 @@ body {
     z-index: -1999;
     transform-origin: center center;
     pointer-events: none;
+    background-color: #111925;
     background-image: url('./mouse/darkspace.jpg');
     background-position: center center;
     background-repeat: no-repeat;

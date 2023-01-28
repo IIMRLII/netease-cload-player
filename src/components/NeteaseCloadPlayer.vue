@@ -814,9 +814,21 @@ export default {
     methods: {
         cancelRecommend() {//取消推荐
             $('#recommend').addClass('recommend_clock');
-            window.setTimeout(function() {
-                $('#recommend').removeClass('recommend_clock');
-            }, 500)
+            // 适配移动端
+            let isPhone = false;
+            if($(window).width() < 500) {
+                isPhone = true;
+            }
+            if(isPhone) {
+                $(window).mousedown(function() {
+                    $('#recommend').removeClass('recommend_clock');
+                    $(window).unbind('mousedown');
+                })
+            } else {
+                window.setTimeout(function() {
+                    $('#recommend').removeClass('recommend_clock');
+                }, 500)
+            }
         },
         synchronization() {//同步函数，强制执行防止出现bug
             this.synchroTime++;
