@@ -1,7 +1,7 @@
 #pull{
     display: block;
     position: fixed;
-    bottom: -80px;
+    bottom: -90px;
     height: 110px;
     width: 50px;
     left: 50%;
@@ -16,7 +16,10 @@
 }
 
 /* 不会被vue重复渲染 */
-#pull:hover{
+/* #pull:hover{
+    bottom: -2px !important;
+} */
+.pull_lock {
     bottom: -2px !important;
 }
 

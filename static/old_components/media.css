@@ -24,7 +24,7 @@
     position: fixed;
     display: inline-block;
     width: calc(100vw);
-    height: calc(100vw);
+    height: calc(100vh);
     left: 0;
     top: 0;
     z-index: 1980;

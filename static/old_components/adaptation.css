@@ -185,6 +185,39 @@
     .historyAndplay:hover .HLCancle{
         display: inline-block;
     }
+
+    /* 单曲搜索 */
+
+
+    #searchResult {
+        min-width: auto;
+        width: 90%;
+    }
+
+    /* 专辑详情 */
+    #curAlbum {
+        min-width: auto;
+        overflow-y: auto;
+    }
+
+    #curAlbumDetail, #curAlbumSongs {
+        display: block;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    #curAlbumCreater {
+        display: block;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    #curAlbumComment {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+
 }
 
 @keyframes background_earth_move2

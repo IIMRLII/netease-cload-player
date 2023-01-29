@@ -9,12 +9,25 @@
     text-align: center;
 }
 
+#AlbumBlock {
+    width: 90%;
+    margin: 0 auto;
+}
+#Album li{ 
+    height: 30px;
+    font-size: 16px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
 #curAlbumDetail,#curAlbumSongs{
     display: inline-block;
     text-align: center;
     vertical-align: top;
     width: 45%;
-    height: calc(100vh - 115px);
+    /* height: calc(100vh - 115px); */
 }
 
 #curAlbumCoverDiv{
@@ -101,7 +114,7 @@
 #curAlbumComment{
     margin: 0 20px 20px 20px;
     width: calc(100% - 40px);
-    height: calc(100% - 200px - 60px);
+    max-height: calc(100vh - 115px -  200px - 100px);
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -116,6 +129,8 @@
 
 .curAlbumCommentLi{
     margin: 0px 10px 10px 10px;
+    text-align: left;
+    width: 100%;
 }
 
 .curAlbumCommentPic{
@@ -130,7 +145,7 @@
     display: inline-block;
     vertical-align: top;
     text-align: left;
-    width: calc(100% - 55px);
+    width: calc(100% - 70px);
 }
 
 .curAlbumCommentCont1{

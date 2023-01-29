@@ -132,7 +132,7 @@
     display: inline-block;
     vertical-align: top;
     text-align: left;
-    width: calc(100% - 60px);
+    width: calc(100% - 70px);
 }
 
 .curSongListCommentCont1{
@@ -145,6 +145,9 @@
     font-size: 12px;
 }
 
+#songList li {
+    height: 30px;
+}
 #songList li a:hover{
     background-color: darkgray;
 }

@@ -17,7 +17,11 @@
 #recommend:hover{
     width: 500px;
 }
-.recommend_clock {
+#recommend:hover #recommendList{
+    display: inline-block;
+    width: 500px;
+}
+.recommend_lock {
     width: 20px!important;
 }
 
@@ -28,7 +32,7 @@
 }
 
 #recommendList{
-    display: inline-block;
+    display: none;
     width: 500px;
 }
 

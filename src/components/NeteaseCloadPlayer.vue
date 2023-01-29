@@ -131,7 +131,7 @@
                     <p class="artistBlock">歌手名</p>
                     <p href="javascript:;" id="album1">专辑</p>
                     <p class="duration">时长</p>
-                    <p class="movie1"></p>
+                    <!-- <p class="movie1"></p> -->
                 </li>
             </ul>
             <div id="songListBlock">
@@ -296,7 +296,7 @@
                             <p class="artistBlock">歌手名</p>
                             <p href="javascript:;" id="album1">专辑</p>
                             <p class="duration">时长</p>
-                            <p class="movie1"></p>
+                            <!-- <p class="movie1"></p> -->
                         </li>
                     </ul>
                     <div id="songListBlock">
@@ -377,7 +377,7 @@
                             <p class="artistBlock">歌手名</p>
                             <p href="javascript:;" id="album1">专辑</p>
                             <p class="duration">时长</p>
-                            <p class="movie1"></p>
+                            <!-- <p class="movie1"></p> -->
                         </li>
                     </ul>
                     <div id="AlbumBlock">
@@ -697,14 +697,14 @@ export default {
 
         $(window).on('click', function(e) {
             if (e.target.id != "pull") {
-                let lzsum = 10 + Math.floor(Math.random() * 5);
-                for (let i = 0; i < lzsum; i++) {
-                    let rad = Math.random() * 2 * Math.PI;
-                    let vx = 3 * (Math.random() - 0.5) * Math.cos(rad);
-                    let vy = 3 * (Math.random() - 0.5) * Math.sin(rad);
-                    let time = 80 + 20 * Math.random();
-                    mouseParticle.push(new partical(mouseX, mouseY, time, vx, vy, 0, 0, 10, 0, Math.random() * 255, Math.random() * 255, Math.random() * 255, 255, 255, 255, Math.random() * 4 * Math.PI * 3 - 2 * Math.PI * 3, Math.random() * 4 * Math.PI * 3 - 2 * Math.PI * 3))
-                }
+                // let lzsum = 10 + Math.floor(Math.random() * 5);
+                // for (let i = 0; i < lzsum; i++) {
+                //     let rad = Math.random() * 2 * Math.PI;
+                //     let vx = 3 * (Math.random() - 0.5) * Math.cos(rad);
+                //     let vy = 3 * (Math.random() - 0.5) * Math.sin(rad);
+                //     let time = 80 + 20 * Math.random();
+                //     mouseParticle.push(new partical(mouseX, mouseY, time, vx, vy, 0, 0, 10, 0, Math.random() * 255, Math.random() * 255, Math.random() * 255, 255, 255, 255, Math.random() * 4 * Math.PI * 3 - 2 * Math.PI * 3, Math.random() * 4 * Math.PI * 3 - 2 * Math.PI * 3))
+                // }
                 // console.log(mouseX,mouseY)
                 // console.log(mouseX/window.innerWidth,mouseY/window.innerHeight)
                 e.stopPropagation(); //currentTarget始终是监听事件者，而target是事件的真正发出者
@@ -813,7 +813,7 @@ export default {
     },
     methods: {
         cancelRecommend() {//取消推荐
-            $('#recommend').addClass('recommend_clock');
+            $('#recommend').addClass('recommend_lock');
             // 适配移动端
             let isPhone = false;
             if($(window).width() < 500) {
@@ -821,12 +821,12 @@ export default {
             }
             if(isPhone) {
                 $(window).mousedown(function() {
-                    $('#recommend').removeClass('recommend_clock');
+                    $('#recommend').removeClass('recommend_lock');
                     $(window).unbind('mousedown');
                 })
             } else {
                 window.setTimeout(function() {
-                    $('#recommend').removeClass('recommend_clock');
+                    $('#recommend').removeClass('recommend_lock');
                 }, 500)
             }
         },
@@ -1614,12 +1614,18 @@ export default {
             }
             let pull = document.getElementById("pull");
             if (this.islock) {
-                $("#pull").css("bottom", "-2px");
+                // $("#pull").css("bottom", "-2px");
+                $('#pull').addClass('pull_lock');
                 pull.style.backgroundImage = "url('../../static/old_components/player/lockarray.png')";
             } else {
-                $("#pull").css("bottom", "-80px");
+                // $("#pull").css("bottom", "-90px");
+                $('#pull').removeClass('pull_lock');
                 pull.style.backgroundImage = "url('../../static/old_components/player/array.png')";
             }
+            // $(window).mousedown(function() {
+            //     $('#pull').removeClass('pull_lock');
+            //     $(window).unbind('mousedown');
+            // })
         },
 
         isHistory: function() {
