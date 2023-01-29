@@ -84,19 +84,26 @@ $(document).ready(function () {
     let startX,startY,moveEndX,moveEndY,X,Y;
 
     $(document).on("touchstart", function (e) {
+        if (e.target.id === 'thecomments') {
+            startX = e.originalEvent.changedTouches[0].pageX,
+            startY = e.originalEvent.changedTouches[0].pageY;
+        }
         // e.preventDefault();
-        startX = e.originalEvent.changedTouches[0].pageX,
-        startY = e.originalEvent.changedTouches[0].pageY;
     });
     $(document).on("touchmove", function (e) {
         // e.preventDefault();
-        moveEndX = e.originalEvent.changedTouches[0].pageX,
-        moveEndY = e.originalEvent.changedTouches[0].pageY,
-        X = moveEndX - startX,
-        Y = moveEndY - startY;
+        if (e.target.id === 'thecomments') {
+            moveEndX = e.originalEvent.changedTouches[0].pageX,
+            moveEndY = e.originalEvent.changedTouches[0].pageY,
+            X = moveEndX - startX,
+            Y = moveEndY - startY;
 
-        if (Math.abs(Y) > Math.abs(X)) {
-            deltaTimer[1] = new Counter(10 * Y / 5, 1000 / 20 * 1, -1);//del1--鼠标滑动歌词
+            if (Math.abs(Y) > Math.abs(X)) {
+                deltaTimer[1] = new Counter(10 * Y / 5, 1000 / 20 * 1, -1);//del1--鼠标滑动歌词
+            }
+
+            startX = moveEndX;
+            startY = moveEndY;
         }
 
         // if (Math.abs(X) > Math.abs(Y) && X > 0) {
@@ -118,9 +125,6 @@ $(document).ready(function () {
         // else {
         //     // console.log("just touch");
         // }
-
-        startX = moveEndX;
-        startY = moveEndY;
     });
 
 

@@ -187,8 +187,6 @@
     }
 
     /* 单曲搜索 */
-
-
     #searchResult {
         min-width: auto;
         width: 90%;
@@ -197,6 +195,7 @@
     /* 专辑详情 */
     #curAlbum {
         min-width: auto;
+        overflow-x: hidden;
         overflow-y: auto;
     }
 
@@ -204,6 +203,7 @@
         display: block;
         width: 90%;
         margin: 0 auto;
+        transform: translateX(8px);
     }
 
     #curAlbumCreater {
@@ -217,11 +217,71 @@
         margin: 0 auto;
     }
 
+    #curAlbumCommentUl {
+        width: 90%;
+    }
+
     #curAlbumCreater div:nth-child(6){
         max-height: 120px;
         margin-bottom: 20px;
     }
 
+    /* 歌手详情 */
+    #curSinger {
+        min-width: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    #curSingerDetail, #curSingerSongs {
+        display: block;
+        width: 90%;
+        margin: 0 auto;
+        transform: translateX(8px);
+    }
+
+    #curSingerCreater {
+        display: block;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    #curSingerComment {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    #curSingerCreater div:nth-child(5){
+        max-height: 120px;
+        margin-bottom: 20px;
+        margin-right: 0;
+    }
+
+    #curSingerAlbum {
+        width: 90%;
+        margin: 0 auto 20px auto;
+    }
+
+    #curSingerAlbumUl {
+        width: 100%;
+    }
+
+    #Singer {
+        transform: translate(-8px);
+    }
+
+    .SingerAlbumItem {
+        height: 30px;
+        font-size: 16px;
+        position: relative;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .curSingerAlbumCont {
+        margin-right: 0;
+    }
 
 }
 
