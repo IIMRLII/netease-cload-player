@@ -15,7 +15,8 @@ function timeToStr(time) {
 // vue会重新渲染dom,加上是异步实例vue.所以正常写程序的话jq的$()获取的元素不是vue渲染后的元素. 
 // 解决办法：
 // 先加载vue.js，让页面渲染完成后加载jq，给jq绑定ready事件
-var mousePlayerFlag = false;
+window.mousePlayerFlag = false;
+window.volumeRangeFlag = false;
 
 $(document).ready(function(){
     
@@ -26,18 +27,42 @@ $(document).ready(function(){
     });
 
     $("#range").mousedown(function () { 
-        mousePlayerFlag = true;
+        window.mousePlayerFlag = true;
     });
 
     $("#range").mouseup(function () { 
-        mousePlayerFlag = false;
+        window.mousePlayerFlag = false;
+    });
+
+    $("#range").on("touchstart", function () { 
+        window.mousePlayerFlag = true;
+    });
+
+    $("#range").on("touchend", function () { 
+        window.mousePlayerFlag = false;
     });
 
     //监听音量滑块，可以拖动
     $("#volumerange").on('change',function(){
         let player = document.getElementById("player");
-        player.volume = this.value / 100;
-        $("#volumerange").val(this.value);
+        player.volume = $("#volumerange").val() / 100;
+        // $("#volumerange").val(this.value);
+    });
+
+    $("#volumerange").mousedown(function () { 
+        window.volumeRangeFlag = true;
+    });
+
+    $("#volumerange").mouseup(function () { 
+        window.volumeRangeFlag = false;
+    });
+
+    $("#volumerange").on("touchstart", function () { 
+        window.volumeRangeFlag = true;
+    });
+
+    $("#volumerange").on("touchend", function () { 
+        window.volumeRangeFlag = false;
     });
 
 });

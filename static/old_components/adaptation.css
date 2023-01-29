@@ -217,6 +217,11 @@
         margin: 0 auto;
     }
 
+    #curAlbumCreater div:nth-child(6){
+        max-height: 120px;
+        margin-bottom: 20px;
+    }
+
 
 }
 

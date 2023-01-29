@@ -208,7 +208,7 @@
                 </div>
                 <div id="playerdiv2">
                     <span id='cur'>00:00&nbsp;&nbsp;</span>
-                    <input type="range" min='0' max='100' id='range' value=0>
+                    <input type="range" min='0' max='100' id='range' value='0'>
                     <!-- 进度条 -->
                     <span id='max'>&nbsp;&nbsp;{{ durationEdit(curMusic.dt) }}</span>
                 </div>
@@ -342,7 +342,7 @@
                     <img id="curAlbumCover" :src="curAlbum.picUrl" @click="replaceAlbum()" />
                 </div>
                 <div id="curAlbumCreater" v-if="JSON.stringify(curAlbum) != '[]'">
-                    <div>[专辑]&nbsp;{{ curAlbum.name }}</div>
+                    <div :title="curAlbum.name">[专辑]&nbsp;{{ curAlbum.name }}</div>
                     <img id="curAlbumCreaterPic" :src="curAlbum.artist.picUrl" />
                     <div>{{ curAlbum.artist.name }}&nbsp;&nbsp;{{ formatDate(curAlbum.publishTime) }}&nbsp;&nbsp;更新
                     </div>
@@ -705,8 +705,6 @@ export default {
                 //     let time = 80 + 20 * Math.random();
                 //     mouseParticle.push(new partical(mouseX, mouseY, time, vx, vy, 0, 0, 10, 0, Math.random() * 255, Math.random() * 255, Math.random() * 255, 255, 255, 255, Math.random() * 4 * Math.PI * 3 - 2 * Math.PI * 3, Math.random() * 4 * Math.PI * 3 - 2 * Math.PI * 3))
                 // }
-                // console.log(mouseX,mouseY)
-                // console.log(mouseX/window.innerWidth,mouseY/window.innerHeight)
                 e.stopPropagation(); //currentTarget始终是监听事件者，而target是事件的真正发出者
             } else {
                 that.lockpull();
@@ -729,6 +727,15 @@ export default {
         $("#input1").click(function(e) {
             that.mouseOnSuggest = true;
         })
+
+        // // 进度条拖动
+        // $("#range").mousedown(function () { 
+        //     that.mousePlayerFlag = true;
+        // });
+
+        // $("#range").mouseup(function () { 
+        //     that.mousePlayerFlag = false;
+        // });
 
         // $(".login-button").on('click', function(e) { //用户登录
         //     $(".login").addClass("active")
@@ -862,12 +869,19 @@ export default {
             $("#range").attr({'max':player.duration});
             $('#cur').text(timeToStr($("#range")[0].value));
 
-            if(mousePlayerFlag){
+            // 进度条同步
+            if(window.mousePlayerFlag){
                 player.currentTime = $("#range")[0].value;
                 ppxx = $("#lrcbg").height() / 2 + $("#top").height() / 2 - 30 - (currentLine * 40);
                 deltaTimer[0] = new Counter(40, 1000 / 20 * 0.5, -1);//del0--歌词自动滑动
             }else{
                 $("#range").val(parseInt(Math.round(player.currentTime)));
+            }
+
+            // 音量同步
+            if(window.volumeRangeFlag){
+                let player = document.getElementById("player");
+                player.volume = $("#volumerange").val() / 100;
             }
 
             var audioPlayer = document.querySelector('#player');
@@ -1622,10 +1636,6 @@ export default {
                 $('#pull').removeClass('pull_lock');
                 pull.style.backgroundImage = "url('../../static/old_components/player/array.png')";
             }
-            // $(window).mousedown(function() {
-            //     $('#pull').removeClass('pull_lock');
-            //     $(window).unbind('mousedown');
-            // })
         },
 
         isHistory: function() {
