@@ -9,10 +9,6 @@
     text-align: center;
 }
 
-#AlbumBlock {
-    width: 90%;
-    margin: 0 auto;
-}
 #Album li{ 
     height: 30px;
     font-size: 16px;
@@ -28,6 +24,12 @@
     vertical-align: top;
     width: 45%;
     /* height: calc(100vh - 115px); */
+}
+
+#AlbumBlock {
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-height: calc(100vh - 115px - 50px);
 }
 
 #curAlbumCoverDiv{
@@ -157,6 +159,11 @@
     height: 20px;
     line-height: 20px;
     font-size: 12px;
+}
+
+#Album {
+    width: 90%;
+    margin: 0 auto;
 }
 
 #Album li a:hover{

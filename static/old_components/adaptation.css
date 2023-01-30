@@ -192,6 +192,14 @@
         width: 90%;
     }
 
+    #tips {
+        transform: translate(-8px);
+    }
+
+    #songListBlock{
+        width: 90%;
+        margin: 0 auto;
+    }
     /* 专辑详情 */
     #curAlbum {
         min-width: auto;
@@ -224,6 +232,48 @@
     #curAlbumCreater div:nth-child(6){
         max-height: 120px;
         margin-bottom: 20px;
+    }
+
+    #Album {
+        transform: translate(-8px);
+    }
+
+    /* 歌单详情 */
+    #curSongList {
+        min-width: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    #curSongListDetail, #curSongListSongs {
+        display: block;
+        width: 90%;
+        margin: 0 auto;
+        transform: translateX(8px);
+    }
+
+    #curSongListCreater {
+        display: block;
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    #curSongListComment {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    #curSongListCommentUl {
+        width: 90%;
+    }
+
+    #curSongListCreater div:nth-child(6){
+        max-height: 120px;
+        margin-bottom: 20px;
+    }
+
+    #songList {
+        transform: translate(-8px);
     }
 
     /* 歌手详情 */
@@ -281,6 +331,24 @@
 
     .curSingerAlbumCont {
         margin-right: 0;
+    }
+
+    /* 滚动条样式 */
+    ::-webkit-scrollbar {
+        width: 2px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+        border-radius: 0px;
+        background-color: rgba(222, 222, 222, 0.8);
+        -webkit-box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.5);
+        /* 内阴影 */
+    }
+    
+    ::-webkit-scrollbar-track {
+        border-radius: 0px;
+        background-color: #b3b3b3;
+        -webkit-box-shadow: inset 0 0 6px rgba(118, 118, 118, 0.5);
     }
 
 }
