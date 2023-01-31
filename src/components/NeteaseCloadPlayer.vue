@@ -113,10 +113,12 @@
                     login_username}}</a> -->
             </div>
             <ul id="nav">
+                <li class="nav_white_space_1"></li>
                 <li><a class="nava" href="#" @click="switchRecommend()"><em class="navitem">推荐</em></a></li>
                 <li><a class="nava" href="#" @click="switchSongList()"><em class="navitem">歌单</em></a></li>
                 <li><a class="nava" href="#" @click="switchAlbum()"><em class="navitem">专辑</em></a></li>
                 <li><a class="nava" href="#" @click="switchSinger()"><em class="navitem">歌手</em></a></li>
+                <li class="nav_white_space_2"></li>
                 <li id="showSearch"><a class="nava" href="#" @click="searchShow()"><em class="navitem"
                             id="showSearchEm">显示搜索</em></a></li>
             </ul>

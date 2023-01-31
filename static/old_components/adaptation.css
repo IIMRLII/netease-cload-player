@@ -1,8 +1,16 @@
+/* 移动端适配 */
 @media only screen and (max-width: 500px) {
 
-    #nav li:not(:last-child){
-        display: none;
+    /* 导航栏适配 */
+
+
+    #showSearch {
+        margin-right: 20px;
     }
+
+    /* #nav li:not(:last-child){
+        display: none;
+    } */
 
     #search {
         width: 100vw;
@@ -42,11 +50,11 @@
     }
     
     #lrc li .on{
-        font-size: 20px;
+        /* font-size: 20px; */
     }
     
     #lrc li .off{
-        font-size: 16px;
+        /* font-size: 16px; */
     }
 
     #whiteblk{
@@ -55,7 +63,7 @@
     }
 
     #whitelrc{
-        font-size: 20px;
+        /* font-size: 20px; */
         /* height: 40px; */
     }
 
