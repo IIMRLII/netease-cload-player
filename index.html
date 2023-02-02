@@ -1,68 +1,76 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>netease-cload-player</title>
-    <link rel="icon" href="./static/star_icon.png" type="image/x-icon" />
-    <link rel="shortcut icon" href="./static/star_icon.png" type="image/x-icon"/>
 
-    <script>window.starAniCount = 0;</script>
-    <script type="text/javascript" src="./static/old_components/jquery-3.5.1.min.js"></script>
-    <canvas id="canvas1"></canvas>
-    <div id="thecomments"></div>
-    <!-- 评论层 -->
-    <canvas id="canvas2"></canvas>
-    <div id="background_star"></div>
-    <div id="background_earth"></div>
+<head>
+  <meta charset="utf-8">
+  <!-- <meta name="viewport" content="width=device-width,initial-scale=1.0"> -->
+  <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
 
-    <link href="./static/old_components/main.css" rel="stylesheet" type="text/css" />
-    <link href="./static/old_components/mouse/mouse.css" rel="stylesheet" type="text/css" />
-    <link href="./static/old_components/lrc/lrc.css" rel="stylesheet" type="text/css" />
-    <link href="./static/old_components/player/player.css" rel="stylesheet" type="text/css" />
-    <link href="./static/old_components/top/top.css" rel="stylesheet" type="text/css" />
-    <link href="./static/old_components/search/search.css" rel="stylesheet" type="text/css" />
-    <link href="./static/old_components/media.css" rel="stylesheet" type="text/css" />
-    <link href="./static/old_components/recommend/recommend.css" rel="stylesheet" type="text/css" />
-    <link href="./static/old_components/songList/songList.css" rel="stylesheet" type="text/css" />
-    <link href="./static/old_components/album/album.css" rel="stylesheet" type="text/css" />
-    <link href="./static/old_components/singer/singer.css" rel="stylesheet" type="text/css" />
+  <title>星空播放器</title>
+  <meta name="description" content="每一位年轻人都对星空抱有幻想，每一位年轻人都有一个属于自己的星空。年轻人充满活力，热爱星空，是民族中那群仰望星空的人。静下心，聆听星空之声。" />
+  <meta name="keywords" content="星空,音乐播放器">
 
-    <link href="./static/old_components/user/suspensions.css" rel="stylesheet" type="text/css" />
-    <link href="./static/old_components/user/login.css" rel="stylesheet" type="text/css" />
-    <link href="./static/old_components/user/register.css" rel="stylesheet" type="text/css" />
-    <link href="./static/old_components/user/userinfo.css" rel="stylesheet" type="text/css" />
+  <link rel="icon" href="./static/star_icon.png" type="image/x-icon" />
+  <link rel="shortcut icon" href="./static/star_icon.png" type="image/x-icon" />
 
-    <link href="./static/old_components/adaptation.css" rel="stylesheet" type="text/css" />
+  <script>window.starAniCount = 0;</script>
+  <script type="text/javascript" src="./static/old_components/jquery-3.5.1.min.js"></script>
+  <canvas id="canvas1"></canvas>
+  <div id="thecomments"></div>
+  <!-- 评论层 -->
+  <canvas id="canvas2"></canvas>
+  <div id="background_star"></div>
+  <div id="background_earth"></div>
 
-    <img id="earth" src="./static/old_components/mouse/earth.png" />
-    <!-- <img id="space" src="./static/old_components/mouse/cartoonspace.png" /> -->
-    <img id="darkspace" src="./static/old_components/mouse/darkspace.jpg" />
+  <link href="./static/old_components/main.css" rel="stylesheet" type="text/css" />
+  <link href="./static/old_components/mouse/mouse.css" rel="stylesheet" type="text/css" />
+  <link href="./static/old_components/lrc/lrc.css" rel="stylesheet" type="text/css" />
+  <link href="./static/old_components/player/player.css" rel="stylesheet" type="text/css" />
+  <link href="./static/old_components/top/top.css" rel="stylesheet" type="text/css" />
+  <link href="./static/old_components/search/search.css" rel="stylesheet" type="text/css" />
+  <link href="./static/old_components/media.css" rel="stylesheet" type="text/css" />
+  <link href="./static/old_components/recommend/recommend.css" rel="stylesheet" type="text/css" />
+  <link href="./static/old_components/songList/songList.css" rel="stylesheet" type="text/css" />
+  <link href="./static/old_components/album/album.css" rel="stylesheet" type="text/css" />
+  <link href="./static/old_components/singer/singer.css" rel="stylesheet" type="text/css" />
 
-  </head>
-  <body>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
-  <foot>
-    <script>window.starAniCount = 2;</script>
-    <script type="text/javascript" src="./static/old_components/main.js" defer ></script>
-    <script type="text/javascript" src="./static/old_components/mouse/partical.js" defer ></script>
-    <script type="text/javascript" src="./static/old_components/mouse/mouse.js" defer ></script>
-    <script type="text/javascript" src="./static/old_components/mouse/stars.js" defer ></script>
-    <script type="text/javascript" src="./static/old_components/painter.js" defer ></script>
-    <script type="text/javascript" src="./static/old_components/comment/comment.js" defer ></script>
+  <link href="./static/old_components/user/suspensions.css" rel="stylesheet" type="text/css" />
+  <link href="./static/old_components/user/login.css" rel="stylesheet" type="text/css" />
+  <link href="./static/old_components/user/register.css" rel="stylesheet" type="text/css" />
+  <link href="./static/old_components/user/userinfo.css" rel="stylesheet" type="text/css" />
 
-    <script type="text/javascript" src="./static/old_components/util/api.js" defer ></script>
+  <link href="./static/old_components/adaptation.css" rel="stylesheet" type="text/css" />
 
-    <script type="text/javascript" src="./static/old_components/player/player.js" defer ></script>
-    <script type="text/javascript" src="./static/old_components/lrc/lrc.js" defer ></script>
-    <script type="text/javascript" src="./static/old_components/synchronization.js" defer ></script>
+  <img id="earth" src="./static/old_components/mouse/earth.png" />
+  <!-- <img id="space" src="./static/old_components/mouse/cartoonspace.png" /> -->
+  <img id="darkspace" src="./static/old_components/mouse/darkspace.jpg" />
 
-    <!-- <script type="text/javascript" src="./static/old_components/util/getVm.js" defer ></script> -->
-    <script type="text/javascript" src="./static/old_components/util/setTimer.js" defer ></script>
+</head>
 
-    <!-- <script type="text/javascript" src="./static/old_components/songvue.js" defer ></script> -->
-    <!-- <script type="text/javascript" src="./static/old_components/init.js" defer ></script> -->
-  </foot>
+<body>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+</body>
+<foot>
+  <script>window.starAniCount = 2;</script>
+  <script type="text/javascript" src="./static/old_components/main.js" defer></script>
+  <script type="text/javascript" src="./static/old_components/mouse/partical.js" defer></script>
+  <script type="text/javascript" src="./static/old_components/mouse/mouse.js" defer></script>
+  <script type="text/javascript" src="./static/old_components/mouse/stars.js" defer></script>
+  <script type="text/javascript" src="./static/old_components/painter.js" defer></script>
+  <script type="text/javascript" src="./static/old_components/comment/comment.js" defer></script>
+
+  <script type="text/javascript" src="./static/old_components/util/api.js" defer></script>
+
+  <script type="text/javascript" src="./static/old_components/player/player.js" defer></script>
+  <script type="text/javascript" src="./static/old_components/lrc/lrc.js" defer></script>
+  <script type="text/javascript" src="./static/old_components/synchronization.js" defer></script>
+
+  <!-- <script type="text/javascript" src="./static/old_components/util/getVm.js" defer ></script> -->
+  <script type="text/javascript" src="./static/old_components/util/setTimer.js" defer></script>
+
+  <!-- <script type="text/javascript" src="./static/old_components/songvue.js" defer ></script> -->
+  <!-- <script type="text/javascript" src="./static/old_components/init.js" defer ></script> -->
+</foot>
+
 </html>

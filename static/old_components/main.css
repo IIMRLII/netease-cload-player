@@ -160,7 +160,8 @@ body {
     transform-origin: center center;
     pointer-events: none;
     background-color: #111925;
-    background-image: url('./mouse/darkspace.jpg');
+    /* background-image: url('./mouse/darkspace.jpg'); */
+    background-image: url('./mouse/darkspace-min.jpg');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
