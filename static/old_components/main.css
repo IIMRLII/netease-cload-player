@@ -1,6 +1,7 @@
 * {
     /* cursor: none; */
     /* box-sizing: content-box; */
+    /* -webkit-text-size-adjust: none!important; */
 }
 
 ::-webkit-scrollbar {
