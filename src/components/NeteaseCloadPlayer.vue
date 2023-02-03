@@ -686,6 +686,9 @@ export default {
         this.getDefaultKeyword();
         this.init();
 
+        $('#background_star').css('background-image', `url('../../static/old_components/mouse/darkspace-min.jpg')`)
+        $('#background_earth').css('background-image', `url('../../static/old_components/mouse/earth.png')`)
+
         this.$refs.big_dipper.starAniCount++;//北斗七星进度+1
 
         darkspace.onload = () => {//图片预加载
