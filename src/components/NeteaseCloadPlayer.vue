@@ -691,12 +691,12 @@ export default {
 
         this.$refs.big_dipper.starAniCount++;//北斗七星进度+1
 
-        darkspace.onload = () => {//图片预加载
-            this.$refs.big_dipper.starAniCount++;
-        }
-        earth.onload = () => {
-            this.$refs.big_dipper.starAniCount++;
-        }
+        // darkspace.onload = () => {//图片预加载
+        //     this.$refs.big_dipper.starAniCount++;
+        // }
+        // earth.onload = () => {
+        //     this.$refs.big_dipper.starAniCount++;
+        // }
 
         window.addEventListener('unload', e => this.unloadHandler(e, this)); //添加页面关闭事件
 
