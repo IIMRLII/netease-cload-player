@@ -676,7 +676,7 @@ export default {
         this.init();
 
         $('#background_star').css('background-image', `url(${require('../assets/css/background/darkspace-min.jpg')})`)
-        $('#background_earth').css('background-image', `url(${require('../assets/css/background/earth.png')})`)
+        $('#background_earth').css('background-image', `url(${require('../assets/css/background/earth-min.png')})`)
 
         this.$refs.big_dipper.starAniCount++;//北斗七星进度+1
 
