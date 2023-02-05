@@ -144,11 +144,14 @@
     width: 20px;
     right: -20px;
 }
-.movie2 img{
+.movie2 div{
     display: inline-block;
     vertical-align: middle;
     width: 20px;
     height: 20px;
+    cursor: pointer;
+    background-image: url('playbar2.png');
+    background-size: cover;
 }
 
 #searchResult a:hover{

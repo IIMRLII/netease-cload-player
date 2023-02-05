@@ -134,7 +134,8 @@
     width: 60px;
     height: 60px;
     content: "";
-    background: url(../search/playbar1.png);
+    background: url('../search/playbar1.png');
+    cursor: pointer;
     background-size: cover;
     transition: width 0.1s ease,height 0.1s ease,margin 0.1s ease;
     pointer-events: none;

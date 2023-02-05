@@ -68,6 +68,10 @@
     }
 
     /* 推荐 */
+    #recommend {
+
+    }
+    
     #recommend:hover{
         width: 250px;
     }

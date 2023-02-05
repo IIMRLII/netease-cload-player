@@ -158,8 +158,7 @@
                         </div>
                         <p class="duration">{{ item.dt }}</p>
                         <div class="movie2">
-                            <img title="点击播放MV" v-if="item.mv != 0" href="javascript:;" @click='playMVById(item.mv)'
-                                src="../../static/old_components/search/playbar2.png" />
+                            <div title="点击播放MV" v-if="item.mv != 0" href="javascript:;" @click='playMVById(item.mv)'></div>
                         </div>
                         <!-- 图标！ -->
                     </li>
@@ -185,7 +184,7 @@
             <div id="playerdiv">
                 <!--播放器框架-->
                 <div id="playerdiv3">
-                    <img id="curcover" src="../../static/old_components/search/playbar2.png">
+                    <div id="curcover"></div>
                     <!-- 当前歌曲图片 -->
                     <div id="playerdiv5">
                         <p id="songname">歌曲名</p>
@@ -195,10 +194,10 @@
                 </div>
 
                 <div id="playerdiv6">
-                    <img id="songvolume" src="../../static/old_components/player/volume.png">
+                    <div id="songvolume"></div>
                     <input type="range" min='0' max='100' id='volumerange' v-model='volume'>
                     <!-- 音量条 -->
-                    <img id="playlist" src="../../static/old_components/player/history.png" @click="isHistory()">
+                    <div id="playlist" @click="isHistory()"></div>
                     <!--历史列表显示-->
                 </div>
 
@@ -326,9 +325,7 @@
                                 </div>
                                 <p class="duration">{{ item.dt }}</p>
                                 <div class="movie2">
-                                    <img title="点击播放MV" v-if="item.mv != 0" href="javascript:;"
-                                        @click='playMVById(item.mv)'
-                                        src="../../static/old_components/search/playbar2.png" />
+                                    <div title="点击播放MV" v-if="item.mv != 0" href="javascript:;" @click='playMVById(item.mv)'></div>
                                 </div>
                             </li>
                         </ul>
@@ -407,9 +404,7 @@
                                 </div>
                                 <p class="duration">{{ item.dt }}</p>
                                 <div class="movie2">
-                                    <img title="点击播放MV" v-if="item.mv != 0" href="javascript:;"
-                                        @click='playMVById(item.mv)'
-                                        src="../../static/old_components/search/playbar2.png" />
+                                    <div title="点击播放MV" v-if="item.mv != 0" href="javascript:;" @click='playMVById(item.mv)'></div>
                                 </div>
                             </li>
                         </ul>
@@ -487,9 +482,7 @@
                                     </div>
                                     <p class="duration">{{ item2.dt }}</p>
                                     <div class="movie2">
-                                        <img title="点击播放MV" v-if="item2.mv != 0" href="javascript:;"
-                                            @click='playMVById(item2.mv)'
-                                            src="../../static/old_components/search/playbar2.png" />
+                                        <div title="点击播放MV" v-if="item.mv != 0" href="javascript:;" @click='playMVById(item.mv)'></div>
                                     </div>
                                 </div>
                                 <hr>
@@ -529,10 +522,8 @@
                                 </div>
                             </div>
                         </div>
-                        <img class="historyviedoplay" v-if="item.mv != 0" href="javascript:;"
-                            @click='playMVById(item.mv)' src="../../static/old_components/search/playbar1.png" />
-                        <img class="HLCancle" href="javascript:;" @click="removeHLitem(item.id)"
-                            src="../../static/old_components/player/cancle.png" />
+                        <div class="historyviedoplay" v-if="item.mv != 0" @click='playMVById(item.mv)'></div>
+                        <div class="HLCancle" href="javascript:;" @click="removeHLitem(item.id)"></div>
                     </li>
                 </ul>
 
@@ -552,10 +543,8 @@
                                 </div>
                             </div>
                         </div>
-                        <img class="historyviedoplay" v-if="item.mv != 0" href="javascript:;"
-                            @click='playMVById(item.mv)' src="../../static/old_components/search/playbar1.png" />
-                        <img class="HLCancle" href="javascript:;" @click="removeSLitem(item.id)"
-                            src="../../static/old_components/player/cancle.png" />
+                        <div class="historyviedoplay" v-if="item.mv != 0" @click='playMVById(item.mv)'></div>
+                        <div class="HLCancle" href="javascript:;" @click="removeSLitem(item.id)"></div>
                     </li>
                 </ul>
             </div>
@@ -686,8 +675,8 @@ export default {
         this.getDefaultKeyword();
         this.init();
 
-        $('#background_star').css('background-image', `url('../../static/old_components/mouse/darkspace-min.jpg')`)
-        $('#background_earth').css('background-image', `url('../../static/old_components/mouse/earth.png')`)
+        $('#background_star').css('background-image', `url(${require('../assets/css/background/darkspace-min.jpg')})`)
+        $('#background_earth').css('background-image', `url(${require('../assets/css/background/earth.png')})`)
 
         this.$refs.big_dipper.starAniCount++;//北斗七星进度+1
 
@@ -892,10 +881,12 @@ export default {
             var audioPlayer = document.querySelector('#player');
             if(audioPlayer.paused){
                 play.title = "play"
-                play.style.backgroundImage = 'url("../../static/old_components/player/play.png")';
+                $('#play').removeClass("play_pause");
+                // play.style.backgroundImage = 'url("../assets/css/player/play.png")';
             }else{
                 play.title = "pause"
-                play.style.backgroundImage = 'url("../../static/old_components/player/pause.png")';
+                $('#play').addClass("play_pause");
+                // play.style.backgroundImage = 'url("../assets/css/player/pause.png")';
             }
 
             if(this.showSuggest){
@@ -957,7 +948,7 @@ export default {
                 this.curMusic = JSON.parse(localStorage.getItem("curMusic"));
                 if (this.curMusic.id) {
                     this.playMusic(this.curMusic, false);
-                    this.getCover(this.curMusic);
+                    // this.getCover(this.curMusic);
                 }
             }
 
@@ -1066,9 +1057,11 @@ export default {
             if(song.al && song.al.id){
                 this.$axios.get('/album?id=' + song.al.id).then((response)=>{
                     for(let i = 0;i < response.data.songs.length;i++){
-                        if(response.data.songs[i].al.id == song.al.id)
-                        document.getElementById("curcover").src = response.data.songs[i].al.picUrl + "?param=120y120?";
-                        break;
+                        if(response.data.songs[i].al.id == song.al.id) {
+                            $('#curcover').css('background-image', 'url(' + response.data.songs[i].al.picUrl + "?param=120y120?)");
+                            // document.getElementById("curcover").src = response.data.songs[i].al.picUrl + "?param=120y120?";
+                            break;
+                        }
                     }
                 })
             }
@@ -1392,7 +1385,8 @@ export default {
                             player.play();
 
                             play.title = "pause"
-                            play.style.backgroundImage = 'url("player/pause.png")';
+                            $('#play').addClass("play_pause");
+                            // play.style.backgroundImage = 'url("player/pause.png")';
 
                         }, 200)
                     }
@@ -1491,12 +1485,14 @@ export default {
                 player.play();
 
                 play.title = "pause"
-                play.style.backgroundImage = 'url("player/pause.png")';
+                $('#play').addClass("play_pause");
+                // play.style.backgroundImage = 'url("player/pause.png")';
             } else if (player.src != "" && play.title == "pause") {
                 player.pause();
 
                 play.title = "play"
-                play.style.backgroundImage = 'url("player/play.png")';
+                $('#play').removeClass("play_pause");
+                // play.style.backgroundImage = 'url("player/play.png")';
             }
         },
 
@@ -1538,7 +1534,8 @@ export default {
                     let play = document.getElementById("play");
                     player.pause();
                     play.title = "play"
-                    play.style.backgroundImage = 'url("player/play.png")';
+                    // play.style.backgroundImage = 'url("player/play.png")';
+                    $('#play').removeClass("play_pause");
                 }
             )
         },
@@ -1552,7 +1549,8 @@ export default {
             let play = document.getElementById("play");
             player.pause();
             play.title = "play"
-            play.style.backgroundImage = 'url("player/play.png")';
+            // play.style.backgroundImage = 'url("player/play.png")';
+            $('#play').removeClass("play_pause");
         },
 
         /*绑定于mouseover时让目标元素移动*/
@@ -1635,11 +1633,9 @@ export default {
             if (this.islock) {
                 // $("#pull").css("bottom", "-2px");
                 $('#pull').addClass('pull_lock');
-                pull.style.backgroundImage = "url('../../static/old_components/player/lockarray.png')";
             } else {
                 // $("#pull").css("bottom", "-90px");
                 $('#pull').removeClass('pull_lock');
-                pull.style.backgroundImage = "url('../../static/old_components/player/array.png')";
             }
         },
 
@@ -1702,236 +1698,21 @@ export default {
     }
 }
 </script>
-<style lang="scss" scoped>
-.recommendStarWidget {
-    width: 90vh;
-    height: 100vh;
-    position: absolute;
-    z-index: 2000;
-}
+<style src="../assets/css/main.css" />
+<style src="../assets/css/lrc/lrc.css" />
+<style src="../assets/css/player/player.css" />
+<style src="../assets/css/top/top.css" />
+<style src="../assets/css/search/search.css" />
+<style src="../assets/css/media.css" />
+<style src="../assets/css/recommend/recommend.css" />
+<style src="../assets/css/recommend/recommendStar.css" />
+<style src="../assets/css/songList/songList.css" />
+<style src="../assets/css/album/album.css" />
+<style src="../assets/css/singer/singer.css" />
 
-.recommendStarWidget:hover .recommendStarClose{
-    display: flex;
-}
+<style src="../assets/css/user/suspensions.css" />
+<style src="../assets/css/user/login.css" />
+<style src="../assets/css/user/register.css" />
+<style src="../assets/css/user/userinfo.css" />
 
-.recommendStarClose {
-    position: absolute;
-    display: none;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    top: 10vh;
-    right: 10vh;
-    width: 5vh;
-    height: 5vh;
-    z-index: 2001;
-    color: black;
-    font-size: 25px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.8);
-}
-
-.recommendStarClose:hover{
-    background-color: rgba(255, 255, 255, 0.95);
-}
-
-.recommendStar1 {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 58vh;
-    height: 58vh;
-    top: calc(115px + 25vh + -8vh);
-    left: 55vh;
-    background-image: url('../../static/recommend_star.png');
-    background-origin: center center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    transform: translate(-50%, -50%) rotate(365deg);
-    animation: recommendStar1 1s ease-out 0s 1, recommendStarScale1 1s ease-in-out 1s infinite alternate;
-    transition: width 0.5s ease, height 0.5s ease, transform 0.5s ease;
-}
-
-@keyframes recommendStar1 {
-    from {
-        top: 0;
-        left: 0;
-        transform: translate(-50%, -50%) scale(0) rotate(0deg);
-    }
-    to {
-        top: calc(115px + 25vh + -8vh);
-        left: 55vh;
-        transform: translate(-50%, -50%) scale(1) rotate(365deg);
-    }
-}
-
-@keyframes recommendStarScale1 {
-    from {
-        transform: translate(-50%, -50%) scale(1) rotate(365deg);
-    }
-    to {
-        transform: translate(-50%, -50%) scale(1.03) rotate(365deg);
-    }
-}
-
-.recommendStar1:hover {
-    width: 63vh;
-    height: 63vh;
-    animation: recommendStar1 1s ease-out 0s 1, recommendStarShake1 1s ease-in-out 0s infinite alternate;
-}
-
-@keyframes recommendStarShake1 {
-    from {
-        transform: translate(-50%, -50%) scale(1) rotate(365deg);
-    }
-    to {
-        transform: translate(-50%, -50%) scale(1) rotate(375deg);
-    }
-}
-
-.recommendStar2 {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 45vh;
-    height: 45vh;
-    top: calc(115px + 25vh + 33vh);
-    left: 27vh;
-    background-image: url('../../static/recommend_star.png');
-    background-origin: center center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    transform: translate(-50%, -50%) rotate(340deg);
-    animation: recommendStar2 1s ease-out, recommendStarScale2 1s ease-in-out 1s infinite alternate;
-    transition: width 0.5s ease, height 0.5s ease;
-}
-
-@keyframes recommendStar2 {
-    from {
-        top: 0;
-        left: 0;
-        transform: translate(-50%, -50%) scale(0) rotate(1080deg);
-    }
-    to {
-        top: calc(115px + 25vh + 33vh);
-        left: 27vh;
-        transform: translate(-50%, -50%) scale(1) rotate(340deg);
-    }
-}
-
-@keyframes recommendStarScale2 {
-    from {
-        transform: translate(-50%, -50%) scale(1) rotate(340deg);
-    }
-    to {
-        transform: translate(-50%, -50%) scale(1.03) rotate(340deg);
-    }
-}
-
-.recommendStar2:hover {
-    width: 50vh;
-    height: 50vh;
-    animation: recommendStar2 1s ease-out 0s 1, recommendStarShake2 1s ease-in-out 0s infinite alternate;
-}
-
-@keyframes recommendStarShake2 {
-    from {
-        transform: translate(-50%, -50%) scale(1) rotate(340deg);
-    }
-    to {
-        transform: translate(-50%, -50%) scale(1) rotate(350deg);
-    }
-}
-
-.recommendStar3 {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 35vh;
-    height: 35vh;
-    top: calc(115px + 25vh + 35vh);
-    left: 67vh;
-    background-image: url('../../static/recommend_star.png');
-    background-origin: center center;
-    background-size: contain;
-    background-repeat: no-repeat;
-    transform: translate(-50%, -50%) rotate(390deg);
-    animation: recommendStar3 1s ease-out, recommendStarScale3 1s ease-in-out 1s infinite alternate;
-    transition: width 0.5s ease, height 0.5s ease;
-}
-
-@keyframes recommendStar3 {
-    from {
-        top: 0;
-        left: 0;
-        transform: translate(-50%, -50%) scale(0) rotate(-360deg);
-    }
-    to {
-        top: calc(115px + 25vh + 35vh);
-        left: 67vh;
-        transform: translate(-50%, -50%) scale(1) rotate(390deg);
-    }
-}
-
-@keyframes recommendStarScale3 {
-    from {
-        transform: translate(-50%, -50%) scale(1) rotate(390deg);
-    }
-    to {
-        transform: translate(-50%, -50%) scale(1.03) rotate(390deg);
-    }
-}
-
-.recommendStar3:hover {
-    width: 40vh;
-    height: 40vh;
-    animation: recommendStar3 1s ease-out 0s 1, recommendStarShake3 1s ease-in-out 0s infinite alternate;
-}
-
-@keyframes recommendStarShake3 {
-    from {
-        transform: translate(-50%, -50%) scale(1) rotate(390deg);
-    }
-    to {
-        transform: translate(-50%, -50%) scale(1) rotate(380deg);
-    }
-}
-
-.firstStar {
-    position: relative;
-    margin-top: 10%;
-    width: 50%;
-    height: 50%;
-    cursor: pointer;
-    .firstStarBackground {
-        width: 100%;
-        height: 100%;
-        border-radius: 10%;
-    }
-
-    .firstStarBackgroundPlayCount {
-        position: absolute;
-        width: 100%;
-        text-align: right;
-        color: white;
-    }
-
-    .firstStarBackgroundName {
-        position: absolute;
-        bottom: 0;
-        transform: translateY(100%);
-        // color: white;
-        text-align: left;
-
-    }
-}
-
-
-
-</style>
+<style src="../assets/css/adaptation.css" />

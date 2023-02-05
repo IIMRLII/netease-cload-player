@@ -1,0 +1,228 @@
+/* 推荐星星 */
+.recommendStarWidget {
+    width: 90vh;
+    height: 100vh;
+    position: absolute;
+    z-index: 2000;
+}
+
+.recommendStarWidget:hover .recommendStarClose{
+    display: flex;
+}
+
+.recommendStarClose {
+    position: absolute;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    top: 10vh;
+    right: 10vh;
+    width: 5vh;
+    height: 5vh;
+    z-index: 2001;
+    color: black;
+    font-size: 25px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.recommendStarClose:hover{
+    background-color: rgba(255, 255, 255, 0.95);
+}
+
+.recommendStar1 {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 58vh;
+    height: 58vh;
+    top: calc(115px + 25vh + -8vh);
+    left: 55vh;
+    background-image: url('./recommend_star.png');
+    background-origin: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translate(-50%, -50%) rotate(365deg);
+    animation: recommendStar1 1s ease-out 0s 1, recommendStarScale1 1s ease-in-out 1s infinite alternate;
+    transition: width 0.5s ease, height 0.5s ease, transform 0.5s ease;
+}
+
+@keyframes recommendStar1 {
+    from {
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%) scale(0) rotate(0deg);
+    }
+    to {
+        top: calc(115px + 25vh + -8vh);
+        left: 55vh;
+        transform: translate(-50%, -50%) scale(1) rotate(365deg);
+    }
+}
+
+@keyframes recommendStarScale1 {
+    from {
+        transform: translate(-50%, -50%) scale(1) rotate(365deg);
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1.03) rotate(365deg);
+    }
+}
+
+.recommendStar1:hover {
+    width: 63vh;
+    height: 63vh;
+    animation: recommendStar1 1s ease-out 0s 1, recommendStarShake1 1s ease-in-out 0s infinite alternate;
+}
+
+@keyframes recommendStarShake1 {
+    from {
+        transform: translate(-50%, -50%) scale(1) rotate(365deg);
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1) rotate(375deg);
+    }
+}
+
+.recommendStar2 {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 45vh;
+    height: 45vh;
+    top: calc(115px + 25vh + 33vh);
+    left: 27vh;
+    background-image: url('./recommend_star.png');
+    background-origin: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translate(-50%, -50%) rotate(340deg);
+    animation: recommendStar2 1s ease-out, recommendStarScale2 1s ease-in-out 1s infinite alternate;
+    transition: width 0.5s ease, height 0.5s ease;
+}
+
+@keyframes recommendStar2 {
+    from {
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%) scale(0) rotate(1080deg);
+    }
+    to {
+        top: calc(115px + 25vh + 33vh);
+        left: 27vh;
+        transform: translate(-50%, -50%) scale(1) rotate(340deg);
+    }
+}
+
+@keyframes recommendStarScale2 {
+    from {
+        transform: translate(-50%, -50%) scale(1) rotate(340deg);
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1.03) rotate(340deg);
+    }
+}
+
+.recommendStar2:hover {
+    width: 50vh;
+    height: 50vh;
+    animation: recommendStar2 1s ease-out 0s 1, recommendStarShake2 1s ease-in-out 0s infinite alternate;
+}
+
+@keyframes recommendStarShake2 {
+    from {
+        transform: translate(-50%, -50%) scale(1) rotate(340deg);
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1) rotate(350deg);
+    }
+}
+
+.recommendStar3 {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 35vh;
+    height: 35vh;
+    top: calc(115px + 25vh + 35vh);
+    left: 67vh;
+    background-image: url('./recommend_star.png');
+    background-origin: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translate(-50%, -50%) rotate(390deg);
+    animation: recommendStar3 1s ease-out, recommendStarScale3 1s ease-in-out 1s infinite alternate;
+    transition: width 0.5s ease, height 0.5s ease;
+}
+
+@keyframes recommendStar3 {
+    from {
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%) scale(0) rotate(-360deg);
+    }
+    to {
+        top: calc(115px + 25vh + 35vh);
+        left: 67vh;
+        transform: translate(-50%, -50%) scale(1) rotate(390deg);
+    }
+}
+
+@keyframes recommendStarScale3 {
+    from {
+        transform: translate(-50%, -50%) scale(1) rotate(390deg);
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1.03) rotate(390deg);
+    }
+}
+
+.recommendStar3:hover {
+    width: 40vh;
+    height: 40vh;
+    animation: recommendStar3 1s ease-out 0s 1, recommendStarShake3 1s ease-in-out 0s infinite alternate;
+}
+
+@keyframes recommendStarShake3 {
+    from {
+        transform: translate(-50%, -50%) scale(1) rotate(390deg);
+    }
+    to {
+        transform: translate(-50%, -50%) scale(1) rotate(380deg);
+    }
+}
+
+.firstStar {
+    position: relative;
+    margin-top: 10%;
+    width: 50%;
+    height: 50%;
+    cursor: pointer;
+}
+
+.firstStarBackground {
+    width: 100%;
+    height: 100%;
+    border-radius: 10%;
+}
+
+.firstStarBackgroundPlayCount {
+    position: absolute;
+    width: 100%;
+    text-align: right;
+    color: white;
+}
+
+.firstStarBackgroundName {
+    position: absolute;
+    bottom: 0;
+    transform: translateY(100%);
+    text-align: left;
+}

@@ -21,6 +21,7 @@
 } */
 .pull_lock {
     bottom: -2px !important;
+    background-image: url('lockarray.png')!important;
 }
 
 #playerdiv{
@@ -78,6 +79,9 @@
     width: 70px;
     height: 70px;
     background-size: 70px 70px;
+}
+.play_pause {
+    background-image: url('pause.png') !important;
 }
 
 #next{
@@ -181,6 +185,7 @@
     display: inline-block;
     width: 54px;
     height: 54px;
+    background-image: url('../search/playbar2.png');
     background-size: 100% 100%;
     border: 3px ridge rgb(100, 33, 100);
     border-radius: 8px;
@@ -239,6 +244,8 @@
     background-size: 100% 100%;
     display: inline-block;
     vertical-align: middle;
+    background-image: url('volume.png');
+    background-size: cover;
 }
 
 /* 音量条 */
@@ -281,6 +288,8 @@
     background-size: 100% 100%;
     display: inline-block;
     vertical-align: middle;
+    background-image: url('history.png');
+    background-size: cover;
 }
 
 /*历史记录*/ 
@@ -423,6 +432,9 @@
     height: 20px;
     margin-left: 20px;
     vertical-align: middle;
+    cursor: pointer;
+    background-image: url('../search/playbar1.png');
+    background-size: cover;
 }
 
 .HLCancle{
@@ -431,4 +443,6 @@
     float: right;
     display: none;
     vertical-align: middle;
+    background-image: url('cancle.png');
+    background-size: cover;
 }
