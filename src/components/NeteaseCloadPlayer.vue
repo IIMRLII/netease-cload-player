@@ -1710,9 +1710,9 @@ export default {
 <style src="../assets/css/album/album.css" />
 <style src="../assets/css/singer/singer.css" />
 
-<style src="../assets/css/user/suspensions.css" />
+<!-- <style src="../assets/css/user/suspensions.css" />
 <style src="../assets/css/user/login.css" />
 <style src="../assets/css/user/register.css" />
-<style src="../assets/css/user/userinfo.css" />
+<style src="../assets/css/user/userinfo.css" /> -->
 
 <style src="../assets/css/adaptation.css" />
