@@ -209,7 +209,7 @@
     }
 
     #songListBlock{
-        width: 90%;
+        /* width: 90%; */
         margin: 0 auto;
     }
     /* 专辑详情 */
@@ -228,7 +228,7 @@
 
     #curAlbumCreater {
         display: block;
-        width: 90%;
+        width: 100%;
         margin: 0 auto;
     }
 
@@ -238,12 +238,14 @@
     }
 
     #curAlbumCommentUl {
-        width: 90%;
+        width: 100%;
+        margin: 0 auto;
     }
 
     #curAlbumCreater div:nth-child(6){
-        max-height: 120px;
+        max-height: 200px;
         margin-bottom: 20px;
+        margin-right: 0;
     }
 
     #Album {
@@ -266,7 +268,7 @@
 
     #curSongListCreater {
         display: block;
-        width: 90%;
+        width: 100%;
         margin: 0 auto;
     }
 
@@ -276,7 +278,8 @@
     }
 
     #curSongListCommentUl {
-        width: 90%;
+        width: 100%;
+        margin: 0 auto;
     }
 
     #curSongListCreater div:nth-child(6){
@@ -304,7 +307,7 @@
 
     #curSingerCreater {
         display: block;
-        width: 90%;
+        width: 100%;
         margin: 0 auto;
     }
 
@@ -320,7 +323,7 @@
     }
 
     #curSingerAlbum {
-        width: 90%;
+        width: 100%;
         margin: 0 auto 20px auto;
     }
 

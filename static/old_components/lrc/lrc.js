@@ -231,11 +231,13 @@ function getLine() {
             $("#slrc" + i).css("color", "red");
         }
 
-        if (i != currentLine) {//改变透明度
-            $("#slrc" + i).css("opacity", 1.2 - Math.abs(i - currow) * 0.2);
-        } else {
-            $("#slrc" + i).css("opacity", 1);
-        }
+        // if (i != currentLine) {//非当前行改变透明度
+        //     $("#slrc" + i).css("opacity", 1.2 - Math.abs(i - currow) * 0.2);
+        // } else {
+        //     $("#slrc" + i).css("opacity", 1);
+        // }
+        $("#slrc" + i).css("opacity", 1.2 - Math.abs(i - currow) * 0.2);
+
 
         if (document.getElementById("RtxSwitch").innerHTML == "RtxOn") {
 

@@ -1077,7 +1077,6 @@ export default {
                         cursonglrc = [];
                         document.getElementById('lrc').innerHTML = "";
                         document.getElementById('whitelrc').innerHTML = "";
-                        return;
                     };
 
                     that.$axios.get("/lyric?id=" + id).then(//获取歌词
