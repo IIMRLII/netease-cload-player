@@ -13,6 +13,10 @@ Vue.prototype.$axios = axios
 
 import '@/icons/index'//引入svg
 
+import { Message } from 'element-ui';//按需引入elementui
+Vue.component(Message)
+Vue.prototype.$message = Message
+
 // Vue.config.productionTip = false 显示生产tip
 
 /* eslint-disable no-new */

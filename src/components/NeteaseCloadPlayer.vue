@@ -663,6 +663,8 @@ export default {
             mouseOnSuggest: false,
             synchroTime: 0,
             recommendStarShow: true,
+
+            noSongPlay: false,
         }
     },
     computed: {
@@ -950,6 +952,8 @@ export default {
                     this.playMusic(this.curMusic, false);
                     // this.getCover(this.curMusic);
                 }
+            } else {
+                this.noSongPlay = true;
             }
 
             if (localStorage.getItem("musicHistory") != null) {
@@ -1049,9 +1053,9 @@ export default {
         //     })
         // },
 
-        about: () => {
-            alert("作者：刘睿\nQQ：1104052058", "星空播放器")
-        },
+        // about: () => {
+        //     alert("作者：刘睿\nQQ：1104052058", "星空播放器")
+        // },
 
         getCover(song) {//获取封面
             if(song.al && song.al.id){
@@ -1073,7 +1077,9 @@ export default {
             that.$axios.get("/song/url?id=" + id).then(
                 function (response) {
                     if (response.data.data[0].freeTrialInfo) {
-                        alert("该歌曲是VIP曲目，您只能试听30s");
+                        // alert("该歌曲是VIP曲目，您只能试听30s");
+                        that.$message.warning('该歌曲是VIP曲目，您只能试听30s');
+                        // that.$message.error('错了哦，这是一条错误消息');
                         cursonglrc = [];
                         document.getElementById('lrc').innerHTML = "";
                         document.getElementById('whitelrc').innerHTML = "";
@@ -1114,6 +1120,12 @@ export default {
                 this.recommendSongList = response.data.result;
                 for (let i = 0; i < this.recommendSongList.length; i++) {
                     this.recommendSongList[i].picUrl += "?param=200y200";
+                }
+                if(this.noSongPlay) {
+                    this.$axios.get('/personalized/newsong?limit=1').then((response) => {
+                        this.playMusic(response.data.result[0], false)
+                        this.$message.info('已为您自动载入推荐歌曲')
+                    })
                 }
             })
         },
@@ -1674,7 +1686,7 @@ export default {
             if (this.curPlayList != "") {
                 this.shutDown("歌单");
             } else {
-                alert("请先搜索歌单！");
+                this.$message.info("请先搜索歌单！");
             }
         },
 
@@ -1682,7 +1694,7 @@ export default {
             if (this.curAlbum != "") {
                 this.shutDown("专辑");
             } else {
-                alert("请先搜索专辑！");
+                this.$message.info("请先搜索专辑！");
             }
         },
 
@@ -1690,7 +1702,7 @@ export default {
             if (this.curSinger != "") {
                 this.shutDown("歌手");
             } else {
-                alert("请先搜索歌手！");
+                this.$message.info("请先搜索歌手！");
             }
         },
 
