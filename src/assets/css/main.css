@@ -91,6 +91,10 @@ body {
     transition: opacity 0.3s ease;
 }
 
+#thecomments div *{
+    pointer-events: none;
+}
+
 /* #thecomments div:hover {
     z-index: 260;
     opacity: 1;

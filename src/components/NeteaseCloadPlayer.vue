@@ -1,7 +1,7 @@
 <template>
     <!--vue总框架-->
     <div id="whole">
-        <BigDipper ref="big_dipper"></BigDipper>
+        <!-- <BigDipper ref="big_dipper"></BigDipper> -->
         <!-- <div id="particles-js">
             <div class="login">
                 <div class="login-close" @click="$('.login').css('display','none')">关闭</div>
@@ -86,7 +86,7 @@
                 </div>
                 <div class="logo"></div>
                 <div id="inputdiv">
-                    <div id="searchSuggest">
+                    <div id="searchSuggest" v-show="showSuggest">
                         <!--搜索建议-->
                         <em class="searchTip">搜索有关建议</em>
                         <div v-for="(value, index) in suggest" :key="index">
@@ -104,7 +104,7 @@
                     <input id="input1" type="text" autocomplete="off" v-model="keyWord" @click="getSearchSuggest()"
                         @keyup='getSearchSuggest()' @keyup.enter="search()" :placeholder='defaultShowKeyword' />
                 </div>
-                <div class="searchBtn" @click="search();"></div>
+                <div class="searchBtn" @click="search()"></div>
                 <!-- <a class="user_nav" @click="login()" title="登录以解锁收藏与保存历史记录功能！">登录</a>
                 <a class="user_nav" @click="register()" title="加入我们吧？">注册</a>
                 <a class="user_nav" @click="admin()" title="管理员菜单">管理</a>
@@ -119,12 +119,11 @@
                 <li><a :class="`nava${Object.keys(this.curAlbum).length === 0 ? ' nava_disable' : ''}`" href="#" @click="switchAlbum()"><em class="navitem">专辑</em></a></li>
                 <li><a :class="`nava${Object.keys(this.curSinger).length === 0 ? ' nava_disable' : ''}`" href="#" @click="switchSinger()"><em class="navitem">歌手</em></a></li>
                 <li class="nav_white_space_2"></li>
-                <li id="showSearch"><a class="nava" href="#" @click="searchShow()"><em class="navitem"
-                            id="showSearchEm">显示搜索</em></a></li>
+                <li id="showSearch"><a class="nava" href="#" @click="searchShow()"><em class="navitem" id="showSearchEm">{{isCoverShow ? '隐藏搜索' : '显示搜索'}}</em></a></li>
             </ul>
         </div>
 
-        <div v-if="isCoverShow && !isShow" class="closeSearch" @click="shutDown('')"></div>
+        <div v-show="isCoverShow && !isShow" class="closeSearch" @click="shutDown('')"></div>
 
         <div v-show="isCoverShow" id="searchResultCover"></div>
         <div v-if="isShow" id="searchResult">
@@ -230,7 +229,6 @@
         </div>
 
         <!-- /*推荐*/ -->
-        <div id="recommendAssistor">
             <div id="recommend">
                 <div width="100%">
                     <span id="reviewTitle">今日推荐</span>
@@ -247,7 +245,6 @@
                     </ul>
                 </div>
             </div>
-        </div>
 
         <div class="recommendStarWidget" v-if="recommendStarShow && recommendSongListThree.length !== 0">
             <div class="recommendStarClose" title="关闭推荐" @click="recommendStarShow = false">×</div>
@@ -694,7 +691,7 @@ export default {
         $('#background_star').css('background-image', `url(${require('../assets/css/background/darkspace-min.jpg')})`)
         $('#background_earth').css('background-image', `url(${require('../assets/css/background/earth-min.png')})`)
 
-        this.$refs.big_dipper.starAniCount++;//北斗七星进度+1
+        // this.$refs.big_dipper.starAniCount++;//北斗七星进度+1
 
         // darkspace.onload = () => {//图片预加载
         //     this.$refs.big_dipper.starAniCount++;
@@ -905,17 +902,17 @@ export default {
                 // play.style.backgroundImage = 'url("../assets/css/player/pause.png")';
             }
 
-            if(this.showSuggest){
-                $("#searchSuggest").css("visibility","visible");
-            }else{
-                $("#searchSuggest").css("visibility","hidden");
-            }
+            // if(this.showSuggest){
+            //     $("#searchSuggest").css("visibility","visible");
+            // }else{
+            //     $("#searchSuggest").css("visibility","hidden");
+            // }
 
-            if(this.isRecommend){
-                $("#recommend").css("visibility","visible");
-            }else{
-                $("#recommend").css("visibility","hidden");
-            }
+            // if(this.isRecommend){
+            //     $("#recommend").css("visibility","visible");
+            // }else{
+            //     $("#recommend").css("visibility","hidden");
+            // }
 
         },
 
@@ -1264,7 +1261,7 @@ export default {
             this.isSingerShow = false;
             this.isCoverShow = false;
 
-            document.getElementById("showSearchEm").innerHTML = "显示搜索";
+            // document.getElementById("showSearchEm").innerHTML = "显示搜索";
             this.viewShow = false;
             this.showSuggest = false;
             switch (type) {
@@ -1304,7 +1301,7 @@ export default {
                     break;
             }
             this.isCoverShow = true;
-            document.getElementById("showSearchEm").innerHTML = "隐藏搜索";
+            // document.getElementById("showSearchEm").innerHTML = "隐藏搜索";
         },
 
         getDefaultKeyword: function() {
@@ -1352,11 +1349,11 @@ export default {
         getSearchSuggest: function() {
             if (this.keyWord == "") {
                 this.showSuggest = false;
-                $("#searchSuggest").css("visibility", "hidden");
+                // $("#searchSuggest").css("visibility", "hidden");
                 return;
             } else {
                 this.showSuggest = true;
-                $("#searchSuggest").css("visibility", "visible");
+                // $("#searchSuggest").css("visibility", "visible");
             }
             this.$axios.get('/search/suggest?keywords=' + this.keyWord).then((response) => {
                 /*对搜索建议解析*/
@@ -1626,17 +1623,18 @@ export default {
         },
 
         searchShow: function() {
-            if (document.getElementById("showSearchEm").innerHTML == "隐藏搜索") {
+            if (this.isCoverShow) {
                 this.isCoverShow = false;
                 this.isShow = false;
                 this.isSongListShow = false;
                 this.isAlbumShow = false;
                 this.isSingerShow = false;
-                document.getElementById("showSearchEm").innerHTML = "显示搜索";
             } else {
+                if(Object.keys(this.songList).length === 0) {
+                    this.search()
+                }
                 this.isCoverShow = true;
                 this.isShow = true;
-                document.getElementById("showSearchEm").innerHTML = "隐藏搜索";
             }
         },
 

@@ -69,7 +69,7 @@ $(document).ready(function () {
 
     var scrollFunc = function (e) {//添加鼠标滚动监听事件
         // if (Object.prototype.toString.call(e.target) == "[object HTMLHtmlElement]" && e.wheelDelta) {//IE/Opera/Chrome
-        if (e.target.id === 'thecomments' && e.wheelDelta) {//IE/Opera/Chrome
+        if ((e.target.id === 'thecomments' || e.target.id.substring(0, 3) === 'com') && e.wheelDelta) {//IE/Opera/Chrome
             deltaTimer[1] = new Counter(e.wheelDelta / 5, 1000 / 20 * 1, -1);//del1--鼠标滑动歌词
             e.stopPropagation();
         }
@@ -84,7 +84,7 @@ $(document).ready(function () {
     let startX,startY,moveEndX,moveEndY,X,Y;
 
     $(document).on("touchstart", function (e) {
-        if (e.target.id === 'thecomments') {
+        if (e.target.id === 'thecomments' || e.target.id.substring(0, 3) === 'com') {
             startX = e.originalEvent.changedTouches[0].pageX,
             startY = e.originalEvent.changedTouches[0].pageY;
         }
@@ -92,7 +92,7 @@ $(document).ready(function () {
     });
     $(document).on("touchmove", function (e) {
         // e.preventDefault();
-        if (e.target.id === 'thecomments') {
+        if (e.target.id === 'thecomments' || e.target.id.substring(0, 3) === 'com') {
             moveEndX = e.originalEvent.changedTouches[0].pageX,
             moveEndY = e.originalEvent.changedTouches[0].pageY,
             X = moveEndX - startX,
