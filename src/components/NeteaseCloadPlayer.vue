@@ -951,6 +951,8 @@ export default {
                 if (this.curMusic.id) {
                     this.playMusic(this.curMusic, false);
                     // this.getCover(this.curMusic);
+                } else {
+                    this.noSongPlay = true;
                 }
             } else {
                 this.noSongPlay = true;
