@@ -31,6 +31,28 @@ body {
     overflow-x: hidden;
 }
 
+#songdetail_widget {
+    display: none;
+    z-index: 300;
+}
+
+.closeSearch {
+    position: fixed;
+    z-index: 350;
+    left: 50px;
+    top: 135px;
+    width: 50px;
+    height: 50px;
+    background-color: white;
+    background-image: url('back.png');
+    background-size: cover;
+    background-position: -1px -1px;
+    background-repeat: no-repeat;
+    border: 2px solid black;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
 #canvas1 {
     /* 画布大小不能通过修改css实现 */
     top: 0;

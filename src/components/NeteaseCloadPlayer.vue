@@ -80,7 +80,7 @@
         <div id="top">
             <!--顶部导航栏-->
             <div id="search">
-                <a id="HTMLreset" href="javascript:;" @click="clearLocalStorage()">页面卡死请点击这里</a>
+                <a id="HTMLreset" href="javascript:;" @click="clearLocalStorage()">刷新页面</a>
                 <div id="RtxSwitchDiv">
                     <a id="RtxSwitch" href="javascript:;" @click="switchRtx()">{{ rtx }}</a>
                 </div>
@@ -115,14 +115,16 @@
             <ul id="nav">
                 <li class="nav_white_space_1"></li>
                 <li><a class="nava" href="#" @click="switchRecommend()"><em class="navitem">推荐</em></a></li>
-                <li><a class="nava" href="#" @click="switchSongList()"><em class="navitem">歌单</em></a></li>
-                <li><a class="nava" href="#" @click="switchAlbum()"><em class="navitem">专辑</em></a></li>
-                <li><a class="nava" href="#" @click="switchSinger()"><em class="navitem">歌手</em></a></li>
+                <li><a :class="`nava${Object.keys(this.curPlayList).length === 0 ? ' nava_disable' : ''}`" href="#" @click="switchSongList()"><em class="navitem">歌单</em></a></li>
+                <li><a :class="`nava${Object.keys(this.curAlbum).length === 0 ? ' nava_disable' : ''}`" href="#" @click="switchAlbum()"><em class="navitem">专辑</em></a></li>
+                <li><a :class="`nava${Object.keys(this.curSinger).length === 0 ? ' nava_disable' : ''}`" href="#" @click="switchSinger()"><em class="navitem">歌手</em></a></li>
                 <li class="nav_white_space_2"></li>
                 <li id="showSearch"><a class="nava" href="#" @click="searchShow()"><em class="navitem"
                             id="showSearchEm">显示搜索</em></a></li>
             </ul>
         </div>
+
+        <div v-if="isCoverShow && !isShow" class="closeSearch" @click="shutDown('')"></div>
 
         <div v-show="isCoverShow" id="searchResultCover"></div>
         <div v-if="isShow" id="searchResult">
@@ -179,17 +181,27 @@
         <audio id="player" :src='curMusic.url'></audio>
         <!-- <em id="show" style="width:100px;height:100px;background:white;position: fixed;top:10px;left:10px;top:200px"></em> -->
 
+        <div id="songdetail_widget">
+            <div class="curcover"></div>
+            <!-- 当前歌曲图片 -->
+            <div id="playerdiv5">
+                <p id="songname">{{curMusic.name || '歌曲名'}}</p>
+                <!-- 歌曲名歌曲信息 -->
+                <p id="songdetail">{{curMusic.allSinger || '歌手名'}}</p>
+            </div>
+        </div>
+
         <div id="pull">
             <!--拉条-->
             <div id="playerdiv">
                 <!--播放器框架-->
                 <div id="playerdiv3">
-                    <div id="curcover"></div>
+                    <div class="curcover"></div>
                     <!-- 当前歌曲图片 -->
                     <div id="playerdiv5">
-                        <p id="songname">歌曲名</p>
+                        <p id="songname">{{curMusic.name || '歌曲名'}}</p>
                         <!-- 歌曲名歌曲信息 -->
-                        <p id="songdetail">歌手</p>
+                        <p id="songdetail">{{curMusic.allSinger || '歌手名'}}</p>
                     </div>
                 </div>
 
@@ -523,7 +535,7 @@
                             </div>
                         </div>
                         <div class="historyviedoplay" v-if="item.mv != 0" @click='playMVById(item.mv)'></div>
-                        <div class="HLCancle" href="javascript:;" @click="removeHLitem(item.id)"></div>
+                        <div class="HLCancel" href="javascript:;" @click="removeHLitem(item.id)"></div>
                     </li>
                 </ul>
 
@@ -544,7 +556,7 @@
                             </div>
                         </div>
                         <div class="historyviedoplay" v-if="item.mv != 0" @click='playMVById(item.mv)'></div>
-                        <div class="HLCancle" href="javascript:;" @click="removeSLitem(item.id)"></div>
+                        <div class="HLCancel" href="javascript:;" @click="removeSLitem(item.id)"></div>
                     </li>
                 </ul>
             </div>
@@ -605,10 +617,12 @@ export default {
             coverUrl: '',
             // 歌曲评论
             comments: [],
-            // 单曲搜索结果的显示状态
-            isShow: false,
+
             // 搜索结果的显示背景
             isCoverShow: false,
+
+            // 单曲搜索结果的显示状态
+            isShow: false,
             // 歌单搜索结果的显示
             isSongListShow: false,
             // 专辑搜索结果的显示        
@@ -1064,7 +1078,7 @@ export default {
                 this.$axios.get('/album?id=' + song.al.id).then((response)=>{
                     for(let i = 0;i < response.data.songs.length;i++){
                         if(response.data.songs[i].al.id == song.al.id) {
-                            $('#curcover').css('background-image', 'url(' + response.data.songs[i].al.picUrl + "?param=120y120?)");
+                            $('.curcover').css('background-image', 'url(' + response.data.songs[i].al.picUrl + "?param=120y120?)");
                             // document.getElementById("curcover").src = response.data.songs[i].al.picUrl + "?param=120y120?";
                             break;
                         }
@@ -1126,7 +1140,7 @@ export default {
                 if(this.noSongPlay) {
                     this.$axios.get('/personalized/newsong?limit=1').then((response) => {
                         this.playMusic(response.data.result[0], false)
-                        this.$message.info('已为您自动载入推荐歌曲')
+                        this.$message('已为您自动载入推荐歌曲')
                     })
                 }
             })
@@ -1370,13 +1384,15 @@ export default {
                     this.curMusic.url = response.data.data[0].url;
                     this.shutDown("");
 
-                    document.getElementById("songname").innerHTML = this.curMusic.name;
+                    // document.getElementById("songname").innerHTML = this.curMusic.name;
 
-                    document.getElementById("songdetail").innerHTML = "";
+                    // document.getElementById("songdetail").innerHTML = "";
+                    let allSinger = ""
                     for (let i = 0; i < this.curMusic.ar.length; i++) {
-                        document.getElementById("songdetail").innerHTML += this.curMusic.ar[i].name;
-                        if (i != this.curMusic.ar.length - 1) document.getElementById("songdetail").innerHTML += " / ";
+                        allSinger += this.curMusic.ar[i].name;
+                        if (i != this.curMusic.ar.length - 1) allSinger += " / ";
                     }
+                    this.curMusic.allSinger = allSinger
 
                     cursonglrc = [];
                     currentLine = 0;
@@ -1584,12 +1600,12 @@ export default {
             target.style.transform = '';
         },
 
-        // addCancle:function($event){
+        // addCancel:function($event){
         //     let target = $event.currentTarget.lastElementChild;
         //     target.style.display = 'inline-block';
         // },
 
-        // removeCancle:function($event){
+        // removeCancel:function($event){
         //     let target = $event.currentTarget.lastElementChild;
         //     target.style.display = 'none';
         // },
@@ -1642,7 +1658,7 @@ export default {
             } else {
                 this.islock = locktype;
             }
-            let pull = document.getElementById("pull");
+            // let pull = document.getElementById("pull");
             if (this.islock) {
                 // $("#pull").css("bottom", "-2px");
                 $('#pull').addClass('pull_lock');
@@ -1685,26 +1701,26 @@ export default {
         },
 
         switchSongList: function() {
-            if (this.curPlayList != "") {
+            if (Object.keys(this.curPlayList).length !== 0) {
                 this.shutDown("歌单");
             } else {
-                this.$message.info("请先搜索歌单！");
+                this.$message("请先搜索歌单！");
             }
         },
 
         switchAlbum: function() {
-            if (this.curAlbum != "") {
+            if (Object.keys(this.curAlbum).length !== 0) {
                 this.shutDown("专辑");
             } else {
-                this.$message.info("请先搜索专辑！");
+                this.$message("请先搜索专辑！");
             }
         },
 
         switchSinger: function() {
-            if (this.curSinger != "") {
+            if (Object.keys(this.curSinger).length !== 0) {
                 this.shutDown("歌手");
             } else {
-                this.$message.info("请先搜索歌手！");
+                this.$message("请先搜索歌手！");
             }
         },
 

@@ -186,7 +186,7 @@
 }
 
 /* 当前歌曲图片 */
-#curcover{
+.curcover{
     display: inline-block;
     box-sizing: border-box;
     width: 60px;
@@ -422,7 +422,7 @@
     text-align: left;
     margin-left: 20px;
 }
-.hylistli:hover .HLCancle,.Plistli:hover .HLCancle{
+.hylistli:hover .HLCancel,.Plistli:hover .HLCancel{
     display: inline-block;
 }
 
@@ -443,12 +443,12 @@
     background-size: cover;
 }
 
-.HLCancle{
+.HLCancel{
     width: 20px;
     height: 20px;
     float: right;
     display: none;
     vertical-align: middle;
-    background-image: url('cancle.png');
+    background-image: url('Cancel.png');
     background-size: cover;
 }

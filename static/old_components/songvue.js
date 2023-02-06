@@ -817,12 +817,12 @@ var search = new Vue({
             target.style.transform = '';
         },
 
-        // addCancle:function($event){
+        // addCancel:function($event){
         //     let target = $event.currentTarget.lastElementChild;
         //     target.style.display = 'inline-block';
         // },
 
-        // removeCancle:function($event){
+        // removeCancel:function($event){
         //     let target = $event.currentTarget.lastElementChild;
         //     target.style.display = 'none';
         // },
