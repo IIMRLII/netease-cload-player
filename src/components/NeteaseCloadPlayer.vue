@@ -181,7 +181,7 @@
         <!-- <em id="show" style="width:100px;height:100px;background:white;position: fixed;top:10px;left:10px;top:200px"></em> -->
 
         <div id="songdetail_widget">
-            <div id="phone_curcover" class="curcover curcover_ani" @click="playNow()"></div>
+            <div id="phone_curcover" class="curcover" @click="playNow()"></div>
             <!-- 当前歌曲图片 -->
             <div id="playerdiv5">
                 <p id="songname">{{curMusic.name || '歌曲名'}}</p>
@@ -897,12 +897,14 @@ export default {
             if(audioPlayer.paused){
                 play.title = "play"
                 $('#play').removeClass("play_pause");
-                $('#phone_curcover').removeClass("curcover_ani");
+                // $('#phone_curcover').removeClass("curcover_ani");
+                $('#phone_curcover').css("animationPlayState", "paused");
                 // play.style.backgroundImage = 'url("../assets/css/player/play.png")';
             }else{
                 play.title = "pause"
                 $('#play').addClass("play_pause");
-                $('#phone_curcover').addClass("curcover_ani");
+                // $('#phone_curcover').addClass("curcover_ani");
+                $('#phone_curcover').css("animationPlayState", "");
                 // play.style.backgroundImage = 'url("../assets/css/player/pause.png")';
             }
 

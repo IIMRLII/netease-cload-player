@@ -151,12 +151,12 @@
         height: 80px;
         border-radius: 50%;
         border: none;
-        animation: curcover_glitter 5s linear 0s infinite alternate;
-    }
-
-    .curcover_ani {
         animation: curcover_rotate 30s linear 0s infinite, curcover_glitter 5s linear 0s infinite alternate;
     }
+
+    /* .curcover_ani {
+        animation: curcover_rotate 30s linear 0s infinite, curcover_glitter 5s linear 0s infinite alternate;
+    } */
 
     #playerdiv5 {
         min-width: auto;
