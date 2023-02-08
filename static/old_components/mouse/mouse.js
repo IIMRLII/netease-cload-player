@@ -54,8 +54,6 @@ function mouseTailPainter() {
         tempPos = pos;
     }
 
-    mouseParticalTimer();
-
     if (mouseArray.length > 0) { //画鼠标方块
         let pos = {
             x: mouseArray[mouseArray.length - 1].x,

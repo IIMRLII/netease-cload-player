@@ -28,7 +28,6 @@ function partical(x,y,time,vx,vy,fvx,fvy,size,fsize,r,g,b,fr,fg,fb,ang,fang){
 
 function mouseParticalTimer(){
     if(mouseParticle.length == 0)return ;
-    mouseParticalPainter();
     for(let i = mouseParticle.length - 1;i >= 0;i--){
         let p = mouseParticle[i];
         p.x = p.x + p.vx;

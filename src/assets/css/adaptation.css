@@ -126,7 +126,7 @@
         margin: 0;
         width: 80px;
         height: 140px;
-        z-index: -1000;
+        z-index: 210;
     }
 
     /* #songdetail_widget::after {
@@ -151,6 +151,10 @@
         height: 80px;
         border-radius: 50%;
         border: none;
+        animation: curcover_glitter 5s linear 0s infinite alternate;
+    }
+
+    .curcover_ani {
         animation: curcover_rotate 30s linear 0s infinite, curcover_glitter 5s linear 0s infinite alternate;
     }
 

@@ -4,8 +4,8 @@ function resizeCanvas() {//画布大小不能通过修改css实现
     $("#canvas1").attr("width", window.innerWidth);  
     $("#canvas1").attr("height", window.innerHeight);
     
-    $("#canvas2").attr("width", window.innerWidth);  
-    $("#canvas2").attr("height", window.innerHeight); 
+    // $("#canvas2").attr("width", window.innerWidth);  
+    // $("#canvas2").attr("height", window.innerHeight); 
 }
 
 function frontPainter(){//canvas1绘制鼠标
@@ -16,6 +16,7 @@ function frontPainter(){//canvas1绘制鼠标
     c.width  = c.width;//清空画布
 
     mouseTailPainter();//画鼠标拖尾
+    mouseParticalPainter();//画鼠标粒子
     starPainter();//画星星
 }
 

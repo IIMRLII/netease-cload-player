@@ -181,7 +181,7 @@
         <!-- <em id="show" style="width:100px;height:100px;background:white;position: fixed;top:10px;left:10px;top:200px"></em> -->
 
         <div id="songdetail_widget">
-            <div class="curcover"></div>
+            <div id="phone_curcover" class="curcover curcover_ani" @click="playNow()"></div>
             <!-- 当前歌曲图片 -->
             <div id="playerdiv5">
                 <p id="songname">{{curMusic.name || '歌曲名'}}</p>
@@ -283,7 +283,7 @@
                     </div>
                     <div>简介：{{ curPlayList.description }}</div>
                 </div>
-                <h3 align="left" style="margin: -10px 0 10px 20px">精彩评论</h3>
+                <h3 align="left" style="margin: 0px 0 20px 20px">精彩评论</h3>
                 <div id="curSongListComment">
                     <ul id="curSongListCommentUl">
                         <li class="curSongListCommentLi" v-for="(item, index) in curPlayListComment" :key="index">
@@ -362,7 +362,7 @@
                     </div>
                     <div>简介：{{ curAlbum.description }}</div>
                 </div>
-                <h3 align="left" style="margin: -10px 0 10px 20px">精彩评论</h3>
+                <h3 align="left" style="margin: 0px 0 20px 20px">精彩评论</h3>
                 <div id="curAlbumComment">
                     <ul id="curAlbumCommentUl">
                         <li class="curAlbumCommentLi" v-for="(item, index) in curAlbumComment" :key="index">
@@ -379,6 +379,7 @@
 
             <div id="curAlbumSongs">
                 <div id="AlbumSearchResult">
+                    <!-- <h2 align="left" style="margin: 20px 0 10px 10px">专辑内容</h2> -->
                     <ul id="tips">
                         <li>
                             <p class="songName">歌曲标题</p>
@@ -435,7 +436,7 @@
                     <div>MV数：{{ curSinger.mvSize }}</div>
                     <div>简介：{{ curSinger.briefDesc }}</div>
                 </div>
-                <h3 align="left" style="margin: -10px 0 10px 20px">歌手详情</h3>
+                <h3 align="left" style="margin: 0px 0 20px 20px">歌手详情</h3>
                 <div id="curSingerAlbum">
                     <ul id="curSingerAlbumUl">
                         <li class="curSingerAlbumLi" v-for="(item, index) in curSingerDesc" :key="index">
@@ -688,6 +689,7 @@ export default {
         this.getDefaultKeyword();
         this.init();
 
+        //图片慢加载
         $('#background_star').css('background-image', `url(${require('../assets/css/background/darkspace-min.jpg')})`)
         $('#background_earth').css('background-image', `url(${require('../assets/css/background/earth-min.png')})`)
 
@@ -895,10 +897,12 @@ export default {
             if(audioPlayer.paused){
                 play.title = "play"
                 $('#play').removeClass("play_pause");
+                $('#phone_curcover').removeClass("curcover_ani");
                 // play.style.backgroundImage = 'url("../assets/css/player/play.png")';
             }else{
                 play.title = "pause"
                 $('#play').addClass("play_pause");
+                $('#phone_curcover').addClass("curcover_ani");
                 // play.style.backgroundImage = 'url("../assets/css/player/pause.png")';
             }
 
