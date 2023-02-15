@@ -73,7 +73,15 @@
 
 
         <div id="locatevplay" v-if="viewShow">
-            <video id="vplay" :src="mvUrl" class="media" controls="controls"></video>
+            <!-- 兼容性处理 -->
+            <video id="vplay" class="media" controls="controls">
+                <source :src="mvUrl" type="video/mp4">
+                <source :src="mvUrl" type="video/ogg">
+                <source :src="mvUrl" type="video/webm">
+                <object :data="mvUrl" width="320" height="240">
+                    <embed :src="mvUrl" width="320" height="240">
+                </object>
+            </video>
         </div>
         <div class="mask" v-if="viewShow" @click="closeMv()"></div>
 
@@ -177,7 +185,11 @@
             </ul>
         </div>
 
-        <audio id="player" :src='curMusic.url'></audio>
+        <audio id="player" >
+            <source :src="curMusic.url" type="audio/mpeg">
+            <source :src="curMusic.url" type="audio/ogg">
+            <embed height="50" width="100" :src="curMusic.url">
+        </audio>
         <!-- <em id="show" style="width:100px;height:100px;background:white;position: fixed;top:10px;left:10px;top:200px"></em> -->
 
         <div id="songdetail_widget">
