@@ -183,9 +183,26 @@
             <ul id="lrc">
 
             </ul>
+            <!-- 歌词特效 -->
+            <div id="animated_lrc">
+                <div id="animated_lrc_top">
+                    <p id="animated_lrc_0"></p>
+                </div>
+                <div id="animated_lrc_blk_top">
+                    <p id="animated_lrc_blk_0"></p>
+                </div>
+
+                <div id="animated_lrc_bottom">
+                    <p id="animated_lrc_1"></p>
+                </div>
+                <div id="animated_lrc_blk_bottom">
+                    <p id="animated_lrc_blk_1"></p>
+                </div>
+            </div>
         </div>
 
-        <audio id="player" >
+        <audio id="player">
+            <!-- 提高兼容性 -->
             <source :src="curMusic.url" type="audio/mpeg">
             <source :src="curMusic.url" type="audio/ogg">
             <embed height="50" width="100" :src="curMusic.url">
@@ -590,6 +607,7 @@
 
 <!-- <script type="text/javascript" src="@/old_components/init.js"></script> -->
 <script>
+import 'animate.css';
 import getVm from '../../static/old_components/util/getVm.js';
 import BigDipper from '@/components/BigDipper';
 export default {
@@ -729,6 +747,27 @@ export default {
                 e.stopPropagation(); //currentTarget始终是监听事件者，而target是事件的真正发出者
             } else {
                 that.lockpull();
+            }
+        })
+
+        // 键盘事件
+        $(window).on('keydown', function(e) {
+            switch(e.keyCode) {  
+                case 32:
+                    // 按下空格
+                    that.playNow();
+                    e.stopPropagation();
+                    return;  
+                case 37:  
+                    // 按下向左
+                    player.currentTime -= 5;
+                    e.stopPropagation();
+                    return;  
+                case 39:  
+                    // 按下向右
+                    player.currentTime += 5;
+                    e.stopPropagation();
+                    return;  
             }
         })
 
@@ -1136,7 +1175,7 @@ export default {
                                 lrc = response.data.lrc.lyric;
                                 get_timeAndlrc(lrc);
                             }
-
+                            changeLrcAnimation(currentLine)
                         },
                         function (err) { }
                     );
@@ -1745,6 +1784,7 @@ export default {
 </script>
 <style src="../assets/css/main.css" />
 <style src="../assets/css/lrc/lrc.css" />
+<style src="../assets/css/lrc/animated_lrc.css" />
 <style src="../assets/css/player/player.css" />
 <style src="../assets/css/top/top.css" />
 <style src="../assets/css/search/search.css" />

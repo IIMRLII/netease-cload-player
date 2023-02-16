@@ -1,7 +1,7 @@
 var lrc = "";
 
 var currentTime = 0;
-var currentLine = 0;
+var currentLine = 0;//当前行index
 
 var cursonglrc = new Array();
 
@@ -159,6 +159,124 @@ function deltaCounter() {//反函数递减数
 
 setInterval("deltaCounter()", 20);
 
+var animationEnterType = [
+    "backInDown",
+    "backInLeft",
+    "backInRight",
+    "backInUp",
+
+    "bounceIn",
+    "bounceInDown",
+    "bounceInLeft",
+    "bounceInRight",
+    "bounceInUp",
+
+    "fadeIn",
+    "fadeInDown",
+    "fadeInDownBig",
+    "fadeInLeft",
+    "fadeInLeftBig",
+    "fadeInRight",
+    "fadeInRightBig",
+    "fadeInUp",
+    "fadeInUpBig",
+    "fadeInTopLeft",
+    "fadeInTopRight",
+    "fadeInBottomLeft",
+    "fadeInBottomRight",
+
+    "rotateIn",
+    "rotateInDownLeft",
+    "rotateInDownRight",
+    "rotateInUpLeft",
+    "rotateInUpRight",
+
+    "zoomIn",
+    "zoomInDown",
+    "zoomInLeft",
+    "zoomInRight",
+    "zoomInUp",
+
+    "slideInDown",
+    "slideInLeft",
+    "slideInRight",
+    "slideInUp"
+]
+
+var animationExitType = [
+    "backOutDown",
+    "backOutLeft",
+    "backOutRight",
+    "backOutUp",
+
+    "bounceOut",
+    "bounceOutDown",
+    "bounceOutLeft",
+    "bounceOutRight",
+    "bounceOutUp",
+
+    "fadeOut",
+    "fadeOutDown",
+    "fadeOutDownBig",
+    "fadeOutLeft",
+    "fadeOutLeftBig",
+    "fadeOutRight",
+    "fadeOutRightBig",
+    "fadeOutUp",
+    "fadeOutUpBig",
+    "fadeOutTopLeft",
+    "fadeOutTopRight",
+    "fadeOutBottomLeft",
+    "fadeOutBottomRight",
+
+    "rotateOut",
+    "rotateOutDownLeft",
+    "rotateOutDownRight",
+    "rotateOutUpLeft",
+    "rotateOutUpRight",
+
+    "zoomOut",
+    "zoomOutDown",
+    "zoomOutLeft",
+    "zoomOutRight",
+    "zoomOutUp",
+
+    "slideOutDown",
+    "slideOutLeft",
+    "slideOutRight",
+    "slideOutUp"
+]
+
+function changeLrcAnimation(currentLine) {
+    if($("#slrc" + currentLine)[0]) {//如果当前行存在
+        let top, bottom;
+        if(currentLine % 2 === 0) {
+            top = 'top'
+            bottom = 'bottom'
+        } else {
+            top = 'bottom'
+            bottom = 'top'
+        }
+        $("#animated_lrc_" + currentLine % 2).text($("#slrc" + currentLine).text())
+        $("#animated_lrc_blk_" + currentLine % 2).text($("#slrc" + currentLine).text())
+        
+         $("#animated_lrc_top").removeClass()
+        $("#animated_lrc_bottom").removeClass()
+        
+        $("#animated_lrc_blk_top").removeClass()
+        $("#animated_lrc_blk_bottom").removeClass()
+        // 相同的进出动画
+        let animationEnterIndex = Math.floor(animationEnterType.length * Math.random())
+        $("#animated_lrc_" + top).addClass("animate__animated animate__" + animationEnterType[animationEnterIndex])
+        // let animationExitType = Math.floor(animationExitType.length * Math.random())
+        $("#animated_lrc_" + bottom).addClass("animate__animated animate__" + animationExitType[animationEnterIndex])
+        
+        $("#animated_lrc_blk_" + top).addClass("animate__animated animate__" + animationEnterType[animationEnterIndex])
+        // let animationExitType = Math.floor(animationExitType.length * Math.random())
+        $("#animated_lrc_blk_" + bottom).addClass("animate__animated animate__" + animationExitType[animationEnterIndex])
+    }
+}
+
 function getLine() {
     var perc;
 
@@ -176,6 +294,8 @@ function getLine() {
                         ppxx = $("#lrcbg").height() / 2 + $("#top").height() / 2 - 30 - (currentLine * 40);
                         deltaTimer[0] = new Counter(40, 1000 / 20 * 0.5, -1);//del0--歌词自动滑动
                     }
+
+                    changeLrcAnimation(currentLine);
                 }
 
                 perc = (currentTime - cursonglrc[j].time) / (cursonglrc[j + 1].time - cursonglrc[j].time);//当前歌词粒子效果 变白
@@ -256,8 +376,8 @@ function getLine() {
         $("#whiteblk").css("width", patpos.width + "px");
         $("#whiteblk").css("top", patpos.y - document.getElementById("lrcbg").getBoundingClientRect().y + "px");
 
-        $("#whitelrc").css("innerHTML", patpos.width + "px");
-        $("#whitelrc").html($("#slrc" + currentLine).html());
+        // $("#whitelrc").css("innerHTML", patpos.width + "px");
+        $("#whitelrc").text($("#slrc" + currentLine).text());
         $("#whitelrc").css("width", perc * patpos.width + "px");
         $("#whitelrc").css("opacity", $("#slrc" + currentLine).css("opacity"));
 
@@ -273,6 +393,27 @@ function getLine() {
         } else {
             $("#whitelrc").css("color", "white");
         }
+
+        let patpos2 = document.getElementById("animated_lrc_0").getBoundingClientRect();
+
+        // $("#animated_lrc_blk_top").css("width", patpos2.width + "px");
+        // $("#animated_lrc_blk_top").css("top", patpos2.y - document.getElementById("lrcbg").getBoundingClientRect().y + "px");
+
+        // $("#whitelrc").css("innerHTML", patpos.width + "px");
+        // $("#animated_lrc_blk_0").text($("#slrc" + currentLine).text());
+        $("#animated_lrc_blk_0").css("width", perc * patpos2.width + "px");
+        // $("#animated_lrc_blk_0").css("opacity", $("#slrc" + currentLine).css("opacity"));
+        
+        let patpos3 = document.getElementById("animated_lrc_1").getBoundingClientRect();
+
+        // $("#animated_lrc_blk_bottom").css("width", patpos3.width + "px");
+        // $("#animated_lrc_blk_bottom").css("top", patpos3.y - document.getElementById("lrcbg").getBoundingClientRect().y + "px");
+
+        // $("#whitelrc").css("innerHTML", patpos.width + "px");
+        // $("#animated_lrc_blk_1").text($("#slrc" + currentLine).text());
+        $("#animated_lrc_blk_1").css("width", perc * patpos3.width + "px");
+        // $("#animated_lrc_blk_1").css("opacity", $("#slrc" + currentLine).css("opacity"));
+
     }
     // document.getElementById("show").innerHTML = dellrc+" "+baseh +" "+ currow;///////////////////////////////////////////
 

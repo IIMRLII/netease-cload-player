@@ -42,7 +42,7 @@ function commentsCounter(){
                     tc.use = true;
                     curSongComments.push(tc);
 
-                    document.getElementById("thecomments").innerHTML += "<div id='com" + i + "'><img src=" + tc.img + "></img><p>" + tc.comment + "</p></div>";
+                    document.getElementById("thecomments").innerHTML += "<div id='com" + i + "'><img src=" + tc.img + "></img><p title=" + tc.comment +">" + tc.comment + "</p></div>";
                     
                     // search.$options.methods.addmouselistener("#com" + i);
                     // document.getElementById("com" + i).addEventListener("mouseover", function(){

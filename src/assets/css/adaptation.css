@@ -1,6 +1,11 @@
 /* 移动端适配 */
 @media only screen and (max-width: 500px) {
 
+    /* 取消歌词特效 */
+    #animated_lrc {
+        display: none;
+    }
+
     /* 消息大小适配 */
     .el-message {
         min-width: 90%;

@@ -91,4 +91,8 @@ body{
     overflow: hidden;
     text-overflow: clip;
     white-space: nowrap;
+
+    /* background-clip: text;
+    -webkit-background-clip: text;
+    background-image: linear-gradient(to bottom, #FEF2DC 0%, #FADDA7 100%); */
 }

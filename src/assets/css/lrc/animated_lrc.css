@@ -1,0 +1,116 @@
+#animated_lrc {
+    /* You Yuan描边不好看 */
+    font-family: 'Avenir';
+    position: absolute;
+    width: 100vw;
+    height: 80vh;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 100px;
+    font-weight: 600;
+    text-align: left;
+    color: transparent;
+    /* 文字描边 */
+    -webkit-text-stroke: 1px #aaaaaa;
+}
+
+/* top */
+#animated_lrc_top {
+    position: relative;
+    box-sizing: border-box;
+    width: 100vw;
+    height: 50%;
+    padding-left: 5vw;
+    padding-right: 45vw;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+#animated_lrc_0 {
+    margin: 0;
+    line-height: normal;
+    background-clip: text;
+    -webkit-background-clip: text;
+    /* 土豪金渐变配色 */
+    background-color: white;
+
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
+}
+
+#animated_lrc_blk_top {
+    position: absolute;
+    box-sizing: border-box;
+    width: 100vw;
+    height: 50%;
+    top: 0;
+    padding-left: 5vw;
+    padding-right: 45vw;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+#animated_lrc_blk_0 {
+    margin: 0;
+    line-height: normal;
+    background-clip: text;
+    -webkit-background-clip: text;
+    /* 土豪金渐变配色 */
+    background-image: linear-gradient(to bottom, #FEF2DC 0%, #FADDA7 100%);
+
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
+}
+
+
+/* bottom */
+#animated_lrc_bottom {
+    position: relative;
+    box-sizing: border-box;
+    width: 100vw;
+    height: 50%;
+    padding-left: 45vw;
+    padding-right: 5vw;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+#animated_lrc_1 {
+    margin: 0;
+    line-height: normal;
+    background-clip: text;
+    -webkit-background-clip: text;
+    /* 土豪金渐变配色 */
+    background-color: white;
+
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
+}
+
+#animated_lrc_blk_bottom {
+    position: absolute;
+    box-sizing: border-box;
+    width: 100vw;
+    height: 50%;
+    top: 50%;
+    padding-left: 45vw;
+    padding-right: 5vw;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+#animated_lrc_blk_1 {
+    margin: 0;
+    line-height: normal;
+    background-clip: text;
+    -webkit-background-clip: text;
+    /* 土豪金渐变配色 */
+    background-image: linear-gradient(to bottom, #FEF2DC 0%, #FADDA7 100%);
+
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
+}
