@@ -409,7 +409,7 @@ function getLine() {
         let span = $("#animated_lrc_span_0");
         let marginLeft = parseFloat(span.css("margin-left").slice(0, -2));//0px , -px
         if(marginLeft + span.width() > blk.width() && marginLeft + perc * span.width() > blk.width() / 2) {//提前一半滚动
-            span.css("margin-left", marginLeft - 10)
+            span.css("margin-left", marginLeft - 5)
             $("#animated_lrc_blk_span_0").css("margin-left", marginLeft - 5)
         }
 
@@ -417,7 +417,7 @@ function getLine() {
         let span2 = $("#animated_lrc_span_1");
         let marginLeft2 = parseFloat(span2.css("margin-left").slice(0, -2));//0px , -px
         if(marginLeft2 + span2.width() > blk2.width() && marginLeft2 + perc * span2.width() > blk2.width() / 2) {//提前一半滚动
-            span2.css("margin-left", marginLeft2 - 10)
+            span2.css("margin-left", marginLeft2 - 5)
             $("#animated_lrc_blk_span_1").css("margin-left", marginLeft2 - 5)
         }
         
