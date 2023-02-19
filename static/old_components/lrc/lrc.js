@@ -257,10 +257,14 @@ function changeLrcAnimation(currentLine) {
             top = 'bottom'
             bottom = 'top'
         }
-        $("#animated_lrc_" + currentLine % 2).text($("#slrc" + currentLine).text())
-        $("#animated_lrc_blk_" + currentLine % 2).text($("#slrc" + currentLine).text())
+
+        $("#animated_lrc_span_" + currentLine % 2).text($("#slrc" + currentLine).text())
+        $("#animated_lrc_blk_span_" + currentLine % 2).text($("#slrc" + currentLine).text())
         
-         $("#animated_lrc_top").removeClass()
+        $("#animated_lrc_span_" + currentLine % 2).css("margin-left", 0)
+        $("#animated_lrc_blk_span_" + currentLine % 2).css("margin-left", 0)
+
+        $("#animated_lrc_top").removeClass()
         $("#animated_lrc_bottom").removeClass()
         
         $("#animated_lrc_blk_top").removeClass()
@@ -370,7 +374,7 @@ function getLine() {
         }
     }
 
-    if (document.getElementById("slrc" + currentLine)) {//白色遮挡
+    if (document.getElementById("slrc" + currentLine)) {//歌词进度条，白色遮挡
         let patpos = document.getElementById("slrc" + currentLine).getBoundingClientRect();
 
         $("#whiteblk").css("width", patpos.width + "px");
@@ -394,26 +398,29 @@ function getLine() {
             $("#whitelrc").css("color", "white");
         }
 
-        let patpos2 = document.getElementById("animated_lrc_0").getBoundingClientRect();
-
-        // $("#animated_lrc_blk_top").css("width", patpos2.width + "px");
-        // $("#animated_lrc_blk_top").css("top", patpos2.y - document.getElementById("lrcbg").getBoundingClientRect().y + "px");
-
-        // $("#whitelrc").css("innerHTML", patpos.width + "px");
-        // $("#animated_lrc_blk_0").text($("#slrc" + currentLine).text());
+        // 土豪金歌词进度
+        let patpos2 = document.getElementById("animated_lrc_span_0").getBoundingClientRect();
         $("#animated_lrc_blk_0").css("width", perc * patpos2.width + "px");
-        // $("#animated_lrc_blk_0").css("opacity", $("#slrc" + currentLine).css("opacity"));
-        
-        let patpos3 = document.getElementById("animated_lrc_1").getBoundingClientRect();
-
-        // $("#animated_lrc_blk_bottom").css("width", patpos3.width + "px");
-        // $("#animated_lrc_blk_bottom").css("top", patpos3.y - document.getElementById("lrcbg").getBoundingClientRect().y + "px");
-
-        // $("#whitelrc").css("innerHTML", patpos.width + "px");
-        // $("#animated_lrc_blk_1").text($("#slrc" + currentLine).text());
+        let patpos3 = document.getElementById("animated_lrc_span_1").getBoundingClientRect();
         $("#animated_lrc_blk_1").css("width", perc * patpos3.width + "px");
-        // $("#animated_lrc_blk_1").css("opacity", $("#slrc" + currentLine).css("opacity"));
 
+        // 土豪金歌词超长滑动
+        let blk = $("#animated_lrc_0");
+        let span = $("#animated_lrc_span_0");
+        let marginLeft = parseFloat(span.css("margin-left").slice(0, -2));//0px , -px
+        if(marginLeft + span.width() > blk.width() && marginLeft + perc * span.width() > blk.width() / 2) {//提前一半滚动
+            span.css("margin-left", marginLeft - 10)
+            $("#animated_lrc_blk_span_0").css("margin-left", marginLeft - 5)
+        }
+
+        let blk2 = $("#animated_lrc_1");
+        let span2 = $("#animated_lrc_span_1");
+        let marginLeft2 = parseFloat(span2.css("margin-left").slice(0, -2));//0px , -px
+        if(marginLeft2 + span2.width() > blk2.width() && marginLeft2 + perc * span2.width() > blk2.width() / 2) {//提前一半滚动
+            span2.css("margin-left", marginLeft2 - 10)
+            $("#animated_lrc_blk_span_1").css("margin-left", marginLeft2 - 5)
+        }
+        
     }
     // document.getElementById("show").innerHTML = dellrc+" "+baseh +" "+ currow;///////////////////////////////////////////
 

@@ -315,7 +315,7 @@
     overflow: hidden;
 }
 .historyAndplay:hover{
-    width: 450px;
+    width: 500px;
 }
 .historyAndplay:hover #hyPlListBlock{
     display: block;

@@ -54,6 +54,15 @@
 #animated_lrc_blk_0 {
     margin: 0;
     line-height: normal;
+
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
+}
+#animated_lrc_blk_span_0 {
+    display: block;
+    transform: translate(3px, 3px);
+
     background-clip: text;
     -webkit-background-clip: text;
     /* 土豪金渐变配色 */
@@ -105,6 +114,15 @@
 #animated_lrc_blk_1 {
     margin: 0;
     line-height: normal;
+
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
+}
+#animated_lrc_blk_span_1 {
+    display: block;
+    transform: translate(3px, 3px);
+
     background-clip: text;
     -webkit-background-clip: text;
     /* 土豪金渐变配色 */

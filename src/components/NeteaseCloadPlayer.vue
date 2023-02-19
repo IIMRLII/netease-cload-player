@@ -186,17 +186,17 @@
             <!-- 歌词特效 -->
             <div id="animated_lrc">
                 <div id="animated_lrc_top">
-                    <p id="animated_lrc_0"></p>
+                    <p id="animated_lrc_0"><span id="animated_lrc_span_0"></span></p>
                 </div>
                 <div id="animated_lrc_blk_top">
-                    <p id="animated_lrc_blk_0"></p>
+                    <p id="animated_lrc_blk_0"><span id="animated_lrc_blk_span_0"></span></p>
                 </div>
 
                 <div id="animated_lrc_bottom">
-                    <p id="animated_lrc_1"></p>
+                    <p id="animated_lrc_1"><span id="animated_lrc_span_1"></span></p>
                 </div>
                 <div id="animated_lrc_blk_bottom">
-                    <p id="animated_lrc_blk_1"></p>
+                    <p id="animated_lrc_blk_1"><span id="animated_lrc_blk_span_1"></span></p>
                 </div>
             </div>
         </div>
