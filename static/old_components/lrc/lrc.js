@@ -405,7 +405,7 @@ function getLine() {
         $("#animated_lrc_blk_1").css("width", perc * patpos3.width + "px");
 
         // 土豪金歌词超长滑动
-        let blk = $("#animated_lrc_0");
+        let blk = $("#animated_lrc_top");
         let span = $("#animated_lrc_span_0");
         let marginLeft = parseFloat(span.css("margin-left").slice(0, -2));//0px , -px
         let del = span.width() - blk.width()
@@ -414,7 +414,7 @@ function getLine() {
             $("#animated_lrc_blk_span_0").css("margin-left", marginLeft - del / 20)
         }
 
-        let blk2 = $("#animated_lrc_1");
+        let blk2 = $("#animated_lrc_bottom");
         let span2 = $("#animated_lrc_span_1");
         let marginLeft2 = parseFloat(span2.css("margin-left").slice(0, -2));//0px , -px
         let del2 = span2.width() - blk2.width()
