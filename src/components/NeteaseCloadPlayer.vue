@@ -762,12 +762,26 @@ export default {
                     // 按下向左
                     player.currentTime -= 5;
                     e.stopPropagation();
-                    return;  
+                    return;
                 case 39:  
                     // 按下向右
                     player.currentTime += 5;
                     e.stopPropagation();
-                    return;  
+                    return;
+                case 38:  
+                    // 按下向上
+                    that.volume += 5;
+                    if(that.volume > 100)that.volume = 100;
+                    player.volume = that.volume / 100;
+                    e.stopPropagation();
+                    return;
+                case 40:  
+                    // 按下向下
+                    that.volume -= 5;
+                    if(that.volume < 0)that.volume = 0;
+                    player.volume = that.volume / 100;
+                    e.stopPropagation();
+                    return;
             }
         })
 
@@ -940,8 +954,10 @@ export default {
 
             // 音量同步
             if(window.volumeRangeFlag){
-                let player = document.getElementById("player");
-                player.volume = $("#volumerange").val() / 100;
+                // 音量范围限制
+                if(this.volume > 100)that.volume = 100;
+                if(this.volume < 0)that.volume = 0;
+                player.volume = this.volume / 100;
             }
 
             var audioPlayer = document.querySelector('#player');
@@ -1003,7 +1019,7 @@ export default {
             }
 
             if (localStorage.getItem("volume") != null) {
-                this.volume = localStorage.getItem("volume");
+                this.volume = parseFloat(localStorage.getItem("volume"));
                 document.getElementById("player").volume = this.volume / 100;
             }
 
@@ -1465,12 +1481,13 @@ export default {
 
                     if (preload) {
                         setTimeout(function() {
-                            player.play();
+                            player.play().catch(() => {
+                                this.$message.warning('因版权限制,该歌曲暂时无法播放');
+                            })
 
                             play.title = "pause"
                             $('#play').addClass("play_pause");
                             // play.style.backgroundImage = 'url("player/pause.png")';
-
                         }, 200)
                     }
 
@@ -1565,7 +1582,9 @@ export default {
             let play = document.getElementById("play");
 
             if (player.src != "" && play.title == "play") {
-                player.play();
+                player.play().catch(() => {
+                    this.$message.warning('因版权限制,该歌曲暂时无法播放');
+                })
 
                 play.title = "pause"
                 $('#play').addClass("play_pause");
