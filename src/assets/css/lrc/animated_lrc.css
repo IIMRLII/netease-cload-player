@@ -20,8 +20,8 @@
     box-sizing: border-box;
     width: 100vw;
     height: 50%;
-    padding-left: 10vw;
-    padding-right: 30vw;
+    padding-left: 5vw;
+    padding-right: 35vw;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -32,11 +32,14 @@
     background-clip: text;
     -webkit-background-clip: text;
     /* 土豪金渐变配色 */
-    background-color: white;
+    /* background-color: white; */
 
     overflow: hidden;
     text-overflow: clip;
     white-space: nowrap;
+}
+#animated_lrc_span_0 {
+    color: white;
 }
 
 #animated_lrc_blk_top {
@@ -45,8 +48,8 @@
     width: 100vw;
     height: 50%;
     top: 0;
-    padding-left: 10vw;
-    padding-right: 30vw;
+    padding-left: 5vw;
+    padding-right: 35vw;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -83,10 +86,10 @@
     box-sizing: border-box;
     width: 100vw;
     height: 50%;
-    padding-left: 30vw;
-    padding-right: 10vw;
+    padding-left: 35vw;
+    padding-right: 5vw;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
 }
 #animated_lrc_1 {
@@ -101,6 +104,9 @@
     text-overflow: clip;
     white-space: nowrap;
 }
+#animated_lrc_span_1 {
+    color: white;
+}
 
 #animated_lrc_blk_bottom {
     position: absolute;
@@ -108,10 +114,10 @@
     width: 100vw;
     height: 50%;
     top: 50%;
-    padding-left: 30vw;
-    padding-right: 10vw;
+    padding-left: 35vw;
+    padding-right: 5vw;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
 }
 #animated_lrc_blk_1 {

@@ -400,10 +400,12 @@ function getLine() {
 
         // 土豪金歌词进度
         let patpos2 = document.getElementById("animated_lrc_span_0").getBoundingClientRect();
-        $("#animated_lrc_blk_0").css("width", perc * patpos2.width + "px");
+        // $("#animated_lrc_blk_0").css("width", perc * patpos2.width + "px");
+        $("#animated_lrc_blk_span_0").css("width", perc * patpos2.width + "px");
         let patpos3 = document.getElementById("animated_lrc_span_1").getBoundingClientRect();
-        $("#animated_lrc_blk_1").css("width", perc * patpos3.width + "px");
-        $("#animated_lrc_blk_1").css("transform", "translateX(-" + (1 - perc) * patpos3.width + "px)");
+        // $("#animated_lrc_blk_1").css("width", perc * patpos3.width + "px");
+        $("#animated_lrc_blk_span_1").css("width", perc * patpos3.width + "px");
+        // $("#animated_lrc_blk_span_1").css("transform", "translate(-" + ((1 - perc) * patpos3.width - 3) + "px, 3px)");
 
         // 土豪金歌词超长滑动
         let blk = $("#animated_lrc_top");
@@ -411,8 +413,8 @@ function getLine() {
         let marginLeft = parseFloat(span.css("margin-left").slice(0, -2));//0px , -px
         let del = span.width() - blk.width()
         if(marginLeft + span.width() > blk.width() && marginLeft + perc * span.width() > blk.width() / 2) {//提前一半滚动
-            span.css("margin-left", marginLeft - del / 20)
-            $("#animated_lrc_blk_span_0").css("margin-left", marginLeft - del / 20)
+            $("#animated_lrc_span_0").css("margin-left", marginLeft - del / 50)
+            $("#animated_lrc_blk_span_0").css("margin-left", marginLeft - del / 50)
         }
 
         let blk2 = $("#animated_lrc_bottom");
@@ -420,8 +422,8 @@ function getLine() {
         let marginLeft2 = parseFloat(span2.css("margin-left").slice(0, -2));//0px , -px
         let del2 = span2.width() - blk2.width()
         if(marginLeft2 + span2.width() > blk2.width() && marginLeft2 + perc * span2.width() > blk2.width() / 2) {//提前一半滚动
-            span2.css("margin-left", marginLeft2 - del2 / 20)
-            $("#animated_lrc_blk_span_1").css("margin-left", marginLeft2 - del2 / 20)
+            $("#animated_lrc_span_1").css("margin-left", marginLeft2 - del2 / 50)
+            $("#animated_lrc_blk_span_1").css("margin-left", marginLeft2 - del2 / 50)
         }
         
     }
