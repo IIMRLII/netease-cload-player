@@ -110,7 +110,7 @@
                         </div>
                     </div>
                     <input id="input1" type="text" autocomplete="off" v-model="keyWord" @click="getSearchSuggest()"
-                        @keyup='getSearchSuggest()' @keyup.enter="search()" :placeholder='defaultShowKeyword' />
+                        @keydown.stop="" @keyup='getSearchSuggest()' @keyup.enter="search()" :placeholder='defaultShowKeyword' />
                 </div>
                 <div class="searchBtn" @click="search()"></div>
                 <!-- <a class="user_nav" @click="login()" title="登录以解锁收藏与保存历史记录功能！">登录</a>
@@ -757,6 +757,8 @@ export default {
                     // 按下空格
                     that.playNow();
                     e.stopPropagation();
+                    // 阻止按钮默认事件
+                    e.preventDefault();
                     return;  
                 case 37:  
                     // 按下向左
@@ -787,6 +789,7 @@ export default {
 
         document.getElementById("player").addEventListener('ended', function() {
             that.playTheNext();
+            alert(1)
         }, false);
 
         $(window).click(function(e) {
@@ -960,33 +963,20 @@ export default {
                 player.volume = this.volume / 100;
             }
 
-            var audioPlayer = document.querySelector('#player');
-            if(audioPlayer.paused){
-                play.title = "play"
-                $('#play').removeClass("play_pause");
-                // $('#phone_curcover').removeClass("curcover_ani");
-                $('#phone_curcover').css("animationPlayState", "paused");
-                // play.style.backgroundImage = 'url("../assets/css/player/play.png")';
-            }else{
-                play.title = "pause"
-                $('#play').addClass("play_pause");
-                // $('#phone_curcover').addClass("curcover_ani");
-                $('#phone_curcover').css("animationPlayState", "");
-                // play.style.backgroundImage = 'url("../assets/css/player/pause.png")';
-            }
-
-            // if(this.showSuggest){
-            //     $("#searchSuggest").css("visibility","visible");
+            // var audioPlayer = document.querySelector('#player');
+            // if(audioPlayer.paused){
+            //     play.title = "play"
+            //     $('#play').removeClass("play_pause");
+            //     // $('#phone_curcover').removeClass("curcover_ani");
+            //     $('#phone_curcover').css("animationPlayState", "paused");
+            //     // play.style.backgroundImage = 'url("../assets/css/player/play.png")';
             // }else{
-            //     $("#searchSuggest").css("visibility","hidden");
+            //     play.title = "pause"
+            //     $('#play').addClass("play_pause");
+            //     // $('#phone_curcover').addClass("curcover_ani");
+            //     $('#phone_curcover').css("animationPlayState", "");
+            //     // play.style.backgroundImage = 'url("../assets/css/player/pause.png")';
             // }
-
-            // if(this.isRecommend){
-            //     $("#recommend").css("visibility","visible");
-            // }else{
-            //     $("#recommend").css("visibility","hidden");
-            // }
-
         },
 
         clearLocalStorage: function() {
@@ -1149,6 +1139,8 @@ export default {
                     for(let i = 0;i < response.data.songs.length;i++){
                         if(response.data.songs[i].al.id == song.al.id) {
                             $('.curcover').css('background-image', 'url(' + response.data.songs[i].al.picUrl + "?param=120y120?)");
+                            $('#animated_lrc_blk_span_0').css('background-image', 'url(' + response.data.songs[i].al.picUrl + "?param=120y120?)");
+                            $('#animated_lrc_blk_span_1').css('background-image', 'url(' + response.data.songs[i].al.picUrl + "?param=120y120?)");
                             // document.getElementById("curcover").src = response.data.songs[i].al.picUrl + "?param=120y120?";
                             break;
                         }
@@ -1477,7 +1469,7 @@ export default {
                     player.src = this.curMusic.url;
 
                     this.pushMusicHL(this.curMusic);
-                    this.pushMusicSL(this.curMusic);
+                    // this.pushMusicSL(this.curMusic);
 
                     if (preload) {
                         setTimeout(function() {
@@ -1487,6 +1479,7 @@ export default {
 
                             play.title = "pause"
                             $('#play').addClass("play_pause");
+                            $('#phone_curcover').css("animationPlayState", "");
                             // play.style.backgroundImage = 'url("player/pause.png")';
                         }, 200)
                     }
@@ -1508,7 +1501,7 @@ export default {
             return index;
         },
 
-        playTheNext: function() {
+        playTheNext: function(e) {// 下一首
             let len = this.playList.length;
             if (len < 1) return;
             var currentIndex = this.getCurrentSongIndex();
@@ -1517,7 +1510,7 @@ export default {
             this.pushMusicHL(next);
         },
 
-        playTheFormer: function() {
+        playTheFormer: function(e) {// 上一首
             let len = this.playList.length;
             if (len < 1) return;
             var currentIndex = this.getCurrentSongIndex();
@@ -1588,12 +1581,14 @@ export default {
 
                 play.title = "pause"
                 $('#play').addClass("play_pause");
+                $('#phone_curcover').css("animationPlayState", "");
                 // play.style.backgroundImage = 'url("player/pause.png")';
             } else if (player.src != "" && play.title == "pause") {
                 player.pause();
 
                 play.title = "play"
                 $('#play').removeClass("play_pause");
+                $('#phone_curcover').css("animationPlayState", "paused");
                 // play.style.backgroundImage = 'url("player/play.png")';
             }
         },
@@ -1607,14 +1602,15 @@ export default {
             this.history.unshift(item);
         },
         /*将播放的歌曲放到播放列表末尾*/
-        pushMusicSL: function(item) {
-            for (let i = 0; i < this.playList.length; i++) {
-                if (this.playList[i].id == item.id) {
-                    this.playList.splice(i, 1);
-                }
-            }
-            this.playList.push(item);
-        },
+        // pushMusicSL: function(item) {
+        //     for (let i = 0; i < this.playList.length; i++) {
+        //         if (this.playList[i].id == item.id) {
+        //             this.playList.splice(i, 1);
+        //             break;
+        //         }
+        //     }
+        //     this.playList.push(item);
+        // },
 
         ClearHL: function() {
             if (confirm("是否清空历史记录？")) this.history = [];
@@ -1638,6 +1634,7 @@ export default {
                     play.title = "play"
                     // play.style.backgroundImage = 'url("player/play.png")';
                     $('#play').removeClass("play_pause");
+                    $('#phone_curcover').css("animationPlayState", "paused");
                 }
             )
         },
@@ -1653,6 +1650,7 @@ export default {
             play.title = "play"
             // play.style.backgroundImage = 'url("player/play.png")';
             $('#play').removeClass("play_pause");
+            $('#phone_curcover').css("animationPlayState", "paused");
         },
 
         /*绑定于mouseover时让目标元素移动*/
