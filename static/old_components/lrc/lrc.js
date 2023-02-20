@@ -403,6 +403,7 @@ function getLine() {
         $("#animated_lrc_blk_0").css("width", perc * patpos2.width + "px");
         let patpos3 = document.getElementById("animated_lrc_span_1").getBoundingClientRect();
         $("#animated_lrc_blk_1").css("width", perc * patpos3.width + "px");
+        $("#animated_lrc_blk_1").css("transform", "translateX(-" + (1 - perc) * patpos3.width + "px)");
 
         // 土豪金歌词超长滑动
         let blk = $("#animated_lrc_top");

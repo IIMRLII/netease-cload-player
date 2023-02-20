@@ -789,7 +789,6 @@ export default {
 
         document.getElementById("player").addEventListener('ended', function() {
             that.playTheNext();
-            alert(1)
         }, false);
 
         $(window).click(function(e) {
