@@ -181,7 +181,7 @@
                 <p id="whitelrc"></p>
             </div>
             <ul id="lrc">
-
+                
             </ul>
             <!-- 歌词特效 -->
             <div id="animated_lrc">
@@ -731,6 +731,8 @@ export default {
         // earth.onload = () => {
         //     this.$refs.big_dipper.starAniCount++;
         // }
+
+        $('#phone_curcover').css("animationPlayState", "paused");//暂停手机歌曲封面旋转动画
 
         window.addEventListener('unload', e => this.unloadHandler(e, this)); //添加页面关闭事件
 
