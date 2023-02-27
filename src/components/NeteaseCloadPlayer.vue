@@ -592,7 +592,7 @@
 
     </div>
 </template>
-<script type="text/javascript" src="@/old_components/mouse/partical.js"></script>
+<!-- <script type="text/javascript" src="@/old_components/mouse/partical.js"></script>
 <script type="text/javascript" src="@/old_components/mouse/mouse.js"></script>
 <script type="text/javascript" src="@/old_components/mouse/stars.js"></script>
 <script type="text/javascript" src="@/old_components/painter.js"></script>
@@ -603,7 +603,7 @@
 <script type="text/javascript" src="@/old_components/util/setTimer.js"></script>
 <script type="text/javascript" src="@/old_components/player/player.js"></script>
 <script type="text/javascript" src="@/old_components/lrc/lrc.js"></script>
-<script type="text/javascript" src="@/old_components/synchronization.js"></script>
+<script type="text/javascript" src="@/old_components/synchronization.js"></script> -->
 
 <!-- <script type="text/javascript" src="@/old_components/init.js"></script> -->
 <script>
@@ -718,6 +718,14 @@ export default {
         const that = this;
         this.getDefaultKeyword();
         this.init();
+
+        ppxx = $("#lrcbg").height() / 2 + $("#top").height() / 2 - 30 - (currentLine * 40);
+
+        let player = document.getElementById("player");
+            player.onseeking = function () {
+            ppxx = $("#lrcbg").height() / 2 + $("#top").height() / 2 - 30 - (currentLine * 40);
+            deltaTimer.splice(deltaTimer.length - 1, 1);
+        }
 
         //图片慢加载
         $('#background_star').css('background-image', `url(${require('../assets/css/background/darkspace-min.jpg')})`)

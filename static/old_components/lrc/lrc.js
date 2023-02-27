@@ -130,13 +130,8 @@ $(document).ready(function () {
 
 })
 
-var ppxx = $("#lrcbg").height() / 2 + $("#top").height() / 2 - 30 - (currentLine * 40);
-
-let player = document.getElementById("player");
-player.onseeking = function () {
-    ppxx = $("#lrcbg").height() / 2 + $("#top").height() / 2 - 30 - (currentLine * 40);
-    deltaTimer.splice(deltaTimer.length - 1, 1);
-}
+// var ppxx = $("#lrcbg").height() / 2 + $("#top").height() / 2 - 30 - (currentLine * 40);
+var ppxx;
 
 function deltaCounter() {//反函数递减数
     for (let i = deltaTimer.length; i > 0; i--) {
