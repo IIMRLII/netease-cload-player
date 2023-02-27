@@ -1457,8 +1457,8 @@ export default {
                     }
                     this.curMusic.allSinger = allSinger
 
-                    if(cursonglrc) cursonglrc = [];
-                    if(currentLine) currentLine = 0;
+                    if(typeof cursonglrc === "undefined") cursonglrc = [];
+                    if(typeof currentLine === "undefined") currentLine = 0;
 
                     this.getLrc(this.curMusic.id);
                     this.getCover(this.curMusic);
