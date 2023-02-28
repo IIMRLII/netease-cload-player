@@ -1166,6 +1166,8 @@ export default {
                     if (response.data.data[0].freeTrialInfo) {
                         // alert("该歌曲是VIP曲目，您只能试听30s");
                         that.$message.warning('该歌曲是VIP曲目，您只能试听30s');
+                        that.curMusic.dt = 30000
+                        // $("#max").text("00:30")
                         // that.$message.error('错了哦，这是一条错误消息');
                         cursonglrc = [];
                         document.getElementById('lrc').innerHTML = "";
@@ -1514,6 +1516,9 @@ export default {
             let len = this.playList.length;
             if (len < 1) {
                 this.$message.warning('播放列表里已经没有歌曲啦~');
+                play.title = "play"
+                $('#play').removeClass("play_pause");
+                $('#phone_curcover').css("animationPlayState", "paused");
                 return;
             }
             var currentIndex = this.getCurrentSongIndex();
@@ -1526,6 +1531,9 @@ export default {
             let len = this.playList.length;
             if (len < 1) {
                 this.$message.warning('播放列表里已经没有歌曲啦~');
+                play.title = "play"
+                $('#play').removeClass("play_pause");
+                $('#phone_curcover').css("animationPlayState", "paused");
                 return;
             }
             var currentIndex = this.getCurrentSongIndex();
