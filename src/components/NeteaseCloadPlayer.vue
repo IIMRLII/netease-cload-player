@@ -1512,7 +1512,10 @@ export default {
 
         playTheNext: function(e) {// 下一首
             let len = this.playList.length;
-            if (len < 1) return;
+            if (len < 1) {
+                this.$message.warning('播放列表里已经没有歌曲啦~');
+                return;
+            }
             var currentIndex = this.getCurrentSongIndex();
             var next = currentIndex < len - 1 ? this.playList[currentIndex + 1] : this.playList[0];
             this.playMusic(next);
@@ -1521,7 +1524,10 @@ export default {
 
         playTheFormer: function(e) {// 上一首
             let len = this.playList.length;
-            if (len < 1) return;
+            if (len < 1) {
+                this.$message.warning('播放列表里已经没有歌曲啦~');
+                return;
+            }
             var currentIndex = this.getCurrentSongIndex();
             var former = currentIndex == 0 ? this.playList[len - 1] : this.playList[currentIndex - 1];
             this.playMusic(former);

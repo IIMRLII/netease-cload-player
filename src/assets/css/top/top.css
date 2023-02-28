@@ -207,6 +207,7 @@
 
 .suggestList li {
     margin: 5px 0;
+    cursor: pointer;
 }
 
 .suggestList li:hover {
