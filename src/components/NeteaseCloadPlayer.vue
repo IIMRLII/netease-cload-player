@@ -567,7 +567,7 @@
                 </ul>
 
                 <ul id='PList' v-if="HPShow2">
-                    <li class="Plistli" v-for="(item, index) in playList" :key="index">
+                    <li :class="`Plistli${currentIndex == index ? ' curPlSong' : ''}`" v-for="(item, index) in playList" :key="index">
                         <div class="listenedName">
                             <a title="点击播放" href="javascript:;" @click='playMusic(item)' @mouseover="addActive($event)"
                                 @mouseout="removeActive($event)">{{ item.name }}</a>
@@ -707,6 +707,7 @@ export default {
             recommendStarShow: true,
 
             noSongPlay: false,
+            currentIndex: 0,//当前歌曲index
         }
     },
     computed: {
@@ -1480,8 +1481,9 @@ export default {
                     player.src = this.curMusic.url;
 
                     this.pushMusicHL(this.curMusic);
-                    // this.pushMusicSL(this.curMusic);
-
+                    this.pushMusicSL(this.curMusic);
+                    this.currentIndex = this.getCurrentSongIndex();
+                    
                     if (preload) {
                         setTimeout(function() {
                             player.play().catch(() => {
@@ -1521,8 +1523,8 @@ export default {
                 $('#phone_curcover').css("animationPlayState", "paused");
                 return;
             }
-            var currentIndex = this.getCurrentSongIndex();
-            var next = currentIndex < len - 1 ? this.playList[currentIndex + 1] : this.playList[0];
+            this.currentIndex = this.getCurrentSongIndex();
+            var next = this.currentIndex < len - 1 ? this.playList[this.currentIndex + 1] : this.playList[0];
             this.playMusic(next);
             this.pushMusicHL(next);
         },
@@ -1536,8 +1538,8 @@ export default {
                 $('#phone_curcover').css("animationPlayState", "paused");
                 return;
             }
-            var currentIndex = this.getCurrentSongIndex();
-            var former = currentIndex == 0 ? this.playList[len - 1] : this.playList[currentIndex - 1];
+            this.currentIndex = this.getCurrentSongIndex();
+            var former = this.currentIndex == 0 ? this.playList[len - 1] : this.playList[this.currentIndex - 1];
             this.playMusic(former);
             this.pushMusicHL(former);
         },
@@ -1625,15 +1627,16 @@ export default {
             this.history.unshift(item);
         },
         /*将播放的歌曲放到播放列表末尾*/
-        // pushMusicSL: function(item) {
-        //     for (let i = 0; i < this.playList.length; i++) {
-        //         if (this.playList[i].id == item.id) {
-        //             this.playList.splice(i, 1);
-        //             break;
-        //         }
-        //     }
-        //     this.playList.push(item);
-        // },
+        pushMusicSL: function(item) {
+            for (let i = 0; i < this.playList.length; i++) {
+                if (this.playList[i].id == item.id) {
+                    // this.playList.splice(i, 1);
+                    //如果播放列表已有歌曲则不动
+                    return;
+                }
+            }
+            this.playList.splice(1, 0, item);
+        },
 
         ClearHL: function() {
             if (confirm("是否清空历史记录？")) this.history = [];
