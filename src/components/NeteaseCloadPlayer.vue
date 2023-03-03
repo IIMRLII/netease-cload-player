@@ -992,7 +992,7 @@ export default {
         clearLocalStorage: function() {
             var that = this;
             $("*").css("cursor", "auto");
-            that.userSave(that)
+            // that.userSave(that)
             setTimeout(function() {
                 let choose = confirm("是否重置localStorage并刷新页面？");
                 if (choose) {
@@ -1053,7 +1053,7 @@ export default {
 
         unloadHandler: function(e, thisvue) { //关闭时保存localstorage
             if (thisvue.isStorage) {
-                thisvue.userSave(thisvue)
+                // thisvue.userSave(thisvue)
 
                 localStorage.setItem("rtx", thisvue.rtx);
                 localStorage.setItem("volume", thisvue.volume);
@@ -1066,18 +1066,18 @@ export default {
             }
         },
 
-        userSave: (thisvue) => {
-            let data = {
-                username: thisvue.username,
-                musicHistory: JSON.stringify(thisvue.history),
-                myPlayList: JSON.stringify(thisvue.playList),
-            }
-            api.post('users/user/changeInfo', data).then((res) => {
-                if (res.code === 0) {
-                    sessionStorage.removeItem('token')
-                }
-            })
-        },
+        // userSave: (thisvue) => {
+        //     let data = {
+        //         username: thisvue.username,
+        //         musicHistory: JSON.stringify(thisvue.history),
+        //         myPlayList: JSON.stringify(thisvue.playList),
+        //     }
+        //     api.post('users/user/changeInfo', data).then((res) => {
+        //         if (res.code === 0) {
+        //             sessionStorage.removeItem('token')
+        //         }
+        //     })
+        // },
 
         formatDate: function(date) { //标准时间转换
             date = new Date(date);
