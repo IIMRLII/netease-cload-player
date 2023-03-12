@@ -1,4 +1,5 @@
-function bezier(theArray, t) { //贝塞尔公式调用
+//贝塞尔曲线公式
+function bezier(theArray, t) {
     var x = 0,
         y = 0;
     //控制点数组

@@ -1,5 +1,5 @@
 /* 移动端适配 */
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 768px) {
 
     /* 取消歌词特效 */
     #animated_lrc {

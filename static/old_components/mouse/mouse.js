@@ -5,10 +5,17 @@ var earthrotatespeed = 0;
 var mouseArray = new Array();
 var mouseParticle = new Array();
 
+// 鼠标位置结构体
 function mouseT(x, y) {
     this.x = x;
     this.y = y;
 }
+
+// 记录鼠标轨迹
+$(window).mousemove(function (e) {
+    mouseX = e.clientX; // 鼠标落下时的X
+    mouseY = e.clientY; // 鼠标落下时的Y
+})
 
 function mouseTailCounter() {
     mouseArray.push(new mouseT(mouseX, mouseY));
@@ -90,11 +97,7 @@ function mouseTailPainter() {
     }
 }
 
-$(window).mousemove(function (e) {
-    mouseX = e.clientX; // 鼠标落下时的X
-    mouseY = e.clientY; // 鼠标落下时的Y
-})
-
+// 鼠标点击生成粒子特效
 $(window).click(function (e) {
     let lzsum = 10 + Math.floor(Math.random() * 5);
 

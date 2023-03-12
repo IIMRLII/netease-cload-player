@@ -1,3 +1,4 @@
+// 粒子结构体
 function partical(x,y,time,vx,vy,fvx,fvy,size,fsize,r,g,b,fr,fg,fb,ang,fang){
     this.x = x;
     this.y = y;

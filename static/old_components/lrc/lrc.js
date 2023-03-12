@@ -154,6 +154,7 @@ function deltaCounter() {//反函数递减数
 
 setInterval("deltaCounter()", 20);
 
+// 进入动画样式
 var animationEnterType = [
     "backInDown",
     "backInLeft",
@@ -198,6 +199,7 @@ var animationEnterType = [
     "slideInUp"
 ]
 
+// 退出动画样式
 var animationExitType = [
     "backOutDown",
     "backOutLeft",
@@ -253,9 +255,11 @@ function changeLrcAnimation(currentLine) {
             bottom = 'top'
         }
 
+        //修改歌词文字
         $("#animated_lrc_span_" + currentLine % 2).text($("#slrc" + currentLine).text())
         $("#animated_lrc_blk_span_" + currentLine % 2).text($("#slrc" + currentLine).text())
         
+        //歌词样式重置
         $("#animated_lrc_span_" + currentLine % 2).css("margin-left", 0)
         $("#animated_lrc_blk_span_" + currentLine % 2).css("margin-left", 0)
 
@@ -264,14 +268,13 @@ function changeLrcAnimation(currentLine) {
         
         $("#animated_lrc_blk_top").removeClass()
         $("#animated_lrc_blk_bottom").removeClass()
-        // 相同的进出动画
+
+        // 添加进出动画
         let animationEnterIndex = Math.floor(animationEnterType.length * Math.random())
         $("#animated_lrc_" + top).addClass("animate__animated animate__" + animationEnterType[animationEnterIndex])
-        // let animationExitType = Math.floor(animationExitType.length * Math.random())
         $("#animated_lrc_" + bottom).addClass("animate__animated animate__" + animationExitType[animationEnterIndex])
         
         $("#animated_lrc_blk_" + top).addClass("animate__animated animate__" + animationEnterType[animationEnterIndex])
-        // let animationExitType = Math.floor(animationExitType.length * Math.random())
         $("#animated_lrc_blk_" + bottom).addClass("animate__animated animate__" + animationExitType[animationEnterIndex])
     }
 }

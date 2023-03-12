@@ -31,6 +31,7 @@
     background-color: rgba(255, 255, 255, 0.95);
 }
 
+/* 第一颗大星星 */
 .recommendStar1 {
     position: fixed;
     display: flex;
@@ -50,6 +51,7 @@
     transition: width 0.5s ease, height 0.5s ease, transform 0.5s ease;
 }
 
+/* 大星星飞入动画 */
 @keyframes recommendStar1 {
     from {
         top: 0;
@@ -63,6 +65,7 @@
     }
 }
 
+/* 大星星定格后缩放动画 */
 @keyframes recommendStarScale1 {
     from {
         transform: translate(-50%, -50%) scale(1) rotate(365deg);
@@ -78,6 +81,7 @@
     animation: recommendStar1 1s ease-out 0s 1, recommendStarShake1 1s ease-in-out 0s infinite alternate;
 }
 
+/* 鼠标移入大星星摇晃动画 */
 @keyframes recommendStarShake1 {
     from {
         transform: translate(-50%, -50%) scale(1) rotate(365deg);
@@ -87,6 +91,7 @@
     }
 }
 
+/* 第二颗中星星 */
 .recommendStar2 {
     position: fixed;
     display: flex;
@@ -106,6 +111,7 @@
     transition: width 0.5s ease, height 0.5s ease;
 }
 
+/* 中星星飞入动画 */
 @keyframes recommendStar2 {
     from {
         top: 0;
@@ -119,6 +125,7 @@
     }
 }
 
+/* 中星星定格后缩放动画 */
 @keyframes recommendStarScale2 {
     from {
         transform: translate(-50%, -50%) scale(1) rotate(340deg);
@@ -134,6 +141,7 @@
     animation: recommendStar2 1s ease-out 0s 1, recommendStarShake2 1s ease-in-out 0s infinite alternate;
 }
 
+/* 鼠标移入中星星摇晃动画 */
 @keyframes recommendStarShake2 {
     from {
         transform: translate(-50%, -50%) scale(1) rotate(340deg);
@@ -143,6 +151,7 @@
     }
 }
 
+/* 第三颗小星星 */
 .recommendStar3 {
     position: fixed;
     display: flex;
@@ -162,6 +171,7 @@
     transition: width 0.5s ease, height 0.5s ease;
 }
 
+/* 小星星飞入动画 */
 @keyframes recommendStar3 {
     from {
         top: 0;
@@ -175,6 +185,7 @@
     }
 }
 
+/* 小星星定格后缩放动画 */
 @keyframes recommendStarScale3 {
     from {
         transform: translate(-50%, -50%) scale(1) rotate(390deg);
@@ -190,6 +201,7 @@
     animation: recommendStar3 1s ease-out 0s 1, recommendStarShake3 1s ease-in-out 0s infinite alternate;
 }
 
+/* 鼠标移入中星星摇晃动画 */
 @keyframes recommendStarShake3 {
     from {
         transform: translate(-50%, -50%) scale(1) rotate(390deg);
