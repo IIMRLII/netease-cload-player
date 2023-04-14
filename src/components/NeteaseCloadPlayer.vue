@@ -521,7 +521,7 @@
                                     </div>
                                     <p class="duration">{{ item2.dt }}</p>
                                     <div class="movie2">
-                                        <div title="点击播放MV" v-if="item.mv != 0" href="javascript:;" @click='playMVById(item.mv)'></div>
+                                        <div title="点击播放MV" v-if="item2.mv != 0" href="javascript:;" @click='playMVById(item2.mv)'></div>
                                     </div>
                                 </div>
                                 <hr>
