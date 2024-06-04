@@ -256,6 +256,10 @@
                 <!-- </div> -->
             </div>
         </div>
+		
+		<div id="copyright">
+			<a id="certificatenumber" href="https://beian.miit.gov.cn/" target="_blank">备案号：浙ICP备2023001502号</a>
+		</div>
 
         <!-- /*推荐*/ -->
             <div id="recommend">
