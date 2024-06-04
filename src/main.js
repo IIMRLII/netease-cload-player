@@ -8,7 +8,8 @@ import router from './router'
 import axios from 'axios' //引入axios
 // axios.defaults.baseURL = 'http://musicapi.leanapp.cn/'
 // axios.defaults.baseURL = 'http://47.98.189.161:3000/'
-axios.defaults.baseURL = 'http://150.158.49.199:3000/'
+// axios.defaults.baseURL = 'http://150.158.49.199:3000/'
+axios.defaults.baseURL = 'http://111.229.209.22:3000/'
 Vue.prototype.$axios = axios
 
 import '@/icons/index'//引入svg
